@@ -1,0 +1,4 @@
+.vs/
+*.log
+sqlserver_data/
+sqlserver_data/log/*.gdmp
