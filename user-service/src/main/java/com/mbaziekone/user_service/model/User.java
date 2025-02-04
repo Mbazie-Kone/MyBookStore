@@ -2,6 +2,7 @@ package com.mbaziekone.user_service.model;
 
 import java.io.Serializable;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,7 +45,7 @@ public class User implements Serializable {
 	@JoinColumn(name = "role_id")
 	private Role role;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "address_id")
 	private Address address;
 
