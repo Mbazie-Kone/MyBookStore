@@ -5,10 +5,9 @@ services:
     ports:
       - "1433:1433"
     environment:
-      ACCEPT_EULA: "Y"
-      SA_PASSWORD: "a12345678A!"
-      MSSQL_AGENT_ENABLED: "true"
-      MSSQL_TCP_ENCRYPTION: "0"
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=a12345678A!
+      - MSSQL_PID=Express
     volumes:
       - ./sqlserver_data:/var/opt/mssql
     restart: always
