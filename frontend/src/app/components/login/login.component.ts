@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: false,
-  
+
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: any;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -25,11 +25,17 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value).subscribe(response => {
-        this.authService.saveToken(response.token);
-        this.router.navigate(['/dashboard']);
-      }, error => {
-        alert('Invalid credentials');
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (response) => {
+          this.authService.saveToken(response.token);
+          this.router.navigate(['/dashboard']);
+        },
+        error: (error) => {
+          alert('Invalid credentials');
+        },
+        complete: () => {
+          console.log('Login process completed.');
+        }
       });
     }
   }
