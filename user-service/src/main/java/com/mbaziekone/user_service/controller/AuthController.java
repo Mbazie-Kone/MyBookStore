@@ -33,6 +33,7 @@ public class AuthController {
 	
 	private final AuthenticationManager authenticationManager;
 	
+	//REGISTRATION
 	@PostMapping("/register")
 	public String register(@Valid @RequestBody UserDto userDto) {
 		if (userService.findByUsername(userDto.getUsername()).isPresent()) {
@@ -71,4 +72,7 @@ public class AuthController {
 		
 		return "User registered successfully!";
 	}
+	
+	//LOGIN
+	
 }
