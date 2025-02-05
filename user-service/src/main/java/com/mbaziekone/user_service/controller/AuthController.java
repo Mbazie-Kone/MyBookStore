@@ -66,5 +66,9 @@ public class AuthController {
 			role,
 			address
 		);
+		
+		userService.createUser(user);
+		
+		return "User registered successfully!";
 	}
 }
