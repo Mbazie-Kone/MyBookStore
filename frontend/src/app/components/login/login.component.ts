@@ -22,4 +22,15 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
   }
+
+  onSubmit(): void {
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value).subscribe(response => {
+        this.authService.saveToken(response.token);
+        this.router.navigate(['/dashboard']);
+      }, error => {
+        alert('Invalid credentials');
+      });
+    }
+  }
 }
