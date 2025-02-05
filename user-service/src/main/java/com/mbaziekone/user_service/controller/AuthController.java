@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mbaziekone.user_service.dto.UserDto;
 import com.mbaziekone.user_service.model.Address;
 import com.mbaziekone.user_service.model.Role;
+import com.mbaziekone.user_service.model.User;
 import com.mbaziekone.user_service.repository.RoleRepository;
 import com.mbaziekone.user_service.security.JwtUtil;
 import com.mbaziekone.user_service.service.UserService;
@@ -53,6 +54,17 @@ public class AuthController {
 			userDto.getAddress().getState(),
 			userDto.getAddress().getZipCode(),
 			userDto.getAddress().getCountry()	
+		);
+		
+		User user = new User(
+			null,
+			userDto.getFirstName(),
+			userDto.getLastName(),
+			userDto.getUsername(),
+			passwordEncoder.encode(userDto.getPassword()),
+			userDto.getEmail(),
+			role,
+			address
 		);
 	}
 }
