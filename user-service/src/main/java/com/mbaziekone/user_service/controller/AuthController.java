@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mbaziekone.user_service.security.JwtUtil;
+import com.mbaziekone.user_service.service.RoleService;
+import com.mbaziekone.user_service.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,6 +16,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthController {
 	
+	private final UserService userService;
+	
+	private final RoleService roleService;
 	
 	private final PasswordEncoder passwordEncoder;
 	
