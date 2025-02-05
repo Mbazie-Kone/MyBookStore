@@ -37,6 +37,9 @@ public class AuthController {
 			return "Username already taken!";
 		}
 		
-		
+		if (userService.findByEmail(userDto.getEmail()).isPresent()) {
+			
+			return "Email already registered!";
+		}
 	}
 }
