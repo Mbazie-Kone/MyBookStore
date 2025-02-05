@@ -1,10 +1,8 @@
 package com.mbaziekone.user_service.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class UserDto {
 	
 	private String firstName;
@@ -16,4 +14,8 @@ public class UserDto {
 	private String password;
 	
 	private String email;
+	
+	private Long roleId;
+	
+	private AddressDto address;
 }
