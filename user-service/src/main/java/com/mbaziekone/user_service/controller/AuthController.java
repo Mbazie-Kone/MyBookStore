@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mbaziekone.user_service.dto.UserDto;
+import com.mbaziekone.user_service.model.Role;
+import com.mbaziekone.user_service.repository.RoleRepository;
 import com.mbaziekone.user_service.security.JwtUtil;
-import com.mbaziekone.user_service.service.RoleService;
 import com.mbaziekone.user_service.service.UserService;
 
 import jakarta.validation.Valid;
@@ -22,7 +23,7 @@ public class AuthController {
 	
 	private final UserService userService;
 	
-	private final RoleService roleService;
+	private final RoleRepository roleRepository;
 	
 	private final PasswordEncoder passwordEncoder;
 	
@@ -41,5 +42,7 @@ public class AuthController {
 			
 			return "Email already registered!";
 		}
+		
+		Role role = roleRepository.findById(userDto.getRoleId()).orElseThrow(() -> new RuntimeException("Role not found"));
 	}
 }
