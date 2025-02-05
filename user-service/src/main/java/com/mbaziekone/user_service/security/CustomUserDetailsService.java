@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.mbaziekone.user_service.model.User;
-import com.mbaziekone.user_service.repository.UserRepository;
+import com.mbaziekone.user_service.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,12 +14,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-	private final UserRepository userRepository;
+	private final UserService userService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		User user = userRepository.findByUsername(username)
+		User user = userService.findByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException("Username not found"));
 
 		return org.springframework.security.core.userdetails.User.builder().username(user.getUsername())
