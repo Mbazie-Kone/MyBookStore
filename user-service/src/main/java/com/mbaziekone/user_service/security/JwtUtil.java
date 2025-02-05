@@ -28,7 +28,7 @@ public class JwtUtil {
 	}
 	
 	//Token generation with the new secure signature
-	public String generationToken(String username) {
+	public String generateToken(String username) {
 		
 		return Jwts.builder()
 				.setSubject(username)
