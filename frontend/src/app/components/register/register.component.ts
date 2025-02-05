@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm: any
+  registerForm: any;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {}
 
