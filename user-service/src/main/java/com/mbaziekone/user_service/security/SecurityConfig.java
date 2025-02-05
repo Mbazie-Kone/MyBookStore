@@ -2,12 +2,10 @@ package com.mbaziekone.user_service.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authorization.AuthenticatedAuthorizationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -37,11 +35,10 @@ public class SecurityConfig {
 	
 	public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
 		
-		return http.getSharedObject(AuthenticationManagerBuilder.class)
-				.userDetailsService(userDetailsService)
-				.passwordEncoder(passwordEncoder())
-				.and()
-				.build;
+		AuthenticationManagerBuilder authManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+		authManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+		
+		return authManagerBuilder.build();
 	}
 	
 	public PasswordEncoder passwordEncoder() {
