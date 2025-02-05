@@ -5,7 +5,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-register',
   standalone: false,
-  
+
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: any;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -29,16 +29,22 @@ export class RegisterComponent implements OnInit {
         zipCode: [''],
         country: ['']
       }),
-      roleId:[1] //Default role USER
+      roleId: [1] //Default role USER
     });
   }
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      this.authService.register(this.registerForm.value).subscribe(response => {
-        alert('User registered successfully!');
-      }, error =>{
-        alert('Error during registration');
+      this.authService.register(this.registerForm.value).subscribe({
+        next: (response) => {
+          alert('User registered successfully!');
+        },
+        error: (error) => {
+          alert('Error during registration');
+        },
+        complete: () => {
+          console.log('Registration process completed.');
+        }
       });
     }
   }
