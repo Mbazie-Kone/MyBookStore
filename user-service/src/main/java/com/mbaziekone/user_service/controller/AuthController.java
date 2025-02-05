@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mbaziekone.user_service.dto.UserDto;
+import com.mbaziekone.user_service.model.Address;
 import com.mbaziekone.user_service.model.Role;
 import com.mbaziekone.user_service.repository.RoleRepository;
 import com.mbaziekone.user_service.security.JwtUtil;
@@ -44,5 +45,14 @@ public class AuthController {
 		}
 		
 		Role role = roleRepository.findById(userDto.getRoleId()).orElseThrow(() -> new RuntimeException("Role not found"));
+		
+		Address address = new Address(
+			null,
+			userDto.getAddress().getStreet(),
+			userDto.getAddress().getCity(),
+			userDto.getAddress().getState(),
+			userDto.getAddress().getZipCode(),
+			userDto.getAddress().getCountry()	
+		);
 	}
 }
