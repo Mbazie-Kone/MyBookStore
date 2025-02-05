@@ -11,12 +11,12 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  loginForm: any
+  registerForm: any
 
   constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
+    this.registerForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       username: ['', [Validators.required, Validators.minLength(4)]],
@@ -31,5 +31,15 @@ export class RegisterComponent implements OnInit {
       }),
       roleId:[1] //Default role USER
     });
+  }
+
+  onSubmit(): void {
+    if (this.registerForm.valid) {
+      this.authService.register(this.registerForm.value).subscribe(response => {
+        alert('User registered successfully!');
+      }, error =>{
+        alert('Error during registration');
+      });
+    }
   }
 }
