@@ -19,4 +19,4 @@ EXPOSE 8080
 
 # 
 Command to run the jar
-ENTRYPOINT ["java", "-jar", "target/api-gateway-1.0.0.jar"]
+ENTRYPOINT ["java", "-jar", "target/api-gateway-1.0.jar"]
