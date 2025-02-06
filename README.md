@@ -16,9 +16,9 @@ Welcome to **MyBookStore**, a microservices-based application designed for manag
 
 The application is composed of the following microservices:
 
-1. **User-Service:** Manages user registration and authentication, including role management (Admin/User).
-2. **API-Gateway:** Central entry point for all frontend requests, routing them to the correct microservices.
-3. **Frontend:** User interface developed in Angular.
+1. **User-Service:** manages user registration and authentication, including role management (Admin/User).
+2. **API-Gateway:** central entry point for all frontend requests, routing them to the correct microservices.
+3. **Frontend:** user interface developed in Angular.
 4. **SQL Server:** Database for storing user and book data.
 
 ---
@@ -99,10 +99,10 @@ If you want to manually build the microservices:
 
 ```bash
 cd user-service
-./mvnw clean package -DskipTests
+mvn clean package -DskipTests
 
 cd ../api-gateway
-./mvnw clean package -DskipTests
+mvn clean package -DskipTests
 
 cd ../frontend
 npm install
