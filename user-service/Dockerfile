@@ -19,4 +19,4 @@ EXPOSE 8081
 
 # 
 Command to run the jar
-ENTRYPOINT ["java", "-jar", "target/user-service-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "target/user-service-1.0.0.jar"]
