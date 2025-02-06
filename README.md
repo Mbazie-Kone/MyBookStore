@@ -49,14 +49,14 @@ docker-compose up --build
 ```
 
 This command:
-- Builds the Docker images for **user-service**, **api-gateway**, and **frontend**.
-- Starts **SQL Server** with a local volume for data persistence.
+- builds the Docker images for **user-service**, **api-gateway**, and **frontend**.
+- starts **SQL Server** with a local volume for data persistence.
 
 ### 📂 Accessing the Services:
 - **Frontend Angular:** [http://localhost:4200](http://localhost:4200)
 - **API Gateway:** [http://localhost:8080](http://localhost:8080)
 - **User Service:** [http://localhost:8081](http://localhost:8081)
-- **SQL Server:** Accessible on port `1433`
+- **SQL Server:** accessible on port `1433`
 
 ---
 
