@@ -49,7 +49,22 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - user-service
+      user-service:
+        condition: service_healthy
+    networks:
+      - microservices-network
+      
+  # Frontend Angular
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    ports:
+      - "4200:80"
+    environment:
+      API_URL: http://api-gateway:8080/api  # Passa la variabile API al frontend
+    depends_on:
+      - api-gateway
     networks:
       - microservices-network
 
