@@ -62,7 +62,7 @@ services:
     ports:
       - "4200:80"
     environment:
-      API_URL: http://api-gateway:8080/api  # Passa la variabile API al frontend
+      API_URL: http://api-gateway:8080/api  # Pass the API variable to the frontend
     depends_on:
       - api-gateway
     networks:
