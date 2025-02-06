@@ -34,7 +34,7 @@ The application is composed of the following microservices:
 ## 🔄 Cloning the Project
 
 ```bash
-git clone https://github.com/your-username/mybookstore.git
+git clone https://github.com/Mbazie-Kone/mybookstore.git
 cd mybookstore
 ```
 
