@@ -65,7 +65,8 @@ services:
     environment:
       API_URL: http://api-gateway:8080/api
     depends_on:
-      - api-gateway
+      api-gateway:
+        condition: service_healthy
     networks:
       - microservices-network
 
