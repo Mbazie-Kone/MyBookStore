@@ -25,5 +25,5 @@ COPY --from=build /app/dist/frontend /usr/share/nginx/html
 # Exposes port 80 to access the frontend
 EXPOSE 80
 
-# CCommand to start Nginx
+# Command to start Nginx
 CMD ["nginx", "-g", "daemon off;"]
