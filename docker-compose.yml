@@ -2,14 +2,14 @@ services:
   # SQL Server
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: sqlserver_kone
+    container_name: sqlserver_mbk
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_SA_PASSWORD: "a123456789A!"
     ports:
       - "1433:1433"
     volumes:
-      - ./data:/var/opt/mssql  # Mappa la cartella locale ./data per la persistenza
+      - ./sqlserver_data:/var/opt/mssql  # Map the local ./data folder for persistence
     networks:
       - microservices-network
 
@@ -21,7 +21,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:sqlserver://sqlserver_kone:1433;databaseName=userdb
+      SPRING_DATASOURCE_URL: jdbc:sqlserver://sqlserver_mbk:1433;databaseName=userdb
       SPRING_DATASOURCE_USERNAME: sa
       SPRING_DATASOURCE_PASSWORD: a123456789A!
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
@@ -42,7 +42,7 @@ services:
     networks:
       - microservices-network
 
-# Definizione della rete Docker per consentire la comunicazione tra i container
+# Defining Docker networking to enable communication between containers
 networks:
   microservices-network:
     driver: bridge
