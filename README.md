@@ -155,7 +155,7 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 
 ## 📧 Contact
 
-For questions or suggestions, contact me at [email@example.com](mailto:email@example.com) or open an issue on [GitHub](https://github.com/your-username/mybookstore/issues).
+For questions or suggestions, contact me at [mbazie89@gmail.com](mailto:mbazie89@gmail.com) or open an issue on [GitHub](https://github.com/your-username/mybookstore/issues).
 
 ---
 
