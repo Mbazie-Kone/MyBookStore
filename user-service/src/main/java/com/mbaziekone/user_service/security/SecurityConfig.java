@@ -21,7 +21,8 @@ public class SecurityConfig {
 	private final JwtAuthFilter jwtAuthFilter;
 
 	private final CustomUserDetailsService userDetailsService;
-
+	
+	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 		http.csrf(CsrfConfigurer::disable)
@@ -34,6 +35,7 @@ public class SecurityConfig {
 
 	}
 	
+	@Bean
 	public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
 		
 		AuthenticationManagerBuilder authManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
