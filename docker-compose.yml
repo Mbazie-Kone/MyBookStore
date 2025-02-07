@@ -27,7 +27,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:sqlserver://sqlserver_mbk:1433;databaseName=userdb
+      SPRING_DATASOURCE_URL: jdbc:sqlserver://sqlserver_mbk:1433;databaseName=userdb;TrustServerCertificate=True;
       SPRING_DATASOURCE_USERNAME: sa
       SPRING_DATASOURCE_PASSWORD: a123456789A!
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
