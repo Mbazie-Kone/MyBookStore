@@ -1,7 +1,5 @@
 package com.mbaziekone.user_service.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.security.authentication.AuthenticationManager;
