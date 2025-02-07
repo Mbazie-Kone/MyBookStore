@@ -1,5 +1,6 @@
 package com.mbaziekone.user_service.security;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -41,6 +42,7 @@ public class SecurityConfig {
 		return authManagerBuilder.build();
 	}
 	
+	@Bean
 	public PasswordEncoder passwordEncoder() {
 		
 		return new BCryptPasswordEncoder();
