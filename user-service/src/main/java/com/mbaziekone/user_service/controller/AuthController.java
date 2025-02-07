@@ -1,5 +1,8 @@
 package com.mbaziekone.user_service.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -57,8 +60,12 @@ public class AuthController {
 			userDto.getAddress().getCity(),
 			userDto.getAddress().getState(),
 			userDto.getAddress().getZipCode(),
-			userDto.getAddress().getCountry()	
+			userDto.getAddress().getCountry(),
+			null	
 		);
+		
+		List<User> userList = new ArrayList<>();
+		address.setUsers(userList);
 		
 		User user = new User(
 			null,
@@ -70,6 +77,8 @@ public class AuthController {
 			role,
 			address
 		);
+		
+		address.getUsers().add(user);
 		
 		userService.createUser(user);
 		
