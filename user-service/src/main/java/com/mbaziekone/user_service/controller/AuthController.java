@@ -56,8 +56,10 @@ public class AuthController {
 			return "Email already registered!";
 		}
 		
+		// Get the role or throw an exception if not found
 		Role role = roleRepository.findById(userDto.getRoleId()).orElseThrow(() -> new RuntimeException("Role not found"));
 		
+		// Check if the address already exists in the database
 		Optional<Address> existingAddress = addressRepository.findByStreetCityStateZipCodeCountry(
 			userDto.getAddress().getStreet(),
 			userDto.getAddress().getCity(),
@@ -66,6 +68,7 @@ public class AuthController {
 			userDto.getAddress().getCountry()
 		);
 		
+		// Use existing address if found, otherwise create new one
 		Address address = existingAddress.orElseGet(() -> new Address(
 			null,
 			userDto.getAddress().getStreet(),
@@ -75,7 +78,8 @@ public class AuthController {
 			userDto.getAddress().getCountry(),
 			null
 		));
-			
+		
+		// Creating the user
 		User user = new User(
 			null,
 			userDto.getFirstName(),
@@ -87,8 +91,12 @@ public class AuthController {
 			address
 		);
 		
-		address.getUsers().add(user);
+		// Save the new address only if it doesn't already exist
+		if (existingAddress.isEmpty()) {
+			addressRepository.save(address);
+		}
 		
+		// User and relationship persistence
 		userService.createUser(user);
 		
 		return "User registered successfully!";
