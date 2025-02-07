@@ -58,7 +58,7 @@ public class AuthController {
 		Role role = roleRepository.findById(userDto.getRoleId()).orElseThrow(() -> new RuntimeException("Role not found"));
 		
 		// Check if the address already exists in the database
-		Optional<Address> existingAddress = addressRepository.findByStreetCityStateZipCodeCountry(
+		Optional<Address> existingAddress = addressRepository.findByStreetAndCityAndStateAndZipCodeAndCountry(
 			userDto.getAddress().getStreet(),
 			userDto.getAddress().getCity(),
 			userDto.getAddress().getState(),
