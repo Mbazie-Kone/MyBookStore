@@ -8,5 +8,5 @@ import com.mbaziekone.user_service.model.Address;
 
 public interface AddressRepository extends JpaRepository<Address, Long> {
 	
-	Optional<Address> findByStreetCityStateZipCodeCountry(String street, String city, String state, String zipCode, String country);
+	Optional<Address> findByStreetAndCityAndStateAndZipCodeAndCountry(String street, String city, String state, String zipCode, String country);
 }
