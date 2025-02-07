@@ -2,6 +2,7 @@ package com.mbaziekone.user_service.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,6 +16,7 @@ import com.mbaziekone.user_service.dto.UserDto;
 import com.mbaziekone.user_service.model.Address;
 import com.mbaziekone.user_service.model.Role;
 import com.mbaziekone.user_service.model.User;
+import com.mbaziekone.user_service.repository.AddressRepository;
 import com.mbaziekone.user_service.repository.RoleRepository;
 import com.mbaziekone.user_service.security.AuthRequest;
 import com.mbaziekone.user_service.security.AuthResponse;
@@ -35,6 +37,8 @@ public class AuthController {
 	
 	private final PasswordEncoder passwordEncoder;
 	
+	private final AddressRepository addressRepository;
+	
 	private final JwtUtil jwtUtil;
 	
 	private final AuthenticationManager authenticationManager;
@@ -54,19 +58,24 @@ public class AuthController {
 		
 		Role role = roleRepository.findById(userDto.getRoleId()).orElseThrow(() -> new RuntimeException("Role not found"));
 		
-		Address address = new Address(
+		Optional<Address> existingAddress = addressRepository.findByStreetCityStateZipCodeCountry(
+			userDto.getAddress().getStreet(),
+			userDto.getAddress().getCity(),
+			userDto.getAddress().getState(),
+			userDto.getAddress().getZipCode(),
+			userDto.getAddress().getCountry()
+		);
+		
+		Address address = existingAddress.orElseGet(() -> new Address(
 			null,
 			userDto.getAddress().getStreet(),
 			userDto.getAddress().getCity(),
 			userDto.getAddress().getState(),
 			userDto.getAddress().getZipCode(),
 			userDto.getAddress().getCountry(),
-			null	
-		);
-		
-		List<User> userList = new ArrayList<>();
-		address.setUsers(userList);
-		
+			null
+		));
+			
 		User user = new User(
 			null,
 			userDto.getFirstName(),
