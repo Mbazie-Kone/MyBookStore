@@ -29,7 +29,7 @@ public class User implements Serializable {
 	
 	private String username;
 
-	private String passwordHash;
+	private String password;
 
 	private LocalDateTime createdAt = LocalDateTime.now();
 
