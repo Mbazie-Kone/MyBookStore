@@ -1,7 +1,9 @@
 package com.mbaziekone.user_service.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,5 +25,22 @@ public class Customer implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	private String firstName;
+	
+	private String lastName;
+	
+	private String email;
+	
+	private String passwordHash;
+	
+	@Column(nullable = false)
+	private LocalDateTime createdAt = LocalDateTime.now();
+	
+	@Column(nullable = false)
+	private LocalDateTime updatedAt = LocalDateTime.now();
+	
+	@Column
+	private LocalDateTime deledAt;
 
 }
