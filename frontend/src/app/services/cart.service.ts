@@ -9,14 +9,21 @@ export class CartService {
 
   constructor() { }
 
+  //Add product to cart (saved in localStorage)
   addToCart(product: any) {
     let cart = this.getCart();
     cart.push(product);
     localStorage.setItem(this.cartKey, JSON.stringify(cart));
   }
 
+  //Retrieve the cart from localStorage
   getCart() {
 
     return JSON.parse(localStorage.getItem(this.cartKey) || '[]');
+  }
+
+  //Sync the cart after login
+  syncCartWithBackend(userId: string, backendCart: any[]) {
+    const localCart = this.getCart();
   }
 }
