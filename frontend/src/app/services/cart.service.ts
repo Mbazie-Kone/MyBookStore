@@ -25,5 +25,11 @@ export class CartService {
   //Sync the cart after login
   syncCartWithBackend(userId: string, backendCart: any[]) {
     const localCart = this.getCart();
+  
+    //Merge products without duplicates
+    const mergeCart = [...new Map([...localCart, ...backendCart].map(item => [item.id, item])).values()];
+
+    //Save to the backend and localStorage
+    localStorage.setItem(this.cartKey, JSON.stringify(mergeCart));
   }
 }
