@@ -25,10 +25,11 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 		http.csrf(CsrfConfigurer::disable)
-				.authorizeHttpRequests(
-						auth -> auth.requestMatchers("api/auth/**", "/api/products", "/api/cart/**").permitAll()
+				.authorizeHttpRequests(auth -> auth
+						.requestMatchers("api/auth/**", "/api/products", "/api/cart/**").permitAll()
 						.requestMatchers()authenticated()
 						.requestMatchers().hasRole("ADMIN")
+						.anyRequest().authenticated()
 				)	
 				.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
