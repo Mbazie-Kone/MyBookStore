@@ -26,9 +26,8 @@ public class SecurityConfig {
 
 		http.csrf(CsrfConfigurer::disable)
 				.authorizeHttpRequests(auth -> auth
-						.requestMatchers("/api/auth/**", "/api/products", "/api/cart/**").permitAll() //Public endpoints: always accessible
-						.requestMatchers("/api/orders/checkout").authenticated() //Endpoints for authenticated users
 						.requestMatchers("/api/admin/**").hasRole("ADMIN") //Endpoints reserved for administrators only
+						.requestMatchers("/api/auth/**").permitAll()
 						.anyRequest().authenticated() //All other requests require authentication
 				)	
 				.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
