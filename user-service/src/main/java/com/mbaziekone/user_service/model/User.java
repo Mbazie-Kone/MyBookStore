@@ -25,42 +25,41 @@ import lombok.NoArgsConstructor;
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(unique = true, nullable = false, length = 100)
 	private String username;
-	
+
 	@Column(unique = true, nullable = false, length = 255)
 	private String email;
-	
+
 	@Column(nullable = false, length = 255)
 	private String passwordHash;
-	
+
 	@Column(nullable = false)
 	private LocalDateTime createdAt = LocalDateTime.now();
-	
+
 	@Column(nullable = false)
 	private LocalDateTime updatedAt = LocalDateTime.now();
-	
+
 	@Column
 	private LocalDateTime deledAt;
-	
+
 	@ManyToMany
-	@JoinTable(
-			name = "user_roles",
-			joinColumns = @JoinColumn(name = "user_id"),
-			inverseJoinColumns = @JoinColumn(name = "role_id")
+	@JoinTable(name = "user_roles", 
+		joinColumns = @JoinColumn(name = "user_id"), 
+		inverseJoinColumns = @JoinColumn(name = "role_id")
 	)
 	private Set<Role> roles;
-	
+
 	@ManyToMany
-	@JoinTable(
-			name = "user_addresses",
-			joinColumns = @JoinColumn(name = "user_id"),
-			inverseJoinColumns = @JoinColumn(name = "address_id"))
+	@JoinTable(name = "user_addresses", 
+		joinColumns = @JoinColumn(name = "user_id"), 
+		inverseJoinColumns = @JoinColumn(name = "address_id")
+	)
 	private Set<Address> addresses;
 
 }
