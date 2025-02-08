@@ -33,7 +33,7 @@ export class CartService {
     localStorage.setItem(this.cartKey, JSON.stringify(mergeCart));
   }
 
-
+  // Empty cart (after logout or completed order)
   clearCart() {
     localStorage.removeItem(this.cartKey);
   }
