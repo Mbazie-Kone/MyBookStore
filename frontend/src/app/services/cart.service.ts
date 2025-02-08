@@ -32,4 +32,9 @@ export class CartService {
     //Save to the backend and localStorage
     localStorage.setItem(this.cartKey, JSON.stringify(mergeCart));
   }
+
+
+  clearCart() {
+    localStorage.removeItem(this.cartKey);
+  }
 }
