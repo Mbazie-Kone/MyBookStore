@@ -26,7 +26,10 @@ public class SecurityConfig {
 
 		http.csrf(CsrfConfigurer::disable)
 				.authorizeHttpRequests(
-						auth -> auth.requestMatchers("api/auth/**", "/api/products", "/api/cart/**").permitAll().anyRequest().authenticated())
+						auth -> auth.requestMatchers("api/auth/**", "/api/products", "/api/cart/**").permitAll()
+						.requestMatchers()authenticated()
+						.requestMatchers().hasRole("ADMIN")
+				)	
 				.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
