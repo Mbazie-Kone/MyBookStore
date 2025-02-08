@@ -1,6 +1,7 @@
 package com.mbaziekone.user_service.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -28,14 +29,20 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(unique = true, nullable = false)
+	@Column(unique = true, nullable = false, length = 100)
 	private String username;
 	
-	@Column(nullable = false)
-	private String password;
-	
-	@Column(unique = true, nullable = false)
+	@Column(unique = true, nullable = false, length = 255)
 	private String email;
+	
+	@Column(nullable = false, length = 255)
+	private String passwordHash;
+	
+	@Column(nullable = false)
+	private LocalDateTime createdAt = LocalDateTime.now();
+	
+	@Column(nullable = false)
+	private LocalDateTime updatedAt = LocalDateTime.now();
 	
 	@ManyToOne
 	@JoinColumn(name = "role_id")
