@@ -26,7 +26,7 @@ public class SecurityConfig {
 
 		http.csrf(CsrfConfigurer::disable)
 				.authorizeHttpRequests(
-						auth -> auth.requestMatchers("api/auth/**", "/api/produs", "/api/cart/**").permitAll().anyRequest().authenticated())
+						auth -> auth.requestMatchers("api/auth/**", "/api/products", "/api/cart/**").permitAll().anyRequest().authenticated())
 				.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
