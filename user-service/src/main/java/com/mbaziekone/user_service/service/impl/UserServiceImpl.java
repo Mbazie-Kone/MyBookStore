@@ -29,15 +29,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Optional<User> findByUsername(String username) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
-	}
-
-	@Override
 	public Optional<User> findByEmail(String email) {
 		// TODO Auto-generated method stub
 		return Optional.empty();
 	}
-
 }
