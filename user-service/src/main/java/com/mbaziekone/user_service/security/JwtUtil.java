@@ -3,6 +3,8 @@ package com.mbaziekone.user_service.security;
 import java.security.Key;
 import java.util.Date;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -16,21 +18,17 @@ public class JwtUtil {
 	
 	private final String SECRET_KEY = "Y29tcGxleFNlY3JldEtleU9mQW1pbmltdW1MZW5ndGhGQW5kU2FmZUFsd2F5cw==";
 	private final long EXPIRATION_TIME = 86400000;
+	private final Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 	
-	//Method to get the key from the secret
-	private Key getSigningKey() {
+	public String generateToken(Authentication authentication) {
 		
-		return Keys.hmacShaKeyFor(secret.getBytes());
-	}
-	
-	//Token generation with the new secure signature
-	public String generateToken(String username) {
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		
 		return Jwts.builder()
-				.setSubject(username)
+				.setSubject(userDetails.getUsername())
 				.setIssuedAt(new Date())
-				.setExpiration(new Date(System.currentTimeMillis() + expiration))
-				.signWith(getSigningKey(), SignatureAlgorithm.HS512)
+				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+				.signWith(key)
 				.compact();
 	}
 	
