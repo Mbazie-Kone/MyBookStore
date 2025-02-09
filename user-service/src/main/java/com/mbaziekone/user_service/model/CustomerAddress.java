@@ -1,7 +1,6 @@
 package com.mbaziekone.user_service.model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -31,9 +30,5 @@ public class CustomerAddress implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
-	
-	private LocalDateTime createdAt = LocalDateTime.now();
-
-	private LocalDateTime updatedAt = LocalDateTime.now();
 
 }
