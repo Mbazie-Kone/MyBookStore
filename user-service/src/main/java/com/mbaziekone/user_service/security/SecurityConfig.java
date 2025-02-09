@@ -29,8 +29,7 @@ public class SecurityConfig {
 
 		http.csrf(CsrfConfigurer::disable)
 				.authorizeHttpRequests(auth -> auth
-						.requestMatchers("/api/admin/**").hasRole("ADMIN") //Endpoints reserved for administrators only
-						.requestMatchers("/api/auth/**").permitAll()
+						.requestMatchers("/api/admin/login**").permitAll()
 						.anyRequest().authenticated() //All other requests require authentication
 				)	
 				.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
