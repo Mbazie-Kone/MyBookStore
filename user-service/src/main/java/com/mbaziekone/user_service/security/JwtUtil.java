@@ -47,14 +47,8 @@ public class JwtUtil {
 	
 	//Token validation
 	public boolean validateToken(String token) {
-		try {
-			getClaims(token);
-			
-			return true;
-		} catch (JwtException | IllegalArgumentException e) {
-			
-			return false;
-		}
+		
+		return extractExpiration(token).after(new Date());
 	}
 	
 	//Claims extraction
