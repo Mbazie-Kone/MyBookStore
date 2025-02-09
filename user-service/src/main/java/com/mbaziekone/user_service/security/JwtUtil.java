@@ -2,6 +2,7 @@ package com.mbaziekone.user_service.security;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.function.Function;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,7 +36,13 @@ public class JwtUtil {
 	//Extraction of the Username from the Token
 	public String extractUsername(String token) {
 		
-		return getClaims(token).getSubject();
+		return extractClaim(token, Claims::getSubject);
+	}
+	
+	//Extraction of the expiration date from the Token
+	public Date extractExpiration(String token) {
+		
+		return extractClaim(token, Claims::getExpiration);
 	}
 	
 	//Token validation
@@ -51,7 +58,7 @@ public class JwtUtil {
 	}
 	
 	//Claims extraction
-	private Claims getClaims(String token) {
+	private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
 		
 		return Jwts.parserBuilder()
 				.setSigningKey(getSigningKey())
