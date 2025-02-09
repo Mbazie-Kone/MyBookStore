@@ -51,6 +51,11 @@ public class JwtUtil {
 		return extractExpiration(token).after(new Date());
 	}
 	
+	public Authentication getAuthentication(String token, UserDetails userDetails) {
+		
+		return new org.springframework.security.authentication.UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+	}
+	
 	//Claims extraction
 	private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
 		
