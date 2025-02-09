@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mbaziekone.user_service.dto.CustomerRegistrationDto;
+import com.mbaziekone.user_service.model.Address;
 import com.mbaziekone.user_service.model.Customer;
+import com.mbaziekone.user_service.model.CustomerAddress;
 import com.mbaziekone.user_service.repository.AddressRepository;
 import com.mbaziekone.user_service.repository.CustomerAddressRepository;
 import com.mbaziekone.user_service.repository.CustomerRepository;
@@ -35,10 +37,28 @@ public class CustomerServiceImpl implements CustomerService {
 		//We save the Customer in the database
 		customer = customerRepository.save(customer);
 		
+		//We check if the address already exists in the database
+		Address address = addressRepository.findByStreetAndCityAndStateAndZipCodeAndCountry(
+				customerRegistrationDto.getStreet(), customerRegistrationDto.getCity(), customerRegistrationDto.getState(), 
+				customerRegistrationDto.getZipCode(), customerRegistrationDto.getCountry()
+				).orElseGet(() -> {
+					//If the address does not exist, we create it
+					Address newAddress = new Address();
+					newAddress.setStreet(customerRegistrationDto.getStreet());
+					newAddress.setCity(customerRegistrationDto.getCity());
+					newAddress.setState(customerRegistrationDto.getState());
+					newAddress.setZipCode(customerRegistrationDto.getZipCode());
+					newAddress.setCountry(customerRegistrationDto.getCountry());
+					
+					return addressRepository.save(newAddress);
+				});
 		
-		
+				//Let's create the relationship between Customer and Address
+				CustomerAddress customerAddress = new CustomerAddress();
+				customerAddress.setCustomer(customer);
+				customerAddress.setAddress(address);
+				customerAddressRepository.save(customerAddress);
 		
 		return null;
 	}
-
 }
