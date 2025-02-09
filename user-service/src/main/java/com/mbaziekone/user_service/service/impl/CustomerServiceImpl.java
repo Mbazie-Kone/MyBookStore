@@ -22,15 +22,20 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private CustomerAddressRepository customerAddressRepository;
 	
-
 	@Override
 	public Customer registerCustomer(CustomerRegistrationDto customerRegistrationDto) {
+		//Let's create a new Customer
 		Customer customer = new Customer();
 		customer.setFirstName(customerRegistrationDto.getFirstName());
 		customer.setLastName(customerRegistrationDto.getLastName());
 		customer.setEmail(customerRegistrationDto.getEmail());
 		//customer.setPassword;
 		customer.setPhone(customerRegistrationDto.getPhone());
+		
+		//We save the Customer in the database
+		customer = customerRepository.save(customer);
+		
+		
 		
 		
 		return null;
