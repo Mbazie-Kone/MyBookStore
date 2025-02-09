@@ -3,30 +3,31 @@ package com.mbaziekone.user_service.model;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
-
 import jakarta.persistence.Id;
-
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user_roles")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements Serializable{
-
+public class UserRoles implements Serializable{
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private Long id; //Removed @GeneratedValue, as the database will handle auto-increment
+	private Long id; //Managed manually from the database
 	
-	private String username;
-
-	private String password;
-
-	private String email;
-
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "role_id")
+	private Role role;
 }
