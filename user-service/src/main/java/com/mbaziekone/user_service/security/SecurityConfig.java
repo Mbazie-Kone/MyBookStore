@@ -34,7 +34,7 @@ public class SecurityConfig {
 				)
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-				.exceptionHandling(exception -> exception.authenticationEntryPoint((request, response, AuthException) ->
+				.exceptionHandling(exception -> exception.authenticationEntryPoint((request, response, authException) ->
 						response.sendRedirect("/api/admin/login")));
 
 		return http.build();

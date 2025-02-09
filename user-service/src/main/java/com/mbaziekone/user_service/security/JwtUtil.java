@@ -3,7 +3,6 @@ package com.mbaziekone.user_service.security;
 import java.security.Key;
 import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -15,11 +14,8 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtUtil {
 	
-	@Value("${jwt.secret}")
-	private String secret;
-	
-	@Value("${jwt.expiration}")
-	private Long expiration;
+	private final String SECRET_KEY = "Y29tcGxleFNlY3JldEtleU9mQW1pbmltdW1MZW5ndGhGQW5kU2FmZUFsd2F5cw==";
+	private final long EXPIRATION_TIME = 86400000;
 	
 	//Method to get the key from the secret
 	private Key getSigningKey() {
