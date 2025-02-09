@@ -9,9 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 @Component
@@ -58,11 +56,12 @@ public class JwtUtil {
 	
 	//Claims extraction
 	private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-		
-		return Jwts.parserBuilder()
-				.setSigningKey(getSigningKey())
+		final Claims claims = Jwts.parserBuilder()
+				.setSigningKey(key)
 				.build()
 				.parseClaimsJws(token)
 				.getBody();
+		
+		return claimsResolver.apply(claims);
 	}
 }
