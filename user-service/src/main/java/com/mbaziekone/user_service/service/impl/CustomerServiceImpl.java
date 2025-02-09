@@ -59,6 +59,6 @@ public class CustomerServiceImpl implements CustomerService {
 				customerAddress.setAddress(address);
 				customerAddressRepository.save(customerAddress);
 		
-		return null;
+		return customer;
 	}
 }
