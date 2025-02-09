@@ -12,7 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
 @Configuration
 public class SecurityConfig {
 
@@ -29,11 +28,13 @@ public class SecurityConfig {
 
 		http.csrf(CsrfConfigurer::disable)
 				.authorizeHttpRequests(auth -> auth
-						.requestMatchers("/api/admin/login**").permitAll()
-						.anyRequest().authenticated() //All other requests require authentication
-				)	
+						.requestMatchers("/api/admin/login").permitAll()
+						.anyRequest().authenticated()
+				)
 				.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+				.exceptionHandling(exception -> exception.authenticationEntryPoint((request, response, AuthException) ->
+						response.sendRedirect("/api/admin/login")));
 
 		return http.build();
 
