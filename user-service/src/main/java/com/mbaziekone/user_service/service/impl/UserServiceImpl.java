@@ -31,11 +31,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		
 		User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
 		
+		// Retrieve the user roles from the user_roles table
 		List<UserRole> userRoles = userRoleRepository.findByUserId(user.getId());
 		Set<SimpleGrantedAuthority> authorities = userRoles.stream().map(ur -> new SimpleGrantedAuthority("ROLE_" + ur.getRole().getName()))
 				.collect(Collectors.toSet());
 		
-		return null;
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
 	}
 
 }
