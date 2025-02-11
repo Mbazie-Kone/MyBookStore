@@ -19,12 +19,10 @@ public class JwtUtil {
 	private final long EXPIRATION_TIME = 1000 * 60 * 60; //1 hour
 	private final Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 	
-	public String generateToken(Authentication authentication) {
-		
-		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		
+	public String generateToken(String username) {
+			
 		return Jwts.builder()
-				.setSubject(userDetails.getUsername())
+				.setSubject(username)
 				.setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
 				.signWith(key)
