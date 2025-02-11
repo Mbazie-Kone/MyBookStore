@@ -48,6 +48,7 @@ public class SecurityConfig {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
 	
+	@Bean
 	public UserDetailsService userDetailsService() {
 		
 		return userServiceImpl;
