@@ -21,6 +21,6 @@ public class Role implements Serializable {
 	@Id
 	private Long id; //Removed @GeneratedValue, as the database will handle auto-increment
 	
-	private String Name;
+	private String name;
 	
 }
