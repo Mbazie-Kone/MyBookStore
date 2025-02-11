@@ -4,8 +4,6 @@ import java.security.Key;
 import java.util.Date;
 import java.util.function.Function;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -47,19 +45,24 @@ public class JwtUtil {
 		return extractExpiration(token).after(new Date());
 	}
 	
-	public Authentication getAuthentication(String token, UserDetails userDetails) {
-		
-		return new org.springframework.security.authentication.UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-	}
-	
 	//Claims extraction
 	private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-		final Claims claims = Jwts.parserBuilder()
+		Claims claims = Jwts.parserBuilder()
 				.setSigningKey(key)
 				.build()
 				.parseClaimsJws(token)
 				.getBody();
 		
 		return claimsResolver.apply(claims);
+	}
+	
+	public boolean isTokenValid(String token, String username) {
+		
+		return (extractUsername(token).equals(username) && !isTokenExpired(token));
+	}
+	
+	public boolean isTokenExpired(String token) {
+		
+		return extractExpiration(token).before(new Date());
 	}
 }
