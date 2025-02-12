@@ -22,6 +22,9 @@ export class LoginComponent {
       next: (response) => {
         localStorage.setItem('token', response.token);
         this.router.navigate(['/admin/dashboard']);
+      },
+      error: (err) => {
+        this.errorMessage
       }
     })
   }
