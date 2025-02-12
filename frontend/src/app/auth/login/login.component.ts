@@ -24,7 +24,7 @@ export class LoginComponent {
         this.router.navigate(['/admin/dashboard']);
       },
       error: (err) => {
-        this.errorMessage
+        this.errorMessage = 'Login failed. Invalid credentials';
       }
     })
   }
