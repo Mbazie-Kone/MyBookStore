@@ -16,7 +16,7 @@ public class JwtAuthFilter implements WebFilter{
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
 		ServerHttpRequest request = exchange.getRequest();
-		String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
+		String authHeader = request.getHeaders().getFirst("Authorization");
 		
 		if (authHeader == null || authHeader.startsWith("Bearer")) {
 			
