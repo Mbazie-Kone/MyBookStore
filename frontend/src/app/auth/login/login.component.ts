@@ -26,6 +26,6 @@ export class LoginComponent {
       error: (err) => {
         this.errorMessage = 'Login failed. Invalid credentials';
       }
-    })
+    });
   }
 }
