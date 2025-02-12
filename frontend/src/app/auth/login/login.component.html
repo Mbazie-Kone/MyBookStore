@@ -13,7 +13,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>
-            <p class="text-danger mt-2">{{ errorMessage }}</p>
+            <p *ngIf="errorMessage" class="text-danger mt-2">{{ errorMessage }}</p>
         </div>
     </div>
 </div>
