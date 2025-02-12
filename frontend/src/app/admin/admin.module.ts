@@ -13,7 +13,6 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule
   ]
 })
 export class AdminModule { }
