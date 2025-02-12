@@ -1,7 +1,5 @@
 package com.mbaziekone.api_gateway.security;
 
-import java.net.http.HttpHeaders;
-
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
@@ -24,7 +22,6 @@ public class JwtAuthFilter implements WebFilter{
 		}
 		
 		String token = authHeader.substring(7);
-		
 		
 		return chain.filter(exchange);
 	}
