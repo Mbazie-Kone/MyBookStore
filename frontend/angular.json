@@ -10,12 +10,10 @@
           "skipTests": true
         },
         "@schematics/angular:component": {
-          "skipTests": true,
-          "standalone": false
+          "skipTests": true
         },
         "@schematics/angular:directive": {
-          "skipTests": true,
-          "standalone": false
+          "skipTests": true
         },
         "@schematics/angular:guard": {
           "skipTests": true
@@ -24,8 +22,7 @@
           "skipTests": true
         },
         "@schematics/angular:pipe": {
-          "skipTests": true,
-          "standalone": false
+          "skipTests": true
         },
         "@schematics/angular:resolver": {
           "skipTests": true
@@ -55,8 +52,6 @@
               }
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/font-awesome/css/font-awesome.min.css",
               "src/styles.css"
             ],
             "scripts": []
