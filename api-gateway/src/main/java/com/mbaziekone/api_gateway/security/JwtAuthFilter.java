@@ -2,6 +2,7 @@ package com.mbaziekone.api_gateway.security;
 
 import java.net.http.HttpHeaders;
 
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
@@ -14,6 +15,7 @@ public class JwtAuthFilter implements WebFilter{
 
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+		ServerHttpRequest request = exchange.getRequest();
 		String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
 		
 		if (authHeader == null || authHeader.startsWith("Bearer")) {
