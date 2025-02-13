@@ -8,10 +8,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mbaziekone.user_service.dto.AuthRequest;
 import com.mbaziekone.user_service.security.JwtUtil;
 import com.mbaziekone.user_service.service.impl.UserServiceImpl;
 
@@ -30,9 +31,9 @@ public class UserController {
 	
 
 	@PostMapping("/login")
-	public ResponseEntity<Map<String, String>> login(@RequestParam String username, @RequestParam String password) {
-		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-		UserDetails user = userServiceImpl.loadUserByUsername(username);
+	public ResponseEntity<?> login(@RequestBody AuthRequest request ) {
+		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+		UserDetails user = userServiceImpl.loadUserByUsername(request.getUsername());
 		String token = jwtUtil.generateToken(user.getUsername());
 		
 		return ResponseEntity.ok(Map.of("token", token));
