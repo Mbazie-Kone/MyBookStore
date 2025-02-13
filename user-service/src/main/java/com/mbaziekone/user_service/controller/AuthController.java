@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mbaziekone.user_service.dto.AuthRequest;
 import com.mbaziekone.user_service.dto.AuthResponse;
 import com.mbaziekone.user_service.security.JwtUtil;
-import com.mbaziekone.user_service.service.impl.UserServiceImpl;
+import com.mbaziekone.user_service.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,17 +22,17 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "http://localhost:4200")
 @RequiredArgsConstructor
-public class UserController {
+public class AuthController {
 	
 	private AuthenticationManager authenticationManager;
-	private UserServiceImpl userServiceImpl;
+	private UserService userService;
 	private JwtUtil jwtUtil;
 	
 
 	@PostMapping("/login")
 	public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request ) {
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-		UserDetails user = userServiceImpl.loadUserByUsername(request.getUsername());
+		UserDetails user = userService.loadUserByUsername(request.getUsername());
 		String token = jwtUtil.generateToken(user.getUsername());
 		
 		return ResponseEntity.ok(new AuthResponse(token));
