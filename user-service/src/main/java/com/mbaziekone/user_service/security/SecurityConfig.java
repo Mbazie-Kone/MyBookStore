@@ -38,7 +38,7 @@ public class SecurityConfig {
 						.requestMatchers("/api/admin/**").hasRole("ADMIN")
 						.anyRequest().authenticated()
 				)
-				.csrf(CsrfConfigurer::disable)
+				.csrf(csrf -> csrf.disable())
 				.cors(cors -> cors.configurationSource(request -> {
 					var config = new org.springframework.web.cors.CorsConfiguration();
 					config.addAllowedOrigin("http://localhost:4200");
