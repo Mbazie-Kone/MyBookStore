@@ -32,12 +32,17 @@ public class UserController {
 	
 
 	@PostMapping("/login")
-	public ResponseEntity<?> login(@RequestBody AuthRequest request ) {
+	public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request ) {
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 		UserDetails user = userServiceImpl.loadUserByUsername(request.getUsername());
 		String token = jwtUtil.generateToken(user.getUsername());
 		
 		return ResponseEntity.ok(new AuthResponse(token));
+	}
+	
+	public ResponseEntity<String> testAuth() {
+		
+		return ResponseEntity.ok("Authentication ok");
 	}
 	
 }
