@@ -5,6 +5,7 @@ import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 @Configuration
 public class ApiGatewayConfig {
 	
@@ -12,7 +13,7 @@ public class ApiGatewayConfig {
 	public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
 		
 		return builder.routes()
-				.route("user-service", r -> r.path("/api/admin/login", "/api/customers/**")
+				.route("user-service", r -> r.path("/api/admin/login", "/api/customers/**", "/api/admin/**")
 				.uri("http://localhost:8081"))
 				.build();
 	}
