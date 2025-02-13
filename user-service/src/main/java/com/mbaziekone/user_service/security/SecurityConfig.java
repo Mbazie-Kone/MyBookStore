@@ -7,8 +7,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,6 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.mbaziekone.user_service.service.impl.UserServiceImpl;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 	
 	@Autowired
@@ -29,17 +30,17 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-		http.csrf(CsrfConfigurer::disable)
-				.authorizeHttpRequests(auth -> auth
-						.requestMatchers("/api/admin/login").permitAll()
-						.requestMatchers("/api/admin/dashboard").hasRole("ADMIN")
-						.anyRequest().authenticated()
+		return http
+			.securityMatcher("/**")
+			.authorizeHttpRequests(auth -> auth
+					.requestMatchers("/api/admin/login").permitAll()
+					.requestMatchers("/api/customers/**").permitAll()
+					.requestMatchers("/api/admin/dashboard").hasRole("ADMIN")
+					.anyRequest().authenticated()
 				)
-				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authenticationProvider(authenticationProvider())
-				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-
-		return http.build();
+				.csrf(CsrfConfigurer::disable)
+				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+				.build();
 
 	}
 	
