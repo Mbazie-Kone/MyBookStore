@@ -13,7 +13,7 @@ public class ApiGatewayConfig {
 	public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
 		
 		return builder.routes()
-				.route("user-service", r -> r.path("/api/admin/login", "/api/customers/**", "/api/admin/**")
+				.route("user-service", r -> r.path("/api/auth/**", "/api/customers/**", "/api/admin/**")
 				.uri("http://localhost:8081"))
 				.build();
 	}
