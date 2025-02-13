@@ -17,18 +17,16 @@ import com.mbaziekone.user_service.dto.AuthResponse;
 import com.mbaziekone.user_service.security.JwtUtil;
 import com.mbaziekone.user_service.service.impl.UserServiceImpl;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "http://localhost:4200")
+@RequiredArgsConstructor
 public class UserController {
 	
-	@Autowired
 	private AuthenticationManager authenticationManager;
-	
-	@Autowired
 	private UserServiceImpl userServiceImpl;
-	
-	@Autowired
 	private JwtUtil jwtUtil;
 	
 

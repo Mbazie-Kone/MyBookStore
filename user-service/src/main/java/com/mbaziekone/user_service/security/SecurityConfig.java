@@ -31,7 +31,7 @@ public class SecurityConfig {
 		return http
 				.securityMatcher("/**")
 				.authorizeHttpRequests(auth -> auth
-						.requestMatchers("/api/auth/login").permitAll()
+						.requestMatchers("/api/auth/**").permitAll()
 						.requestMatchers("/api/customers/**").permitAll()
 						.requestMatchers("/api/admin/**").hasRole("ADMIN")
 						.anyRequest().authenticated()
@@ -40,6 +40,7 @@ public class SecurityConfig {
 				.cors(cors -> cors.configurationSource(request -> {
 					var config = new org.springframework.web.cors.CorsConfiguration();
 					config.addAllowedOrigin("http://localhost:4200");
+					config.addAllowedOrigin("http://localhost:8081");
 					config.addAllowedMethod("*");
 					config.addAllowedHeader("*");
 					config.setAllowCredentials(true);
