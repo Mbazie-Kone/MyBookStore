@@ -16,9 +16,9 @@ import com.mbaziekone.user_service.dto.AuthResponse;
 import com.mbaziekone.user_service.security.JwtUtil;
 import com.mbaziekone.user_service.service.impl.UserServiceImpl;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api/auth")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 	
 	@Autowired
