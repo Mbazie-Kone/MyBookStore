@@ -1,5 +1,8 @@
 package com.mbaziekone.user_service.security;
 
+import java.net.Authenticator.RequestorType;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
 
 import com.mbaziekone.user_service.service.impl.UserServiceImpl;
 
@@ -39,6 +43,15 @@ public class SecurityConfig {
 						.anyRequest().authenticated()
 				)
 				.csrf(CsrfConfigurer::disable)
+				.cors(cors -> cors.configurationSource(request -> {
+					var config = new org.springframework.web.cors.CorsConfiguration();
+					config.addAllowedOrigin("http://localhost:4200");
+					config.addAllowedMethod("*");
+					config.addAllowedHeader("*");
+					config.setAllowCredentials(true);
+					
+					return config;
+				}))
 				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
 				.build();
 
