@@ -1,42 +1,42 @@
 package com.mbaziekone.user_service.service.impl;
 
-import java.util.List;
+import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.mbaziekone.user_service.model.User;
-import com.mbaziekone.user_service.model.UserRole;
 import com.mbaziekone.user_service.repository.UserRepository;
-import com.mbaziekone.user_service.repository.UserRoleRepository;
 import com.mbaziekone.user_service.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
 	
-	@Autowired
-	private UserRepository userRepository;
-	
-	@Autowired
-	private UserRoleRepository userRoleRepository;
+	private final UserRepository userRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
-		
-		// Retrieve the user roles from the user_roles table
-		List<UserRole> userRoles = userRoleRepository.findByUserId(user.getId());
-		Set<SimpleGrantedAuthority> authorities = userRoles.stream().map(ur -> new SimpleGrantedAuthority("ROLE_" + ur.getRole().getName()))
-				.collect(Collectors.toSet());
-		
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+		Optional<User> userOpt = userRepository.findByUsername(username);
+        if (userOpt.isEmpty()) {
+            throw new UsernameNotFoundException("Utente non trovato: " + username);
+        }
+        
+        User user = userOpt.get();
+        
+        Set<String> roles = userRepository.findRolesByUsername(username);
+
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .authorities(roles.stream().map(role -> "ROLE_" + role).toArray(String[]::new))
+                .build();
 	}
 
 }
