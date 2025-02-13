@@ -13,17 +13,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.mbaziekone.user_service.service.impl.UserServiceImpl;
+import com.mbaziekone.user_service.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
 @Configuration
-@EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
 	private final JwtAuthFilter jwtAuthFilter;
-	private final UserServiceImpl userServiceImpl;
+	private final UserService userService;
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

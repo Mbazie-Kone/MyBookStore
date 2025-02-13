@@ -1,6 +1,10 @@
 package com.mbaziekone.user_service.model;
 
 import java.io.Serializable;
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
 
@@ -16,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements Serializable{
+public class User implements Serializable, UserDetails{
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,5 +30,11 @@ public class User implements Serializable{
 	private String username;
 
 	private String password;
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
