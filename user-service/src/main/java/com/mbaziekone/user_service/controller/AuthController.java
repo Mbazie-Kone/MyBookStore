@@ -24,9 +24,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthController {
 	
-	private AuthenticationManager authenticationManager;
-	private UserService userService;
-	private JwtUtil jwtUtil;
+	private final AuthenticationManager authenticationManager;
+	private final UserService userService;
+	private final JwtUtil jwtUtil;
 	
 
 	@PostMapping("/login")
