@@ -30,10 +30,13 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-		return http.securityMatcher("/**")
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/admin/login").permitAll()
-						.requestMatchers("/api/customers/**").permitAll().requestMatchers("/api/admin/dashboard")
-						.hasRole("ADMIN").anyRequest().authenticated())
+		return http
+				.securityMatcher("/**")
+				.authorizeHttpRequests(auth -> auth
+						.requestMatchers("/api/admin/login").permitAll()
+						.requestMatchers("/api/customers/**").permitAll()
+						.requestMatchers("/api/admin/dashboard").hasRole("ADMIN")
+						.anyRequest().authenticated())
 				.csrf(CsrfConfigurer::disable)
 				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class).build();
 
