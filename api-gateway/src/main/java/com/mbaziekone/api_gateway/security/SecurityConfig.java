@@ -18,7 +18,7 @@ public class SecurityConfig {
 						.anyRequest().authenticated()
 				)
 				.csrf(csrf -> csrf.disable())
-				.cors(cors -> cors.configurationSource(request -> {
+				.cors(cors -> cors.configurationSource( request -> {
 					var config = new org.springframework.web.cors.CorsConfiguration();
 					config.addAllowedOrigin("http://localhost:4200");
 					config.addAllowedMethod("*");
@@ -27,7 +27,7 @@ public class SecurityConfig {
 					
 					return config;
 				}))
-				.httpBasic(httpBasic -> httpBasic.disable())
+
 				.build();
 	}
 }
