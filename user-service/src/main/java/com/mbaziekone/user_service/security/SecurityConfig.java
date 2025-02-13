@@ -20,54 +20,50 @@ import com.mbaziekone.user_service.service.impl.UserServiceImpl;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	
+
 	@Autowired
 	private JwtAuthFilter jwtAuthFilter;
-	
+
 	@Autowired
 	private UserServiceImpl userServiceImpl;
-	
+
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-		return http
-			.securityMatcher("/**")
-			.authorizeHttpRequests(auth -> auth
-					.requestMatchers("/api/admin/login").permitAll()
-					.requestMatchers("/api/customers/**").permitAll()
-					.requestMatchers("/api/admin/dashboard").hasRole("ADMIN")
-					.anyRequest().authenticated()
-				)
+		return http.securityMatcher("/**")
+				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/admin/login").permitAll()
+						.requestMatchers("/api/customers/**").permitAll().requestMatchers("/api/admin/dashboard")
+						.hasRole("ADMIN").anyRequest().authenticated())
 				.csrf(CsrfConfigurer::disable)
-				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-				.build();
+				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class).build();
 
 	}
-	
+
 	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-		
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+			throws Exception {
+
 		return authenticationConfiguration.getAuthenticationManager();
 	}
-	
+
 	@Bean
 	public UserDetailsService userDetailsService() {
-		
+
 		return userServiceImpl;
 	}
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		
+
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 		authProvider.setUserDetailsService(userServiceImpl);
 		authProvider.setPasswordEncoder(passwordEncoder());
-		
+
 		return authProvider;
 	}
 }
