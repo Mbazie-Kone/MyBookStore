@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mbaziekone.user_service.dto.AuthRequest;
+import com.mbaziekone.user_service.dto.AuthResponse;
 import com.mbaziekone.user_service.security.JwtUtil;
 import com.mbaziekone.user_service.service.impl.UserServiceImpl;
 
@@ -36,7 +37,7 @@ public class UserController {
 		UserDetails user = userServiceImpl.loadUserByUsername(request.getUsername());
 		String token = jwtUtil.generateToken(user.getUsername());
 		
-		return ResponseEntity.ok(Map.of("token", token));
+		return ResponseEntity.ok(new AuthResponse(token));
 	}
 	
 }
