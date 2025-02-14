@@ -27,25 +27,19 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 		return http
-				.securityMatcher("/**")
+				.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers("/api/auth/**").permitAll()
 						.requestMatchers("/api/customers/**").permitAll()
 						.requestMatchers("/api/admin/**").hasRole("ADMIN")
 						.anyRequest().authenticated()
-				)
-				.csrf(csrf -> csrf.disable())
-				.cors(cors -> cors.configurationSource(request -> {
-					var config = new org.springframework.web.cors.CorsConfiguration();
-					config.addAllowedOrigin("http://localhost:4200");
-					config.addAllowedMethod("*");
-					config.addAllowedHeader("*");
-					config.setAllowCredentials(true);
-					
-					return config;
-				}))
-				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-				.build();
+						.httpBasic().disable()
+						.formLogin().disable()
+						.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+						.authenticationProvider(authenticationProvider())
+				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+				
+				return http.build();
 
 	}
 
