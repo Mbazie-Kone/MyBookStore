@@ -29,10 +29,19 @@ public class SecurityConfig {
 		return http.securityMatcher("/**")
 				.authorizeHttpRequests(auth -> auth.requestMatchers("/api/auth/**").permitAll()
 						.requestMatchers("/api/customers/**").permitAll().requestMatchers("/api/admin/**")
-						.hasRole("ADMIN").anyRequest().authenticated())
-				.csrf(csrf -> csrf.disable()).addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-
-				.build();
+						.hasRole("ADMIN").anyRequest().authenticated()
+				)
+				.csrf(csrf -> csrf.disable())
+	            .cors(cors -> cors.configurationSource(request -> {
+	                var config = new org.springframework.web.cors.CorsConfiguration();
+	                config.setAllowedOrigins(java.util.List.of("http://localhost:4200"));
+	                config.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+	                config.setAllowedHeaders(java.util.List.of("Authorization", "Content-Type"));
+	                config.setAllowCredentials(true);
+	                return config;
+	            }))
+	            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+	            .build();
 
 	}
 
