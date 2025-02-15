@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,7 @@ import com.mbaziekone.user_service.dto.AuthRequest;
 import com.mbaziekone.user_service.dto.AuthResponse;
 import com.mbaziekone.user_service.dto.UserRequestDto;
 import com.mbaziekone.user_service.model.Role;
+import com.mbaziekone.user_service.model.User;
 import com.mbaziekone.user_service.repository.RoleRepository;
 import com.mbaziekone.user_service.security.JwtUtil;
 import com.mbaziekone.user_service.service.UserService;
@@ -32,6 +34,7 @@ public class AuthController {
 	private final UserService userService;
 	private final JwtUtil jwtUtil;
 	private final RoleRepository roleRepository;
+	private final PasswordEncoder passwordEncoder;
 	
 
 	@PostMapping("/login")
@@ -48,8 +51,12 @@ public class AuthController {
 		Optional<Role> optionalRole = roleRepository.findByName(userRequestDto.getRole());
 		if (optionalRole.isEmpty()) {
 			
-			return ResponseEntity.badRequest().body("Error! Role not found!")
+			return ResponseEntity.badRequest().body("Error! Role not found!");
 		}
+		
+		User user = new User();
+		user.setUsername(userRequestDto.getUsername());
+		user.setPassword(passwordEncoder.encode(userRequestDto.getPassword()));
 	}
 	
 	
