@@ -1,5 +1,7 @@
 package com.mbaziekone.user_service.controller;
 
+import java.util.Optional;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mbaziekone.user_service.dto.AuthRequest;
 import com.mbaziekone.user_service.dto.AuthResponse;
+import com.mbaziekone.user_service.dto.UserRequestDto;
+import com.mbaziekone.user_service.model.Role;
+import com.mbaziekone.user_service.repository.RoleRepository;
 import com.mbaziekone.user_service.security.JwtUtil;
 import com.mbaziekone.user_service.service.UserService;
 
@@ -26,6 +31,7 @@ public class AuthController {
 	private final AuthenticationManager authenticationManager;
 	private final UserService userService;
 	private final JwtUtil jwtUtil;
+	private final RoleRepository roleRepository;
 	
 
 	@PostMapping("/login")
@@ -38,7 +44,13 @@ public class AuthController {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<String> registerUser(@RequestBody)
+	public ResponseEntity<String> registerUser(@RequestBody UserRequestDto userRequestDto) {
+		Optional<Role> optionalRole = roleRepository.findByName(userRequestDto.getRole());
+		if (optionalRole.isEmpty()) {
+			
+			return ResponseEntity.badRequest().body("Error! Role not found!")
+		}
+	}
 	
 	
 }
