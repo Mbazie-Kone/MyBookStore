@@ -18,7 +18,17 @@ export class RegisterComponent {
   constructor(private userService: UserService) {}
 
   registerUser() {
-    
+    if (!this.username || !this.password || !this.role) {
+      this.message = 'Insert username, password and select a role!';
+
+      return;
+    }
+
+    this.userService.registerUser(this.username, this.password, this.role).subscribe({
+      next: response => {
+        this.message = "✅ " + response;
+      }
+    })
   }
 
 }
