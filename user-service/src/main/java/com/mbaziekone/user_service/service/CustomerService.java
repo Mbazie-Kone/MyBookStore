@@ -16,9 +16,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CustomerService {
 
-	private CustomerRepository customerRepository;
-	private AddressRepository addressRepository;
-	private CustomerAddressRepository customerAddressRepository;
+	private final CustomerRepository customerRepository;
+	private final AddressRepository addressRepository;
+	private final CustomerAddressRepository customerAddressRepository;
 	
 	public Customer registerCustomer(CustomerRegistrationDto customerRegistrationDto) {
 		//Let's create a new Customer
