@@ -27,6 +27,10 @@ export class RegisterComponent {
     this.userService.registerUser(this.username, this.password, this.role).subscribe({
       next: response => {
         this.message = "✅ " + response;
+      },
+      error: err => {
+        console.error('Erro!', err);
+        this.message = "❌ registration failed!";
       }
     })
   }
