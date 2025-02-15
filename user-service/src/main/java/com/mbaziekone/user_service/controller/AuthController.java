@@ -18,6 +18,7 @@ import com.mbaziekone.user_service.dto.AuthResponse;
 import com.mbaziekone.user_service.dto.UserRequestDto;
 import com.mbaziekone.user_service.model.Role;
 import com.mbaziekone.user_service.model.User;
+import com.mbaziekone.user_service.model.UserRole;
 import com.mbaziekone.user_service.repository.RoleRepository;
 import com.mbaziekone.user_service.security.JwtUtil;
 import com.mbaziekone.user_service.service.UserService;
@@ -57,6 +58,15 @@ public class AuthController {
 		User user = new User();
 		user.setUsername(userRequestDto.getUsername());
 		user.setPassword(passwordEncoder.encode(userRequestDto.getPassword()));
+		
+		User savedUser = userService.savedUser(user);
+		
+		UserRole userRole = new UserRole();
+		userRole.setUser(savedUser);
+		userRole.setRole(optionalRole.get());
+		userService.saveUserRole(userRole);
+		
+		return ResponseEntity.ok("Registration successfull! " + userRequestDto.getRole());
 	}
 	
 	
