@@ -1,1 +1,21 @@
-<p>register works!</p>
+<div class="container">
+    <h2>Signup</h2>
+    <form (ngSubmit)="registerUser()" #registerForm="ngForm">
+        <div>
+            <label>Username:</label>
+            <input type="text" name="username" [(ngModel)]="username" required />
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" name="password" [(ngModel)]="password" required />
+        </div>
+        <div>
+            <label>Role:</label>
+            <select name="role" [(ngModel)]="role" required>
+                <option *ngFor="let r of availableRoles" [value]="r">{{ r }}</option>
+            </select>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+    <p>{{ message }}</p>
+</div>

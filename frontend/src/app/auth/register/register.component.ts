@@ -32,7 +32,7 @@ export class RegisterComponent {
         console.error('Erro!', err);
         this.message = "❌ registration failed!";
       }
-    })
+    });
   }
 
 }
