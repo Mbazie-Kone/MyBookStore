@@ -37,7 +37,6 @@ public class AuthController {
 	private final RoleRepository roleRepository;
 	private final PasswordEncoder passwordEncoder;
 	
-
 	@PostMapping("/login")
 	public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request ) {
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
@@ -68,6 +67,4 @@ public class AuthController {
 		
 		return ResponseEntity.ok("Registration successfull! " + userRequestDto.getRole());
 	}
-	
-	
 }
