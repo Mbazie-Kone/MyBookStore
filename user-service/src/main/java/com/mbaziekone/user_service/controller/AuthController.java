@@ -48,7 +48,7 @@ public class AuthController {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<?> registerUser(@RequestBody UserRequestDto userRequestDto) {
+	public ResponseEntity<Map<String, String>> registerUser(@RequestBody UserRequestDto userRequestDto) {
 		Optional<Role> optionalRole = roleRepository.findByName(userRequestDto.getRole());
 		if (optionalRole.isEmpty()) {
 			

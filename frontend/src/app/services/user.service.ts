@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,9 +10,11 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  registerUser(username: string, password:string, role: string): Observable<string> {
+  registerUser(username: string, password:string, role: string): Observable<{ message: string; role: string}> {
     const body = {username, password, role};
 
-    return this.http.post<string>(this.apiUrl, body);
+    return this.http.post<{ message: string; role: string}>(this.apiUrl, body, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    });
   }
 }
