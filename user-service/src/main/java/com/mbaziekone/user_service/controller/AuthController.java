@@ -1,5 +1,6 @@
 package com.mbaziekone.user_service.controller;
 
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
@@ -47,11 +48,11 @@ public class AuthController {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<String> registerUser(@RequestBody UserRequestDto userRequestDto) {
+	public ResponseEntity<?> registerUser(@RequestBody UserRequestDto userRequestDto) {
 		Optional<Role> optionalRole = roleRepository.findByName(userRequestDto.getRole());
 		if (optionalRole.isEmpty()) {
 			
-			return ResponseEntity.badRequest().body("Error! Role not found!");
+			return ResponseEntity.badRequest().body(Map.of("Error", "Error! Role not found!"));
 		}
 		
 		User user = new User();
@@ -65,6 +66,6 @@ public class AuthController {
 		userRole.setRole(optionalRole.get());
 		userService.saveUserRole(userRole);
 		
-		return ResponseEntity.ok("Registration successfull! " + userRequestDto.getRole());
+		return ResponseEntity.ok(Map.of("message", "Registration successfull!", "role", userRequestDto.getRole()));
 	}
 }
