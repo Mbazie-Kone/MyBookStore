@@ -19,18 +19,19 @@ export class RegisterComponent {
 
   registerUser() {
     if (!this.username || !this.password || !this.role) {
-      this.message = 'Insert username, password and select a role!';
+      this.message = "Insert username, password and select a role!";
 
       return;
     }
 
     this.userService.registerUser(this.username, this.password, this.role).subscribe({
-      next: response => {
-        this.message = "✅ " + response;
+      next: (response) => {
+        console.log("✅ Registration successfully:", response);
+        this.message = response.message;
       },
-      error: err => {
-        console.error('Erro!', err);
-        this.message = "❌ registration failed!";
+      error: (err) => {
+        console.error("❌ Erro!", err);
+        this.message = err.erro?.error || "❌ registration failed!";
       }
     });
   }
