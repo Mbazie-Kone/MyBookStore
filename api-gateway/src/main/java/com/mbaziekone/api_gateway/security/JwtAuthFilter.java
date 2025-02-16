@@ -7,7 +7,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 
+import java.nio.charset.StandardCharsets;
+
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -43,10 +47,10 @@ public class JwtAuthFilter implements WebFilter{
                 .parseClaimsJws(token)
                 .getBody();
 
-            log.info("JWT Validato: Utente = {}", claims.getSubject());
+            log.info("JWT valid: User = {}", claims.getSubject());
 
         } catch (Exception e) {
-            log.error("Token JWT non valido!");
+            log.error("Token JWT error!");
         }
 
         return chain.filter(request);
