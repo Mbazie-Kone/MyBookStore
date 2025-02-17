@@ -1,4 +1,4 @@
-package com.mbaziekone.api_gateway.security;
+package com.mbaziekone.gateway_service.security;
 
 import java.security.Key;
 
@@ -17,7 +17,7 @@ import reactor.core.publisher.Mono;
 
 @Component
 @Slf4j
-public class JwtAuthFilter implements WebFilter{
+public class JwtAuthFilter implements WebFilter {
 	
 	private static final String SECRET_KEY = "mySecretKeyForJWTAuthenticationInMicroservices";
 
