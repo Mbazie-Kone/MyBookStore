@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -32,6 +31,19 @@ public class SecurityConfig {
 	private final UserService userService;
 
 	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+		return http
+				.cors(cors -> cors.configurationSource(corsConfigurationSource()))
+				.csrf(csrf -> csrf.disable())
+				.authorizeHttpRequests((auth) -> auth.requestMatchers("/api/auth/**", "/api/customers/**").permitAll()
+						.requestMatchers("/api/admin/**")
+						.hasRole("ADMIN").anyRequest().authenticated())
+				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class).build();
+
+	}
+	
+	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
 		configuration.setAllowedOrigins(List.of("http://localhost:4200"));
@@ -43,19 +55,6 @@ public class SecurityConfig {
 		source.registerCorsConfiguration("/**", configuration);
 		
 		return source;
-	}
-
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-		return http
-				.cors(cors -> cors.configurationSource(corsConfigurationSource()))
-				.csrf(csrf -> csrf.disable())
-				.authorizeHttpRequests((auth) -> auth.requestMatchers("/api/auth/**", "/api/customers/**").permitAll()
-						.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll().requestMatchers("/api/admin/**")
-						.hasRole("ADMIN").anyRequest().authenticated())
-				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class).build();
-
 	}
 
 	@Bean
