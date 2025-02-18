@@ -36,9 +36,10 @@ public class SecurityConfig {
 		return http
 				.cors(cors -> cors.configurationSource(corsConfigurationSource()))
 				.csrf(csrf -> csrf.disable())
-				.authorizeHttpRequests((auth) -> auth.requestMatchers("/api/auth/**", "/api/customers/**").permitAll()
-						.requestMatchers("/api/admin/**")
-						.hasRole("ADMIN").anyRequest().authenticated())
+				.authorizeHttpRequests((auth) -> auth
+						.requestMatchers("/api/auth/**", "/api/customers/**").permitAll()
+						.requestMatchers("/api/admin/**").hasRole("ADMIN")
+						.anyRequest().authenticated())
 				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class).build();
 
 	}
