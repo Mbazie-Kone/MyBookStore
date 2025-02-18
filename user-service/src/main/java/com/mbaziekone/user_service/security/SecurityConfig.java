@@ -2,6 +2,7 @@ package com.mbaziekone.user_service.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -29,9 +30,12 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 		return http
-				.authorizeHttpRequests((auth) -> auth.requestMatchers("/api/auth/**").permitAll()
-						.requestMatchers("/api/customers/**").permitAll().requestMatchers("/api/admin/**")
-						.hasRole("ADMIN").anyRequest().authenticated()
+				.authorizeHttpRequests((auth) -> auth
+						.requestMatchers("/api/auth/**").permitAll()
+						.requestMatchers("/api/customers/**").permitAll()
+						.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+						.requestMatchers("/api/admin/**").hasRole("ADMIN")
+						.anyRequest().authenticated()
 				)
 				.csrf(csrf -> csrf.disable())
 	            .cors(cors -> cors.configurationSource(request -> {
