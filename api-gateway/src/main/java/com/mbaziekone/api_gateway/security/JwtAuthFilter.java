@@ -15,8 +15,11 @@ public class JwtAuthFilter implements WebFilter {
 	public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
 		String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
 
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            return chain.filter(exchange);
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+        	exchange.mutate().request(exchange.getRequest().mutate()
+        			.header(HttpHeaders.AUTHORIZATION, authHeader)
+        			.build()).build();
+        				
         }
 
         return chain.filter(exchange);
