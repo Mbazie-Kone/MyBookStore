@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class UserAdminService {
 
-  constructor() { }
+  private apiLoginUrl = 'http://localhost:8080/api/auth/login';
+
+  private apiRegisterUrl = 'http://localhost:8080/api/auth/register';
+
+  constructor(private http: HttpClient) { }
 }
