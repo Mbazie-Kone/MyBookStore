@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from '../../services/user.service';
-import { AuthService } from '../../services/auth.service';
+import { UserAdminService } from '../../services/user-admin.service';
 
 @Component({
   selector: 'app-register',
@@ -16,16 +15,16 @@ export class RegisterComponent {
 
   availableRoles: string[] = ['USER', 'ADMIN'];
 
-  constructor(private userService: UserService) {}
+  constructor(private userAdminService: UserAdminService) {}
 
-  registerUser() {
+  register() {
     if (!this.username || !this.password || !this.role) {
       this.message = "Insert username, password and select a role!";
 
       return;
     }
 
-    this.userService.registerUser(this.username, this.password, this.role).subscribe({
+    this.userAdminService.register(this.username, this.password, this.role).subscribe({
       next: (response) => {
         console.log("✅ Registration successfully:", response);
         this.message = response.message;
