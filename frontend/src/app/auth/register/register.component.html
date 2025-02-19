@@ -1,10 +1,7 @@
-<div class="container">
+
     
-    <form (ngSubmit)="register()" #registerForm="ngForm">
-        <div>
-            <label>Username:</label>
-            <input type="text" name="username" [(ngModel)]="username" required />
-        </div>
+
+
         <div>
             <label>Password:</label>
             <input type="password" name="password" [(ngModel)]="password" required />
@@ -16,9 +13,7 @@
             </select>
         </div>
         <button type="submit">Register</button>
-    </form>
     <p>{{ message }}</p>
-</div>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -28,7 +23,15 @@
                     <h2 class="text-center">Signup</h2>
                 </div>
                 <div class="card-body">
-
+                    <form (ngSubmit)="register()" #registerForm="ngForm">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="username" name="username" [(ngModel)]="username" required>
+                            <label for="floatingInput">Username</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
