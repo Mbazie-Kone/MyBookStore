@@ -1,18 +1,8 @@
 
-    
-
-
-
-        <div>
-            <label>Role:</label>
-            <select name="role" [(ngModel)]="role" required>
-                <option *ngFor="let r of availableRoles" [value]="r">{{ r }}</option>
-            </select>
-        </div>
         <button type="submit">Register</button>
     <p>{{ message }}</p>
 
-<div class="container">
+<div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
@@ -29,6 +19,9 @@
                             <input type="password" class="form-control" id="floatingPassword" placeholder="password" name="password" [(ngModel)]="password" required>
                             <label for="floatingInput">Password</label>
                         </div>
+                        <select name="role" class="form-select" [(ngModel)]="role" required>
+                            <option *ngFor="let r of availableRoles" [value]="r">{{ r }}</option>
+                        </select>
                     </form>
                 </div>
             </div>
