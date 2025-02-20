@@ -2,6 +2,10 @@ package com.mbaziekone.customer_service.service;
 
 import org.springframework.stereotype.Service;
 
+import com.mbaziekone.customer_service.dto.CustomerRegistrationDto;
+import com.mbaziekone.customer_service.model.Address;
+import com.mbaziekone.customer_service.model.Customer;
+import com.mbaziekone.customer_service.model.CustomerAddress;
 import com.mbaziekone.customer_service.repository.AddressRepository;
 import com.mbaziekone.customer_service.repository.CustomerAddressRepository;
 import com.mbaziekone.customer_service.repository.CustomerRepository;
