@@ -1,4 +1,4 @@
-package com.mbaziekone.user_service.dto;
+package com.mbaziekone.customer_service.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -8,9 +8,9 @@ import lombok.Data;
 public class CustomerRegistrationDto {
 	
 	private String firstName;
-
+	
 	private String lastName;
-
+	
 	private String email;
 	
 	@NotBlank(message = "Username is required")
@@ -32,5 +32,4 @@ public class CustomerRegistrationDto {
 	private String zipCode;
 	
 	private String country;
-
 }

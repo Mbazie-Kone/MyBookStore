@@ -1,4 +1,4 @@
-package com.mbaziekone.user_service.controller;
+package com.mbaziekone.customer_service.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -6,14 +6,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mbaziekone.user_service.dto.CustomerRegistrationDto;
-import com.mbaziekone.user_service.model.Customer;
-import com.mbaziekone.user_service.service.CustomerService;
+import com.mbaziekone.customer_service.dto.CustomerRegistrationDto;
+import com.mbaziekone.customer_service.model.Customer;
+import com.mbaziekone.customer_service.service.CustomerService;
+
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/customers")
+@RequestMapping("/api/customer")
 @RequiredArgsConstructor
 public class CustomerController {
 	
