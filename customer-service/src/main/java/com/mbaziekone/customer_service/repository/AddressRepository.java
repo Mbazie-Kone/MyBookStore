@@ -1,6 +1,6 @@
 package com.mbaziekone.customer_service.repository;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -8,5 +8,5 @@ import com.mbaziekone.customer_service.model.Address;
 
 public interface AddressRepository extends JpaRepository<Address, Long> {
 	
-	Optional<Address> findByStreetAndCityAndStateAndZipCodeAndCountry(String street, String city, String state, String zipCode, String country);
+	List<Address> findByCityId(Long cityId);
 }
