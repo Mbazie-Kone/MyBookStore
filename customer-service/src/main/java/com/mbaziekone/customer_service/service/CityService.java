@@ -41,7 +41,7 @@ public class CityService {
 	}
 	
 	// Delete
-	public void deleteState(Long id) {
+	public void deleteCity(Long id) {
 		cityRepository.deleteById(id);
 	}
 }
