@@ -1,7 +1,6 @@
 package com.mbaziekone.customer_service.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -31,6 +30,6 @@ public class Country implements Serializable {
 	private String name;
 	
 	@OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<State> states = new ArrayList<>();
+	private List<State> states;
 
 }
