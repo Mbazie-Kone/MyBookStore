@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.mbaziekone.customer_service.model.Address;
-import com.mbaziekone.customer_service.model.City;
 import com.mbaziekone.customer_service.repository.AddressRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -23,7 +22,7 @@ public class AddressService {
 		return addressRepository.findAll();
 	}
 	
-	// Find address by city ID
+	// Find addresses by city ID
 	public List<Address> getAddressesByCity(Long cityId) {
 		
 		return addressRepository.findByCityId(cityId);

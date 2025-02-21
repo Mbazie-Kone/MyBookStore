@@ -1,13 +1,11 @@
 package com.mbaziekone.customer_service.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
-import com.mbaziekone.customer_service.dto.CustomerRegistrationDto;
-import com.mbaziekone.customer_service.model.Address;
 import com.mbaziekone.customer_service.model.Customer;
-import com.mbaziekone.customer_service.model.CustomerAddress;
-import com.mbaziekone.customer_service.repository.AddressRepository;
-import com.mbaziekone.customer_service.repository.CustomerAddressRepository;
 import com.mbaziekone.customer_service.repository.CustomerRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -16,44 +14,47 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CustomerService {
 	
-	private final CustomerRepository customerRepository;
-	private final AddressRepository addressRepository;
-	private final CustomerAddressRepository customerAddressRepository;
+	private CustomerRepository customerRepository;
 	
-	public Customer registerCustomer(CustomerRegistrationDto customerRegistrationDto) {
-		//Let's create a new Customer
-		Customer customer = new Customer();
-		customer.setFirstName(customerRegistrationDto.getFirstName());
-		customer.setLastName(customerRegistrationDto.getLastName());
-		customer.setEmail(customerRegistrationDto.getEmail());
-		//customer.setPassword;
-		customer.setPhone(customerRegistrationDto.getPhone());
+	// Find all customers
+	public List<Customer> getAllCustomers() {
 		
-		//We save the Customer in the database
-		customer = customerRepository.save(customer);
-		
-		//We check if the address already exists in the database
-		Address address = addressRepository.findByStreetAndCityAndStateAndZipCodeAndCountry(
-				customerRegistrationDto.getStreet(), customerRegistrationDto.getCity(), customerRegistrationDto.getState(), 
-				customerRegistrationDto.getZipCode(), customerRegistrationDto.getCountry()
-				).orElseGet(() -> {
-					//If the address does not exist, we create it
-					Address newAddress = new Address();
-					newAddress.setStreet(customerRegistrationDto.getStreet());
-					newAddress.setCity(customerRegistrationDto.getCity());
-					newAddress.setState(customerRegistrationDto.getState());
-					newAddress.setZipCode(customerRegistrationDto.getZipCode());
-					newAddress.setCountry(customerRegistrationDto.getCountry());
-					
-					return addressRepository.save(newAddress);
-				});
-		
-				//Let's create the relationship between Customer and Address
-				CustomerAddress customerAddress = new CustomerAddress();
-				customerAddress.setCustomer(customer);
-				customerAddress.setAddress(address);
-				customerAddressRepository.save(customerAddress);
-		
-		return customer;
+		return customerRepository.findAll();
 	}
+	
+	// Find customer by ID
+	public Optional<Customer> getCustomerById(Long id) {
+		
+		return customerRepository.findById(id);
+	}
+	
+	// Find customer by email
+	public Optional<Customer> getCustomerByEmail(String eamil) {
+		
+		return customerRepository.findByEmail(eamil);
+	}
+	
+	// Find customers by country ID
+	public List<Customer> getCustomersByCounty(Long countryId) {
+		
+		return customerRepository.findByCountryId(countryId);
+	}
+	
+	// Find customers by address ID
+	public List<Customer> getCustomersByAddress(Long addressId) {
+		
+		return customerRepository.findByAddressId(addressId);
+	}
+	
+	// Create
+	public Customer createCustomer(Customer customer) {
+		
+		return customerRepository.save(customer);
+	}
+	
+	// Delete
+	public void deleteCustomer(Long id) {
+		customerRepository.deleteById(id);
+	}
+	
 }
