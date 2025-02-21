@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.mbaziekone.customer_service.model.Country;
 import com.mbaziekone.customer_service.model.State;
 import com.mbaziekone.customer_service.repository.StateRepository;
 
@@ -42,7 +41,7 @@ public class StateService {
 	}
 	
 	// Delete
-	public void deleteCountry(Long id) {
-		countryRepository.deleteById(id);
+	public void deleteState(Long id) {
+		stateRepository.deleteById(id);
 	}
 }
