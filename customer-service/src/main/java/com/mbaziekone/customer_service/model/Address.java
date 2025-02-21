@@ -1,11 +1,16 @@
 package com.mbaziekone.customer_service.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,11 +31,25 @@ public class Address implements Serializable {
 	
 	private String street;
 	
-	private String city;
+	private String streetNumber;
 	
-	private String state;
+	private String postalCode;
 	
-	private String zipCode;
+	@ManyToOne
+	@JoinColumn(name = "city_id")
+	private City city;
 	
-	private String country;
+	private LocalDateTime createdAt;
+	private LocalDateTime updateAt;
+	
+	@PrePersist
+	protected void onCreate() {
+		this.createdAt = LocalDateTime.now();
+		this.updateAt = LocalDateTime.now();
+	}
+	
+	@PreUpdate
+	protected void onUpdate() {
+		this.updateAt = LocalDateTime.now();
+	}
 }
