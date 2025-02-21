@@ -29,10 +29,16 @@ public class StateService {
 		return stateRepository.findByCountryId(countyId);
 	}
 	
-	// Create
-	public Country createCountry(Country country) {
+	// Find state by ID
+	public Optional<State> getStateById(Long id) {
 		
-		return countryRepository.save(country);
+		return stateRepository.findById(id);
+	}
+	
+	// Create
+	public State createState(State state) {
+		
+		return stateRepository.save(state);
 	}
 	
 	// Delete
