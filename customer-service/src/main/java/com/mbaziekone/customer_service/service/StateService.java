@@ -23,7 +23,7 @@ public class StateService {
 	}
 	
 	// Find states by country ID
-	public List<State> getStateByCountry(Long countyId) {
+	public List<State> getStatesByCountry(Long countyId) {
 		
 		return stateRepository.findByCountryId(countyId);
 	}
