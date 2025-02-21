@@ -1,6 +1,7 @@
 package com.mbaziekone.customer_service.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,17 @@ public class CountryService {
 	
 	private final CountryRepository countryRepository;
 	
+	// Find all countries
 	public List<Country> getAllCountries() {
 		
 		return countryRepository.findAll();
 	}
+	
+	// Find by ID
+	public Optional<Country> getCountryById(Long id) {
+		
+		return countryRepository.findById(id);
+	}
+	
+	
 }
