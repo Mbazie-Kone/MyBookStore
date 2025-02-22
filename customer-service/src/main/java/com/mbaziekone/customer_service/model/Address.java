@@ -30,9 +30,7 @@ public class Address implements Serializable {
 	private Long id;
 	
 	private String street;
-	
 	private String streetNumber;
-	
 	private String postalCode;
 	
 	@ManyToOne
