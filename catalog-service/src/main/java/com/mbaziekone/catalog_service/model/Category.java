@@ -29,6 +29,7 @@ public class Category implements Serializable{
 	
 	private String name;
 	private String description;
+	
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	
