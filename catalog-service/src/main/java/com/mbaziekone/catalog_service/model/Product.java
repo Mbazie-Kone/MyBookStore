@@ -34,7 +34,7 @@ public class Product implements Serializable {
 	private String description;
 	private BigDecimal price;
 	private int stock;
-	private boolean isAvailable;
+	private boolean isAvailable = true;
 	
 	@ManyToOne
 	@JoinColumn(name = "category_id")
