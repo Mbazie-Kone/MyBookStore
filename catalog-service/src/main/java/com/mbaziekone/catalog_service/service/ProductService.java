@@ -30,4 +30,18 @@ public class ProductService {
 		
 		return productRepository.findByCategoryId(categoryId);
 	}
+	
+	public List<Product> getAvailableProducts() {
+		
+		return productRepository.findByIsAvailableTrue();
+	}
+	
+	public Product createProduct(Product product) {
+		
+		return productRepository.save(product);
+	}
+	
+	public void deleteProduct(Long id) {
+		productRepository.deleteById(id);
+	}
 }
