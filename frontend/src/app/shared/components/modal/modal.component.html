@@ -1,1 +1,6 @@
-<p>modal works!</p>
+<div class="modal-overlay" *ngIf="isOpen">
+    <div class="modal-content">
+        <button (click)="close()">X</button>
+        <ng-content></ng-content>
+    </div>
+</div>
