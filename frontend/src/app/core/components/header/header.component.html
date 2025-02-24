@@ -11,15 +11,22 @@
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
 
-        <!-- Cart item-->
+        <!-- Cart item and user menu -->
         <div class="d-flex align-item-center">
             <!-- Cart icon -->
-            <a routerLink="/cart" routerLinkActive="router-link-active"  class="btn btn-outline-primary me-3 position-relative">
+            <a routerLink="/cart" class="btn btn-outline-primary me-3 position-relative">
                 🛒
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     {{ cartItemCount }}
                 </span>
             </a>
+
+            <!-- Dropdown menu -->
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+
+                </button>
+            </div>
         </div>
     </div>
 </nav>
