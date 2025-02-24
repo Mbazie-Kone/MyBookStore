@@ -11,7 +11,10 @@ const routes: Routes = [
     path:'',
     component: LayoutComponent,
     children: [
-      {path:'', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)}
+      {path:'', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)},
+      {path:'catalog', loadChildren: () => import('./modules/catalog/catalog.module').then(m => m.CatalogModule)},
+      {path:'cart', loadChildren: () => import('./modules/cart/cart.module').then(m => m.CartModule)},
+      {path:'account', loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule)}
     ]
   },
   {path: 'auth/login', component: LoginComponent},
