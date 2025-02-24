@@ -4,13 +4,19 @@ import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
 import { RegisterComponent } from './auth/register/register.component';
+import { LayoutComponent } from './core/components/layout/layout.component';
 
 const routes: Routes = [
+  {
+    path:'',
+    component: LayoutComponent,
+    children: [
+      {path:}
+    ]
+  },
   {path: 'auth/login', component: LoginComponent},
   {path: 'auth/register', component: RegisterComponent},
-  {path: 'admin/dashboard', component: DashboardComponent, canActivate: [authGuard] },
-  {path: '', redirectTo: 'auth/login', pathMatch: 'full'},
-  {path: '**', redirectTo: 'auth/login'}
+  {path: 'admin/dashboard', component: DashboardComponent, canActivate: [authGuard] }
 ];
 
 @NgModule({
