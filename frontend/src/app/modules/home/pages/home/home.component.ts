@@ -12,4 +12,8 @@ export class HomeComponent {
     {id:2, name: 'Backend', description: 'Books' },
     {id:3, name: 'Database', description: 'Books' }
   ];
+
+  goToCategory(categoryId: number) {
+    console.log('Navigate', categoryId);
+  }
 }
