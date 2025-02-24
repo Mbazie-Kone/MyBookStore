@@ -1,1 +1,6 @@
-<p>card works!</p>
+<div class="card">
+    <img [src]="image" alt="Card image">
+    <h3>{{ title }}</h3>
+    <p>{{ description }}</p>
+    <ng-content></ng-content>
+</div>
