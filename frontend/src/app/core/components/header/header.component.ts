@@ -9,4 +9,9 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   isAuthenticated: boolean = false;
   cartItemCount: number = 0;
+
+  logout() {
+    console.log('logout');
+    this.isAuthenticated = false;
+  }
 }
