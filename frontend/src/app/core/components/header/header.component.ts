@@ -19,9 +19,17 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   isAuthenticated: boolean = false;
   cartItemCount: number = 0;
+  badgeState: string = 'normal';
 
   logout() {
     console.log('logout');
     this.isAuthenticated = false;
+  }
+
+  animateBadge() {
+    this.badgeState = 'added';
+    setTimeout(() => {
+      this.badgeState = 'normal';
+    }, 200);
   }
 }
