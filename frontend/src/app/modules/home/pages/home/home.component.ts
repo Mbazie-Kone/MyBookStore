@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-
+  categories = [
+    {id:1, name: 'Frontend', description: 'Books' },
+    {id:2, name: 'Backend', description: 'Books' },
+    {id:3, name: 'Database', description: 'Books' }
+  ];
 }
