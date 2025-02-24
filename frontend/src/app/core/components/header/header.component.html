@@ -16,7 +16,7 @@
             <!-- Cart icon -->
             <a routerLink="/cart" class="btn btn-outline-primary me-3 position-relative">
                 🛒
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <span *ngIf="cartItemCount > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" [@cartBadge]="badgeState">
                     {{ cartItemCount }}
                 </span>
             </a>
