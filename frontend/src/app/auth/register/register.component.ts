@@ -8,7 +8,7 @@ import { UserAdminService } from '../../services/user-admin.service';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  username: string = '';
+  /*username: string = '';
   password: string = '';
   role: string = 'USER';
   message: string = '';
@@ -34,6 +34,6 @@ export class RegisterComponent {
         this.message = err.erro?.error || "❌ registration failed!";
       }
     });
-  }
+  }*/
 
 }
