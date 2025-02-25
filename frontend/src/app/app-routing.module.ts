@@ -17,8 +17,8 @@ const routes: Routes = [
       {path:'account', loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule)}
     ]
   },
-  {path: 'auth/login', component: LoginComponent},
-  {path: 'auth/register', component: RegisterComponent},
+  {path: 'admin/login', component: LoginComponent},
+  {path: 'admin/register', component: RegisterComponent},
   {path: 'admin/dashboard', component: DashboardComponent, canActivate: [authGuard] }
 ];
 
