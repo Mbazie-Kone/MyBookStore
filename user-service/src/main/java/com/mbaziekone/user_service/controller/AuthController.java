@@ -26,7 +26,7 @@ import com.mbaziekone.user_service.service.UserService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/admin")
 @RequiredArgsConstructor
 public class AuthController {
 	
