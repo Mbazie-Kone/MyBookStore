@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { UserAdminService } from '../../services/user-admin.service';
 
 @Component({
   selector: 'app-register',
