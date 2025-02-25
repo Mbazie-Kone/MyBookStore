@@ -4,8 +4,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { authGuard } from './guards/auth.guard';
 import { RegisterComponent } from './auth/register/register.component';
 import { LayoutComponent } from './core/components/layout/layout.component';
-import { ProductsComponent } from './admin/products/products.component';
 import { DashboardComponent } from './modules/admin/pages/dashboard/dashboard.component';
+import { ProductsComponent } from './modules/admin/pages/products/products.component';
 
 const routes: Routes = [
   {
