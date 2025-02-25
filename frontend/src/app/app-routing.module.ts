@@ -5,6 +5,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
 import { RegisterComponent } from './auth/register/register.component';
 import { LayoutComponent } from './core/components/layout/layout.component';
+import { ProductsComponent } from './admin/products/products.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
   },
   {path: 'admin/login', component: LoginComponent},
   {path: 'admin/register', component: RegisterComponent},
-  {path: 'admin/dashboard', component: DashboardComponent, canActivate: [authGuard] }
+  {path: 'admin/dashboard', component: DashboardComponent, canActivate: [authGuard] },
+  {path: 'admin/products', component: ProductsComponent}
 ];
 
 @NgModule({
