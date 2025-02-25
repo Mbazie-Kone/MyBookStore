@@ -1,13 +1,1 @@
-<section class="home">
-    <h1>Welcome in MyBookStore</h1>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias.</p>
 
-    <h2>Categories</h2>
-    <div class="categories">
-        <app-card *ngFor="let category of categories"
-            [title]="category.name"
-            [description]="category.description">
-            <app-button type="primary" (click)="goToCategory(category.id)">Navigate</app-button>
-        </app-card>
-    </div>
-</section>
