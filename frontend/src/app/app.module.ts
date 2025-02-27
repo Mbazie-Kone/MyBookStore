@@ -7,11 +7,13 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './modules/admin/admin.module';
+import { ErrorComponent } from './errors/error/error.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
