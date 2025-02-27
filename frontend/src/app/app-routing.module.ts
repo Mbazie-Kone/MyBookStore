@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './core/components/layout/layout.component';
+import { ErrorComponent } from './errors/error/error.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -10,7 +11,7 @@ const routes: Routes = [
       { path:'catalog', loadChildren: () => import('./modules/catalog/catalog.module').then(m => m.CatalogModule) }
     ]
   },
-  { path: '**', }
+  { path: '**', component: ErrorComponent }
 ];
 
 @NgModule({
