@@ -6,10 +6,7 @@ const routes: Routes = [
   {
     path:'', component: LayoutComponent,
     children: [
-      { path:'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
-      { path:'catalog', loadChildren: () => import('./modules/catalog/catalog.module').then(m => m.CatalogModule) },
-      { path:'cart', loadChildren: () => import('./modules/cart/cart.module').then(m => m.CartModule) },
-      { path:'account', loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule) }
+      { path:'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) }
     ]
   }
 ];
