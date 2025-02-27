@@ -8,9 +8,9 @@ import { DashboardComponent } from './modules/admin/pages/dashboard/dashboard.co
 import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: 'admin/login', component: LoginComponent},
-  { path: 'admin/register', component: RegisterComponent},
-  { path: 'admin/dashboard', component: DashboardComponent, canActivate: [authGuard]},
+  { path: 'admin/login', component: LoginComponent },
+  { path: 'admin/register', component: RegisterComponent },
+  { path: 'admin/dashboard', component: DashboardComponent, canActivate: [authGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path:'home', component: LayoutComponent,
