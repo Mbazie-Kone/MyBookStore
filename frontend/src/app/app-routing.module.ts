@@ -10,8 +10,7 @@ const routes: Routes = [
       { path:'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
       { path:'catalog', loadChildren: () => import('./modules/catalog/catalog.module').then(m => m.CatalogModule) },
       { path:'cart', loadChildren: () => import('./modules/cart/cart.module').then(m => m.CartModule) },
-      { path:'account', loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule) },
-      { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule), canActivate: [authGuard] }
+      { path:'account', loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule) }
     ]
   }
 ];
