@@ -4,9 +4,9 @@ import { LayoutComponent } from './core/components/layout/layout.component';
 
 const routes: Routes = [
   {
-    path:'', component: LayoutComponent,
+    path:'home', component: LayoutComponent,
     children: [
-      { path:'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) }
+      { path:'catalog', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) }
     ]
   }
 ];
