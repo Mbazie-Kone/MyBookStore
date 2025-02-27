@@ -3,9 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './core/components/layout/layout.component';
 import { ErrorComponent } from './errors/error/error.component';
 import { LoginComponent } from './modules/admin/auth/login/login.component';
+import { RegisterComponent } from './modules/admin/auth/register/register.component';
+import { DashboardComponent } from './modules/admin/pages/dashboard/dashboard.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: 'admin/login', component: LoginComponent},
+  { path: 'admin/register', component: RegisterComponent},
+  { path: 'admin/dashboard', component: DashboardComponent, canActivate: [authGuard]},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path:'home', component: LayoutComponent,
