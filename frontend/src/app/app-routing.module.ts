@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path:'home', component: LayoutComponent,
     children: [
-      { path:'catalog', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) }
+      { path:'catalog', loadChildren: () => import('./modules/catalog/catalog.module').then(m => m.CatalogModule) }
     ]
   }
 ];
