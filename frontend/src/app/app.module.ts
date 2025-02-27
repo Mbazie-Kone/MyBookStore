@@ -7,7 +7,6 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './modules/admin/admin.module';
-import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -20,8 +19,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     CoreModule,
     BrowserAnimationsModule,
-    AdminModule,
-    RouterModule.forRoot([])
+    AdminModule
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())
