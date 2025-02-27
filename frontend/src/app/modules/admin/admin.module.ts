@@ -7,6 +7,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
 @NgModule({
@@ -21,6 +22,9 @@ import { RouterModule } from '@angular/router';
     AdminRoutingModule,
     FormsModule,
     RouterModule
+  ],
+  providers: [
+    provideHttpClient(withInterceptorsFromDi())
   ]
 })
 export class AdminModule { }

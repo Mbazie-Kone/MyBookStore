@@ -23,6 +23,7 @@ export class LoginComponent {
       },
       error: (err) => {
         this.errorMessage = 'login failed. Invalid credentials!', err;
+        console.log(err);
       }
     });
   }
