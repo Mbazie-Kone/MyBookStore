@@ -1,6 +1,6 @@
 package com.mbaziekone.user_service.service;
 
-import java.util.Set;
+import java.util.Collections;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,12 +21,12 @@ public class UserService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
 		
-		Set<String> roles = userRepository.findRolesByUsername(username);
+		String role = user.getRole().getName();
 		
 		return org.springframework.security.core.userdetails.User.builder()
 			.username(user.getUsername())
 			.password(user.getPassword())
-			.authorities(roles.stream().map(role -> "ROLE_" + role).toArray(String[]::new))
+			.authorities(Collections.singletonList("ROLE_" + role).toArray(String[]::new))
 			.build();
 	}
 	
