@@ -2,13 +2,16 @@ package com.mbaziekone.user_service.security;
 
 import java.security.Key;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import com.mbaziekone.user_service.model.User;
 import com.mbaziekone.user_service.repository.UserRepository;
+import com.mbaziekone.user_service.service.UserService;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -22,17 +25,23 @@ public class JwtUtil {
 	private final Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 	
 	private final UserRepository userRepository;
+	private final UserService userService;
 	
-	public JwtUtil(UserRepository userRepository) {
+	public JwtUtil(UserRepository userRepository, UserService userService) {
 		this.userRepository = userRepository;
+		this.userService = userService;
 	}
 
 	public String generateToken(String username) {
 		
-		List<String> roles = userRepository.findByUsername(username).stream()
-				.map(userRole -> userRole.getR)
+		UserDetails userDetails = userService.loadUserByUsername(username);
+		User user = userRepository.findByUsername(username).orElseThrow();
+		
+		Map<String, Object> claims = new HashMap<>();
+		claims.put("role", user.getRole().getName());
 			
 		return Jwts.builder()
+				.setClaims(claims)
 				.setSubject(username)
 				.setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
