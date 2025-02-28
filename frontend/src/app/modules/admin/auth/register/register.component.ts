@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -7,12 +8,11 @@ import { Component } from '@angular/core';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  /*username: string = '';
-  password: string = '';
-  role: string = 'USER';
-  message: string = '';
+  registerForm: FormGroup | undefined;
+  roles = ['USER', 'ADMIN'];
 
-  availableRoles: string[] = ['USER', 'ADMIN'];
+  successMessage: string = '';
+  errorMessage: string = '';
 
   constructor(private userAdminService: UserAdminService) {}
 
@@ -33,6 +33,6 @@ export class RegisterComponent {
         this.message = err.erro?.error || "❌ registration failed!";
       }
     });
-  }*/
+  }
 
 }
