@@ -7,6 +7,8 @@ import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './modules/admin/admin.module';
 import { ErrorComponent } from './errors/error/error.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { ErrorComponent } from './errors/error/error.component';
     AppRoutingModule,
     CoreModule,
     BrowserAnimationsModule,
-    AdminModule
+    AdminModule,
+    RouterModule,
+    FormsModule
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())
