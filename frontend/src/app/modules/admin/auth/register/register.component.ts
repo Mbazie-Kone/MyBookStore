@@ -22,4 +22,16 @@ export class RegisterComponent {
       role: ['', Validators.required]
     });
   }
+
+  onSubmit() {
+    if(this.registerForm.valid) {
+      this.userAdminService.register(this.registerForm.value).subscribe({
+        next: (response) => {
+          this.successMessage = response.message;
+          this.errorMessage = '';
+          this.registerForm.reset();
+        }
+      })
+    }
+  }
 }
