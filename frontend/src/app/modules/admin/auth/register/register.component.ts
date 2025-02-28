@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserAdminService } from '../../../../services/user-admin.service';
 
 @Component({
@@ -17,20 +17,9 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder, private userAdminService: UserAdminService) {
     this.registerForm = this.fb.group({
-
-    })
-  }
-
-    this.userAdminService.register(this.username, this.password, this.role).subscribe({
-      next: (response) => {
-        console.log("✅ Registration successfully:", response);
-        this.message = response.message;
-      },
-      error: (err) => {
-        console.error("❌ Erro!", err);
-        this.message = err.erro?.error || "❌ registration failed!";
-      }
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      role: ['', Validators.required]
     });
   }
-
 }
