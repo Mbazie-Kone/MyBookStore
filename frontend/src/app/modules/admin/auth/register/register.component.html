@@ -14,7 +14,24 @@
                             </small>
                         </div>
 
-                        
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" id="password" class="form-control" forControlName="password" placeholder="Enter password">
+                            <small *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-danger">
+                                Password must be at least 6 characters
+                            </small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Select Role</label>
+                            <select id="role" class="form-select" formControlName="role">
+                                <option value="" disabled>Select role</option>
+                                <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+                            </select>
+                            <small *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched" class="text-danger">
+                                Please select a role
+                            </small>
+                        </div>
                     </form>
                 </div>
             </div>
