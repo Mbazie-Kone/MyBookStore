@@ -61,10 +61,12 @@ public class AuthController {
 		user.setUsername(userRequestDto.getUsername());
 		user.setPassword(passwordEncoder.encode(userRequestDto.getPassword()));
 		
+		user.setRole(optionalRole.get());
+		
 		User savedUser = userService.savedUser(user);
 		
 		
-		return ResponseEntity.ok(Map.of("message", "Registration successfull!", "role", userRequestDto.getRole()));
+		return ResponseEntity.ok(Map.of("message", "Registration successfull!", "role", savedUser.getRole().getName()));
 	}
 	
 	@GetMapping("/me")
