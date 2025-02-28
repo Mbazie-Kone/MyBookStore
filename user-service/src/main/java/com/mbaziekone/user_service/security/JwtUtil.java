@@ -2,12 +2,13 @@ package com.mbaziekone.user_service.security;
 
 import java.security.Key;
 import java.util.Date;
-
+import java.util.List;
 import java.util.function.Function;
 
 import org.springframework.stereotype.Component;
 
-import com.mbaziekone.user_service.service.UserService;
+import com.mbaziekone.user_service.model.User;
+import com.mbaziekone.user_service.repository.UserRepository;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -20,13 +21,16 @@ public class JwtUtil {
 	private final long EXPIRATION_TIME = 1000 * 60 * 60; //1 hour
 	private final Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 	
-	private final UserService userService;
+	private final UserRepository userRepository;
 	
-	public JwtUtil(UserService userService) {
-		this.userService = userService;
+	public JwtUtil(UserRepository userRepository) {
+		this.userRepository = userRepository;
 	}
 
 	public String generateToken(String username) {
+		
+		List<String> roles = userRepository.findByUsername(username).stream()
+				.map(userRole -> userRole.getR)
 			
 		return Jwts.builder()
 				.setSubject(username)
