@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { UserAdminService } from '../../../../services/user-admin.service';
 
 @Component({
   selector: 'app-register',
@@ -8,20 +9,17 @@ import { FormGroup } from '@angular/forms';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  registerForm: FormGroup | undefined;
+  registerForm: FormGroup;
   roles = ['USER', 'ADMIN'];
 
   successMessage: string = '';
   errorMessage: string = '';
 
-  constructor(private userAdminService: UserAdminService) {}
+  constructor(private fb: FormBuilder, private userAdminService: UserAdminService) {
+    this.registerForm = this.fb.group({
 
-  register() {
-    if (!this.username || !this.password || !this.role) {
-      this.message = "Insert username, password and select a role!";
-
-      return;
-    }
+    })
+  }
 
     this.userAdminService.register(this.username, this.password, this.role).subscribe({
       next: (response) => {
