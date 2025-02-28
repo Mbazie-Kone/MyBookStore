@@ -9,7 +9,7 @@ export class UserAdminService {
 
   private apiLoginUrl = 'http://localhost:8080/api/admin/login';
 
-  //private apiRegisterUrl = 'http://localhost:8080/api/admin/register';
+  private apiRegisterUrl = 'http://localhost:8080/api/admin/register';
 
   constructor(private http: HttpClient) { }
 
@@ -33,11 +33,8 @@ export class UserAdminService {
     );
   }
 
-  /*register(username: string, password:string, role: string): Observable<{ message: string; role: string}> {
-    const body = {username, password, role};
+  register(userData: any): Observable<any> {
   
-    return this.http.post<{ message: string; role: string}>(this.apiRegisterUrl, body, {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    });
-  }*/
+    return this.http.post<any>(this.apiRegisterUrl, userData);
+  }
 }
