@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserAdminService } from '../../../../services/user-admin.service';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,16 @@ export class LoginComponent {
     this.userAdminService.login(this.username, this.password).subscribe({
       next: (response) => {
         console.log("Login ok", response.token);
-        this.router.navigate(['/admin/dashboard']);
+        localStorage.setItem('token', response.token);
+
+        const decodedToken: any = jwtDecode(response.token);
+        console.log(decodedToken);
+
+        this.router.navigate(['/admin/dashboard']).then(success => {
+          console.log(success);
+        }).catch(err => {
+          console.error(err);
+        });
       },
       error: (err) => {
         console.log(err);
