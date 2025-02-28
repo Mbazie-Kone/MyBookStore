@@ -30,8 +30,12 @@ export class RegisterComponent {
           this.successMessage = response.message;
           this.errorMessage = '';
           this.registerForm.reset();
+        },
+        error: (err) => {
+          this.successMessage = '';
+          this.errorMessage = err.error?.Error || 'Registration failed';
         }
-      })
+      });
     }
   }
 }
