@@ -3,9 +3,19 @@
         <div class="col-md-6">
             <div class="card shadow">
                 <div class="card-body">
-                    <h3 class="text-center mb-4">
+                    <h3 class="text-center mb-4">Register</h3>
+
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" id="username" class="form-control" forControlName="username" placeholder="Enter username">
+                            <small *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="text-danger">
+                                Username must be at least 3 characters
+                            </small>
+                        </div>
+
                         
-                    </h3>
+                    </form>
                 </div>
             </div>
         </div>
