@@ -15,7 +15,6 @@ export class UserAdminService {
 
   login(username: string, password: string): Observable<any> {
     const body = { username, password };
-    console.log(body);
       
     return this.http.post<any>(this.apiLoginUrl, body, {
       headers: {'Content-Type': 'application/json'}
