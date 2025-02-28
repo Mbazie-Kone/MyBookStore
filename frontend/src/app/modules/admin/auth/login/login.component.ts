@@ -18,12 +18,12 @@ export class LoginComponent {
   login() {
     this.userAdminService.login(this.username, this.password).subscribe({
       next: (response) => {
-        localStorage.setItem('token', response.token);
+        console.log("Login ok", response.token);
         this.router.navigate(['/admin/dashboard']);
       },
       error: (err) => {
-        this.errorMessage = 'login failed. Invalid credentials!', err;
         console.log(err);
+        this.errorMessage = 'login failed. Invalid credentials!';   
       }
     });
   }

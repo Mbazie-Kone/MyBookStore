@@ -7,9 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +23,7 @@ import com.mbaziekone.user_service.model.Role;
 import com.mbaziekone.user_service.model.User;
 import com.mbaziekone.user_service.model.UserRole;
 import com.mbaziekone.user_service.repository.RoleRepository;
+import com.mbaziekone.user_service.repository.UserRepository;
 import com.mbaziekone.user_service.security.JwtUtil;
 import com.mbaziekone.user_service.service.UserService;
 
@@ -35,6 +39,7 @@ public class AuthController {
 	private final JwtUtil jwtUtil;
 	private final RoleRepository roleRepository;
 	private final PasswordEncoder passwordEncoder;
+	private final UserRepository userRepository;
 	
 	@PostMapping("/login")
 	public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request ) {
@@ -65,5 +70,13 @@ public class AuthController {
 		userService.saveUserRole(userRole);
 		
 		return ResponseEntity.ok(Map.of("message", "Registration successfull!", "role", userRequestDto.getRole()));
+	}
+	
+	@GetMapping("/me")
+	public ResponseEntity<?> getCurrentUser(@RequestHeader("Authorization") String token) {
+		String username = jwtUtil.extractUsername(token.replace("Bearer ", ""));
+		User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+		
+		return ResponseEntity.ok(user);
 	}
 }
