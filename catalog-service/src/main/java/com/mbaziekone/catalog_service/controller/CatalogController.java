@@ -1,6 +1,9 @@
 package com.mbaziekone.catalog_service.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +28,14 @@ public class CatalogController {
 	private final CategoryRepository categoryRepository;
 	private final ImageRepository imageRepository;
 	
+	// Get all categories
+	@GetMapping("/categories")
+	public ResponseEntity<List<Category>> getAllCategories() {
+		
+		return ResponseEntity.ok(categoryRepository.findAll());
+	}
+	
+	// Insert new product
 	@PostMapping("/insert/product")
 	public ResponseEntity<Product> addProduct(@RequestBody InsertCategoryProductImage dto) {
 		// Category
