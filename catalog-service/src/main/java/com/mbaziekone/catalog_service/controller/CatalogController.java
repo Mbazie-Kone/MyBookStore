@@ -1,7 +1,5 @@
 package com.mbaziekone.catalog_service.controller;
 
-import java.util.function.LongToDoubleFunction;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +50,8 @@ public class CatalogController {
 		product.setCategory(category);
 		
 		productRepository.save(product);
+		
+		return ResponseEntity.ok(product);
 	
 	}
 }
