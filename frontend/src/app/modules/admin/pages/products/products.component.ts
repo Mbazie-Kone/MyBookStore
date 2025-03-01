@@ -43,6 +43,8 @@ export class ProductsComponent {
 
   // Method for adding the produc
   addProduct() {
-
+    this.productService.addProduct(this.product).subscribe(response => {
+      console.log('Product added:', response)
+    })
   }
 }
