@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   constructor(private userAdminService: UserAdminService) {}
 
   ngOnInit(): void {
-    this.isAdmin = this.userAdminService.hasRole('ADMIN');
+    //this.isAdmin = this.userAdminService.hasRole('ADMIN');
   }
 
 }

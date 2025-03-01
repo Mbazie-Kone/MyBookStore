@@ -38,7 +38,7 @@ export class UserAdminService {
     return this.http.post<any>(this.apiRegisterUrl, userData);
   }
 
-  getUserRoles(): string[] {
+  /*getUserRoles(): string[] {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
 
     return user.roles || [];
@@ -52,5 +52,5 @@ export class UserAdminService {
   isAuthenticated(): boolean {
 
     return !!localStorage.getItem('user');
-  }
+  }*/
 }
