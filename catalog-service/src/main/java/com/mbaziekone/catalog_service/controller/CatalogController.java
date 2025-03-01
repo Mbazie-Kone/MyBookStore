@@ -46,12 +46,6 @@ public class CatalogController {
 			return categoryRepository.save(newCategory);
 		});
 		
-		// Image
-		Image image = new Image();
-		image.setImageUrl(dto.getImageUrl());
-		
-		imageRepository.save(image);
-		
 		// Product
 		Product product = new Product();
 		product.setName(dto.getName());
@@ -63,6 +57,13 @@ public class CatalogController {
 		
 		productRepository.save(product);
 		
+		// Image
+		Image image = new Image();
+		image.setImageUrl(dto.getImageUrl());
+		image.setProduct(product);
+		
+		imageRepository.save(image);
+
 		return ResponseEntity.ok(product);
 	
 	}
