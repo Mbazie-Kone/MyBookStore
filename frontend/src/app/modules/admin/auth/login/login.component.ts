@@ -25,6 +25,8 @@ export class LoginComponent {
         const decodedToken: any = jwtDecode(response.token);
         console.log(decodedToken);
 
+        console.log("LocalStorage token:", localStorage.getItem('token'));
+
         this.router.navigate(['/admin/dashboard']).then(success => {
           console.log(success);
         }).catch(err => {
