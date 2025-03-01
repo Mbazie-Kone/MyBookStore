@@ -24,6 +24,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CatalogController {
 	
+	private static final String UPLOAD_DIR = "../frontend/public/images/";
+	
 	private final ProductRepository productRepository;
 	private final CategoryRepository categoryRepository;
 	private final ImageRepository imageRepository;
@@ -34,6 +36,9 @@ public class CatalogController {
 		
 		return ResponseEntity.ok(categoryRepository.findAll());
 	}
+	
+	// Image
+	
 	
 	// Insert new product
 	@PostMapping("/insert/product")
