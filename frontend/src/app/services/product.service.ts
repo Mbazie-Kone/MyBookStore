@@ -17,4 +17,10 @@ export class ProductService {
 
     return this.http.post(`${this.addProductUrl}/upload-image`, formData, { responseType: 'text'});
   }
+
+  //Product
+  addProduct(product: any): Observable<any> {
+
+    return this.http.post(`${this.addProductUrl}/products`, product);
+  }
 }
