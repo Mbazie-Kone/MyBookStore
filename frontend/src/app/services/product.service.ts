@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  private addProductUrl = 'http://localhost:8080/api/catalog/insert/product';
+  private addProductUrl = 'http://localhost:8080/api/catalog';
 
   constructor(private http: HttpClient) { }
 
