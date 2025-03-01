@@ -14,11 +14,12 @@ export class ProductsComponent {
     price: 0,
     stock: 0,
     isAvailable: true,
-    categoryNames: ['Java', 'C#'],
+    categoryName: '',
     imageUrl: ''
   };
 
   selectedFile: File | null = null;
+  categories: any[] = []; // Array to store available categories
 
   constructor(private productService: ProductService) {}
 
