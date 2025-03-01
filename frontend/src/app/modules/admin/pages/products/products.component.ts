@@ -7,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
-
+  product = {
+    name: '',
+    description: '',
+    price: 0,
+    stock: 0,
+    isAvailable: true,
+    categoryName: ['Java', 'C#'],
+    categoryDescription: '',
+    imageUrl: ''
+  };
 }
