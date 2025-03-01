@@ -31,7 +31,6 @@ public class CatalogController {
 		Category category = categoryRepository.findByName(dto.getCategoryName()).orElseGet(() -> {
 			Category newCategory = new Category();
 			newCategory.setName(dto.getCategoryName());
-			newCategory.setDescription(dto.getCategoryDescription());
 			
 			return categoryRepository.save(newCategory);
 		});
