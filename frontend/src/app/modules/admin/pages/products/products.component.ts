@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ProductService } from '../../../../services/product.service';
 
@@ -24,5 +23,26 @@ export class ProductsComponent {
 
   constructor(private productService: ProductService) {}
 
-  
+  // Method for selecting the image
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  // Method to upload the image and then add the product
+  uploadImageAndSaveProduct() {
+    if (!this.selectedFile) {
+      return;
+    }
+    this.productService.uploadImage(this.selectedFile).subscribe((imageUrl) => {
+      this.product.imageUrl = imageUrl;
+      this.addProduct();
+    }, (error) => {
+      console.error('Error loading image\'image:', error);
+    });
+  }
+
+  // Method for adding the produc
+  addProduct() {
+
+  }
 }
