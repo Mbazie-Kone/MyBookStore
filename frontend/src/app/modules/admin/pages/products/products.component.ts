@@ -45,20 +45,27 @@ export class ProductsComponent implements OnInit {
     if (!this.selectedFile) {
       return;
     }
-    this.productService.uploadImage(this.selectedFile).subscribe((imageUrl) => {
+    this.productService.uploadImage(this.selectedFile).subscribe({
+      next: (imageUrl) => {
       this.product.imageUrl = imageUrl;
       this.addProduct();
-    }, (error) => {
+    }, 
+    error: (error) => {
       console.error('Error loading image\'image:', error);
+    }
     });
   }
 
   // Method for adding the produc
   addProduct() {
-    this.productService.addProduct(this.product).subscribe(response => {
-      console.log('Product added:', response);
-    }, error => {
+    this.productService.addProduct(this.product).subscribe({
+      next: (response) => {
+        console.log('Product added:', response)
+      
+    },
+    error: (error) => {
       console.error('Error', error);
+      }
     });
   }
 }
