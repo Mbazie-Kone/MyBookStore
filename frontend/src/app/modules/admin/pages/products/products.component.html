@@ -28,5 +28,12 @@
                 <option *ngFor="let category of categories" value="category">{{ category }}</option>
             </select>
         </div>
+
+        <div class="mb-3">
+            <label class="form-label">Select an image</label>
+            <input type="file" class="form-control" (change)="onFileSelected($event)" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Add product</button>
     </form>
 </div>
