@@ -37,4 +37,20 @@ export class UserAdminService {
   
     return this.http.post<any>(this.apiRegisterUrl, userData);
   }
+
+  getUserRoles(): string[] {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+    return user.roles || [];
+  }
+
+  hasRole(role: string): boolean {
+
+    return this.getUserRoles().includes(role);
+  }
+
+  isAuthenticated(): boolean {
+
+    return !!localStorage.getItem('user');
+  }
 }
