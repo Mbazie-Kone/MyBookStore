@@ -1,5 +1,11 @@
 package com.mbaziekone.catalog_service.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -7,7 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mbaziekone.catalog_service.dto.InsertCategoryProductImage;
 import com.mbaziekone.catalog_service.model.Category;
@@ -30,17 +38,41 @@ public class CatalogController {
 	private final CategoryRepository categoryRepository;
 	private final ImageRepository imageRepository;
 	
-	// Get all categories
+	// GET ALL CATEGORIES
 	@GetMapping("/categories")
 	public ResponseEntity<List<Category>> getAllCategories() {
 		
 		return ResponseEntity.ok(categoryRepository.findAll());
 	}
 	
-	// Image
+	// IMAGE
+	public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
+		if (file.isEmpty()) {
+			
+			return ResponseEntity.badRequest().body("File not found");
+		}
+		try {
+			File directory = new File(UPLOAD_DIR);
+			if (!directory.exists()) {
+				directory.mkdirs();
+			}
+		
+		String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+		Path filePath = Paths.get(UPLOAD_DIR + fileName);
+		
+		Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+		
+		String fileUrl = "/images/" + fileName;
+		
+		return ResponseEntity.ok(fileUrl);
+		
+		}catch (IOException e) {
+			
+			return ResponseEntity.internalServerError().body("Error");
+		}
+	}
 	
-	
-	// Insert new product
+	// INSERT NEW PRODUCT
 	@PostMapping("/insert/product")
 	public ResponseEntity<Product> addProduct(@RequestBody InsertCategoryProductImage dto) {
 		// Category
