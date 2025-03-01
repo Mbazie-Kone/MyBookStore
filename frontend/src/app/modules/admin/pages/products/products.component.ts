@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { ProductService } from '../../../../services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -21,10 +22,7 @@ export class ProductsComponent {
 
   selectedFile: File | null = null;
 
-  constructor(private http: HttpClient) {
+  constructor(private productService: ProductService) {}
 
-    addProduct() {
-      this.http.post()
-    }
-  }
+  
 }
