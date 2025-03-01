@@ -23,7 +23,7 @@
 
         <div class="mb-3">
             <label class="form-label">Select category</label>
-            <select class="form-select"[(ngModel)]="product.categoryName" name="categoryName" required>
+            <select class="form-select" [(ngModel)]="product.categoryName" name="categoryName" required>
                 <option value="" disabled>Select category</option>
                 <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
             </select>
