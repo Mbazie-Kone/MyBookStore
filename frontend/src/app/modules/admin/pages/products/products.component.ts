@@ -19,7 +19,12 @@ export class ProductsComponent {
     imageUrl: ''
   };
 
+  selectedFile: File | null = null;
+
   constructor(private http: HttpClient) {
-    
+
+    addProduct() {
+      this.http.post()
+    }
   }
 }
