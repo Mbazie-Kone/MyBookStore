@@ -14,7 +14,7 @@ export class ProductsComponent {
     price: 0,
     stock: 0,
     isAvailable: true,
-    categoryName: ['Java', 'C#'],
+    categoryNames: ['Java', 'C#'],
     imageUrl: ''
   };
 
