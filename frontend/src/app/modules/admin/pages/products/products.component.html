@@ -1,1 +1,9 @@
-<p>products works!</p>
+<div class="container mt-5">
+    <h2>Add new product</h2>
+    <form (submit)="uploadImageAndSaveProduct(); $event.preventDefault()">
+        <div class="mb-3">
+            <label class="form-label">Product name</label>
+            <input type="text" class="form-control" [(ngModel)]="product.name" name="name" required>
+        </div>
+    </form>
+</div>
