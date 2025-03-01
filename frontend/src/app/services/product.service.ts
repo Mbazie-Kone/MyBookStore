@@ -10,7 +10,13 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  //Image
+  // Method to get all categories
+  getCategories(): Observable<any[]> {
+
+    return this.http.get<any[]>(`${this.addProductUrl}/categories`);
+  }
+
+  // Image
   uploadImage(file: File): Observable<string> {
     const formData = new FormData();
     formData.append('file', file);
@@ -18,7 +24,7 @@ export class ProductService {
     return this.http.post(`${this.addProductUrl}/upload-image`, formData, { responseType: 'text'});
   }
 
-  //Product
+  // Product
   addProduct(product: any): Observable<any> {
 
     return this.http.post(`${this.addProductUrl}/products`, product);
