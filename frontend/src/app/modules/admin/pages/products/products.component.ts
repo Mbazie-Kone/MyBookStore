@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../../services/product.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { ProductService } from '../../../../services/product.service';
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
   product = {
     name: '',
     description: '',
@@ -22,6 +22,18 @@ export class ProductsComponent {
   categories: any[] = []; // Array to store available categories
 
   constructor(private productService: ProductService) {}
+
+  ngOnInit() {
+    this.loadCategories();
+  }
+
+  loadCategories() {
+    this.productService.getCategories().subscribe({
+      next: (data) => { this.categories = data; },
+      error: (error) => { console.error('Error:', error); },
+      complete: () => { console.log('Completed'); }
+    });
+  }
 
   // Method for selecting the image
   onFileSelected(event: any) {
