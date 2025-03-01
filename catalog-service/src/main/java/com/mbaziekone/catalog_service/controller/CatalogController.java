@@ -25,7 +25,7 @@ public class CatalogController {
 	private final CategoryRepository categoryRepository;
 	private final ImageRepository imageRepository;
 	
-	@PostMapping("/insert/products")
+	@PostMapping("/insert/product")
 	public ResponseEntity<Product> addProduct(@RequestBody InsertCategoryProductImage dto) {
 		// Category
 		Category category = categoryRepository.findByName(dto.getCategoryName()).orElseGet(() -> {
