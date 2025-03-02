@@ -42,6 +42,13 @@ public class CatalogController {
 	private final CategoryRepository categoryRepository;
 	private final ImageRepository imageRepository;
 	
+	@GetMapping("/view-products")
+	public ResponseEntity<List<Product>> getAllProducts() {
+		List<Product> products = productRepository.findAll();
+		
+		return ResponseEntity.ok(products);
+	}
+	
 	// GET ALL CATEGORIES
 	@GetMapping("/categories")
 	public ResponseEntity<List<Category>> getAllCategories() {

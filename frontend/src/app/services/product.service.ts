@@ -31,14 +31,15 @@ export class ProductService {
     return this.http.post<Product>(`${this.ProductUrl}/products`, product);
   }
 
+  // View all products
   getProducts(): Observable<Product[]> {
 
-    return this.http.get<Product[]>(`${this.ProductUrl}/products/${id}`);
+    return this.http.get<Product[]>(`${this.ProductUrl}/view-products`);
   }
 
   // Delete
   deleteProduct(id: number): Observable<void> {
 
-    return this.http.delete<void>(`${this.ProductUrl}/products/${id}`);
+    return this.http.delete<void>(`${this.ProductUrl}/view-products/${id}`);
   }
 }
