@@ -80,7 +80,7 @@ public class CatalogController {
 		System.out.println("DTO received: " + dto);
 		System.out.println("isAvalable received: " + dto.isAvailable());
 		
-		// Category
+		//Category
 		Category category = categoryRepository.findByName(dto.getCategoryName()).orElseGet(() -> {
 			Category newCategory = new Category();
 			newCategory.setName(dto.getCategoryName());
