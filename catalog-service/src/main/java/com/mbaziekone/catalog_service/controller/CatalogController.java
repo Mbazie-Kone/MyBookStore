@@ -77,7 +77,7 @@ public class CatalogController {
 	@PostMapping("/products")
 	public ResponseEntity<Product> addProduct(@RequestBody InsertCategoryProductImage dto) {
 		// JSON log for debug isAvailable issue
-		System.out.println("DTO received: " +dto);
+		System.out.println("DTO received: " + dto);
 		System.out.println("isAvalable received: " + dto.isAvailable());
 		
 		// Category
