@@ -1,6 +1,6 @@
 <div class="container mt-5">
     <h2>Add new product</h2>
-    <form (submit)="uploadImageAndSaveProduct(); $event.preventDefault()">
+    <form #addProductForm="ngForm" (ngSubmit)="uploadImageAndSaveProduct(addProductForm); $event.preventDefault()">
         <div class="mb-3">
             <label class="form-label">Product name</label>
             <input type="text" class="form-control" name="name" [(ngModel)]="product.name" required #name="ngModel">
@@ -27,18 +27,20 @@
 
         <div class="mb-3">
             <label class="form-label">Availability</label>
-            <select class="form-select" [(ngModel)]="product.isAvailable" name="isAvailable" required>
+            <select class="form-select" [(ngModel)]="product.isAvailable" name="isAvailable" required #isAvailable="ngModel">
                 <option [ngValue]="1">Available</option>
                 <option [ngValue]="0">Not Available</option>
             </select>
+            <div *ngIf="isAvailable.invalid && isAvailable.touched" class="text-danger">Select availability.</div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Select category</label>
-            <select class="form-select" [(ngModel)]="product.categoryName" name="categoryName" required>
+            <select class="form-select" [(ngModel)]="product.categoryName" name="categoryName" required #categoryName="ngModel">
                 <!-- <option value="" disabled>Select category</option> -->
                 <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
             </select>
+            <div *ngIf="isAvailable.invalid && isAvailable.touched" class="text-danger">Please select a category.</div>
         </div>
 
         <div class="mb-3">
@@ -46,6 +48,6 @@
             <input type="file" class="form-control" (change)="onFileSelected($event)" required>
         </div>
 
-        <button type="submit" class="btn btn-primary w-100">Add product</button>
+        <button type="submit" class="btn btn-primary w-100" [disabled]="registrat">Add product</button>
     </form>
 </div>
