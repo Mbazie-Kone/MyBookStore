@@ -2,6 +2,7 @@ package com.mbaziekone.catalog_service.dto;
 
 import java.math.BigDecimal;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ import lombok.Setter;
 @Setter
 public class InsertCategoryProductImage {
 	
+	@NotBlank(message = "Product name is required")
 	private String name;
 	private String description;
 	private BigDecimal price;
