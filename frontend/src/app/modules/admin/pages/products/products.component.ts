@@ -46,6 +46,14 @@ export class ProductsComponent implements OnInit {
 
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
+
+      if (!this.selectedFile.type.startsWith('image/')) {
+        this.fileError = "Only image files are allowed.";
+        this.selectedFile = null;
+      }
+      else {
+        this.fileError = '';
+      }
     }
     
   }
