@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Product } from '../../../../models/product';
 
 @Component({
   selector: 'app-view-products',
@@ -6,6 +7,12 @@ import { Component } from '@angular/core';
   templateUrl: './view-products.component.html',
   styleUrl: './view-products.component.css'
 })
-export class ViewProductsComponent {
+export class ViewProductsComponent implements OnInit {
+  products: Product[] = [];
+  errormessage: string = "";
+  
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
 }
