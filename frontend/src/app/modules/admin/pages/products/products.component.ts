@@ -48,6 +48,7 @@ export class ProductsComponent implements OnInit {
     this.productService.uploadImage(this.selectedFile).subscribe({
       next: (imageUrl) => {
       this.product.imageUrl = imageUrl;
+
       this.addProduct();
     }, 
     error: (error) => {
