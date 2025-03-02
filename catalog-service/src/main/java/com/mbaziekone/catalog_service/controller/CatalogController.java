@@ -6,7 +6,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
@@ -109,7 +111,10 @@ public class CatalogController {
 			
 			imageRepository.save(image);
 			
-			return ResponseEntity.ok("Product created successfully!");
+			Map<String, String> response = new HashMap<>();
+			response.put("messagge","Product created successfully!");
+			
+			return ResponseEntity.ok(response);
 			
 		} catch (DataIntegrityViolationException e) {
 			
