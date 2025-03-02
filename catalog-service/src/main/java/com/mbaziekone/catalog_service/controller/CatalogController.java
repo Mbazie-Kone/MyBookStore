@@ -78,7 +78,7 @@ public class CatalogController {
 	public ResponseEntity<Product> addProduct(@RequestBody InsertCategoryProductImage dto) {
 		// JSON log for debug isAvailable issue
 		System.out.println("DTO received: " + dto);
-		System.out.println("isAvalable received: " + dto.isAvailable());
+		System.out.println("isAvalable received: " + dto.getIsAvailable());
 		
 		//Category
 		Category category = categoryRepository.findByName(dto.getCategoryName()).orElseGet(() -> {
@@ -94,7 +94,7 @@ public class CatalogController {
 		product.setDescription(dto.getDescription());
 		product.setPrice(dto.getPrice());
 		product.setStock(dto.getStock());
-		product.setAvailable(dto.isAvailable());
+		product.setIsAvailable(dto.getIsAvailable());
 		product.setCategory(category);
 		
 		productRepository.save(product);

@@ -13,8 +13,7 @@ public class InsertCategoryProductImage {
 	private String description;
 	private BigDecimal price;
 	private int stock;
-	private boolean isAvailable;
+	private Boolean isAvailable;
 	private String categoryName;
-	private String categoryDescription;
 	private String imageUrl;
 }
