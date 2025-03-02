@@ -40,12 +40,13 @@
                 <!-- <option value="" disabled>Select category</option> -->
                 <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
             </select>
-            <div *ngIf="isAvailable.invalid && isAvailable.touched" class="text-danger">Please select a category.</div>
+            <div *ngIf="categoryName.invalid && categoryName.touched" class="text-danger">Please select a category.</div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Select an image</label>
-            <input type="file" class="form-control" (change)="onFileSelected($event)" required>
+            <input type="file" class="form-control" (change)="onFileSelected($event)" required #fileInput>
+            <div *ngIf="fileInput.invalid && fileInput.touched" class="text-danger">Please select an image.</div>
         </div>
 
         <button type="submit" class="btn btn-primary w-100" [disabled]="registrat">Add product</button>
