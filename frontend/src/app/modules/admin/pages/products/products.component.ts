@@ -21,7 +21,7 @@ export class ProductsComponent implements OnInit {
   selectedFile: File | null = null;
   categories: any[] = []; // Array to store available categories
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
     this.loadCategories();
@@ -47,13 +47,16 @@ export class ProductsComponent implements OnInit {
     }
     this.productService.uploadImage(this.selectedFile).subscribe({
       next: (imageUrl) => {
-      this.product.imageUrl = imageUrl;
+        this.product.imageUrl = imageUrl;
 
-      this.addProduct();
-    }, 
-    error: (error) => {
-      console.error('Error loading image\'image:', error);
-    }
+        this.addProduct();
+
+        this.selectedFile = null;
+      },
+      error: (error) => {
+        console.error('Error loading image\'image:', error);
+        this.selectedFile = null;
+      }
     });
   }
 
@@ -72,11 +75,20 @@ export class ProductsComponent implements OnInit {
           categoryName: '',
           imageUrl: ''
         };
+      },
+      error: (error) => {
+        console.error('Error', error);
 
-        this.selectedFile = null;
-    },
-    error: (error) => {
-      console.error('Error', error);
+        this.product = {
+          name: '',
+          description: '',
+          price: 0,
+          stock: 0,
+          isAvailable: true,
+          categoryName: '',
+          imageUrl: ''
+        };
+
       }
     });
   }
