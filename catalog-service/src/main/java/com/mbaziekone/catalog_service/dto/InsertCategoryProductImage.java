@@ -26,7 +26,10 @@ public class InsertCategoryProductImage {
 	@NotNull(message = "Stock is required")
 	@Min(value = 0, message = "Stock cannot be negative")
 	private int stock;
+	
+	@NotBlank(message = "Availability is required")
 	private Boolean isAvailable;
+	
 	private String categoryName;
 	private String imageUrl;
 }
