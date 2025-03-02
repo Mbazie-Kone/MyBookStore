@@ -30,6 +30,9 @@ public class InsertCategoryProductImage {
 	@NotBlank(message = "Availability is required")
 	private Boolean isAvailable;
 	
+	@NotBlank(message = "Category name is required")
 	private String categoryName;
+	
+	@NotBlank(message = "Image URL is required")
 	private String imageUrl;
 }
