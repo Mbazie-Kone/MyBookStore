@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -76,38 +77,43 @@ public class CatalogController {
 	
 	// INSERT NEW PRODUCT
 	@PostMapping("/products")
-	public ResponseEntity<Product> addProduct(@Valid @RequestBody InsertCategoryProductImage dto) {
-		// JSON log for debug isAvailable issue
-		System.out.println("DTO received: " + dto);
-		System.out.println("isAvalable received: " + dto.getIsAvailable());
-		
-		//Category
-		Category category = categoryRepository.findByName(dto.getCategoryName()).orElseGet(() -> {
-			Category newCategory = new Category();
-			newCategory.setName(dto.getCategoryName());
+	public ResponseEntity<?> addProduct(@Valid @RequestBody InsertCategoryProductImage dto) {
+		try {
+			// JSON log for debug isAvailable issue
+			System.out.println("DTO received: " + dto);
+			System.out.println("isAvalable received: " + dto.getIsAvailable());
 			
-			return categoryRepository.save(newCategory);
-		});
-		
-		// Product
-		Product product = new Product();
-		product.setName(dto.getName());
-		product.setDescription(dto.getDescription());
-		product.setPrice(dto.getPrice());
-		product.setStock(dto.getStock());
-		product.setIsAvailable(dto.getIsAvailable());
-		product.setCategory(category);
-		
-		productRepository.save(product);
-		
-		// Image
-		Image image = new Image();
-		image.setImageUrl(dto.getImageUrl());
-		image.setProduct(product);
-		
-		imageRepository.save(image);
-
-		return ResponseEntity.ok(product);
-	
+			//Category
+			Category category = categoryRepository.findByName(dto.getCategoryName()).orElseGet(() -> {
+				Category newCategory = new Category();
+				newCategory.setName(dto.getCategoryName());
+				
+				return categoryRepository.save(newCategory);
+			});
+			
+			// Product
+			Product product = new Product();
+			product.setName(dto.getName());
+			product.setDescription(dto.getDescription());
+			product.setPrice(dto.getPrice());
+			product.setStock(dto.getStock());
+			product.setIsAvailable(dto.getIsAvailable());
+			product.setCategory(category);
+			
+			// Image
+			Image image = new Image();
+			image.setImageUrl(dto.getImageUrl());
+			image.setProduct(product);
+			
+			imageRepository.save(image);
+			
+			productRepository.save(product);
+			
+			return ResponseEntity.ok("Product created successfully!");
+			
+		} catch (DataIntegrityViolationException e) {
+			
+			return ResponseEntity.badRequest().body("Error: Product name must be unique");
+		}
 	}
 }
