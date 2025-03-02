@@ -15,7 +15,7 @@
 
         <div class="mb-3">
             <label class="form-label">Price</label>
-            <input type="number" class="form-control" [(ngModel)]="product.price" name="price" required>
+            <input type="number" class="form-control" name="price" [(ngModel)]="product.price" required min="0.01" #price="ngModel">
             <div *ngIf="price.invalid && price.touched" class="text-danger">Price is required</div>
         </div>
 
