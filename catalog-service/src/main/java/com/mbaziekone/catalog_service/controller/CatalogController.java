@@ -46,6 +46,7 @@ public class CatalogController {
 	}
 	
 	// IMAGE
+	@PostMapping("/upload-image")
 	public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
 		if (file.isEmpty()) {
 			
