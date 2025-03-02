@@ -21,6 +21,11 @@
                 <td>
                     <img *ngIf="product.imageUrl" [src]="product.imageUrl" alt="Product Image" width="50" height="50">
                 </td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price | currency:'EUR' }}</td>
+                <td>{{ product.stock }}</td>
+                <td></td>
+                <td></td>
             </tr>
         </tbody>
     </table>
