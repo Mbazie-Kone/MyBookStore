@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,9 +58,8 @@ public class CatalogController {
 	public ResponseEntity<?> getProductById(@PathVariable Long id) {
 		Optional<Product> product = productRepository.findById(id);
 		
-		return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+		return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
-	
 	
 	// GET ALL CATEGORIES
 	@GetMapping("/categories")
