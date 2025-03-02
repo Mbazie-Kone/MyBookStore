@@ -46,6 +46,8 @@ export class ProductsComponent implements OnInit {
   // Method to upload the image and then add the product
   uploadImageAndSaveProduct() {
     if (!this.selectedFile) {
+      this.errorMessage = "Please select an image.";
+
       return;
     }
     this.productService.uploadImage(this.selectedFile).subscribe({
@@ -56,7 +58,8 @@ export class ProductsComponent implements OnInit {
         
       },
       error: (error) => {
-        console.error('Error loading image\'image:', error);
+        this.errorMessage = "Error uploading the image.";
+        console.error(error);
       }
     });
   }
