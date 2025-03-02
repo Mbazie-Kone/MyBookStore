@@ -4,4 +4,24 @@
     <div *ngIf="errorMessage" class="alert alert-danger">
         {{ errorMessage }}
     </div>
+
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price (€)</th>
+                <th>Stock</th>
+                <th>Availability</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td>
+                    <img *ngIf="product.imageUrl" [src]="product.imageUrl" alt="Product Image" width="50" height="50">
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
