@@ -58,14 +58,14 @@ public class CatalogController {
 				directory.mkdirs();
 			}
 		
-		String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-		Path filePath = Paths.get(UPLOAD_DIR + fileName);
-		
-		Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-		
-		String fileUrl = "/images/" + fileName;
-		
-		return ResponseEntity.ok(fileUrl);
+			String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+			Path filePath = Paths.get(UPLOAD_DIR + fileName);
+			
+			Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+			
+			String fileUrl = "/images/" + fileName;
+			
+			return ResponseEntity.ok(fileUrl);
 		
 		}catch (IOException e) {
 			
@@ -74,7 +74,7 @@ public class CatalogController {
 	}
 	
 	// INSERT NEW PRODUCT
-	@PostMapping("/insert/product")
+	@PostMapping("/products")
 	public ResponseEntity<Product> addProduct(@RequestBody InsertCategoryProductImage dto) {
 		// Category
 		Category category = categoryRepository.findByName(dto.getCategoryName()).orElseGet(() -> {
