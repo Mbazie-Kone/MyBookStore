@@ -9,10 +9,12 @@ import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,12 +44,22 @@ public class CatalogController {
 	private final CategoryRepository categoryRepository;
 	private final ImageRepository imageRepository;
 	
+	// VIEW ALL PRODUCTS
 	@GetMapping("/view-products")
 	public ResponseEntity<List<Product>> getAllProducts() {
 		List<Product> products = productRepository.findAll();
 		
 		return ResponseEntity.ok(products);
 	}
+	
+	// VIEW SINGLE PRODUCT
+	@GetMapping("/products/{id}")
+	public ResponseEntity<?> getProductById(@PathVariable Long id) {
+		Optional<Product> product = productRepository.findById(id);
+		
+		return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(404).body("Product not found"));
+	}
+	
 	
 	// GET ALL CATEGORIES
 	@GetMapping("/categories")
