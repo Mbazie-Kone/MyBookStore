@@ -28,7 +28,9 @@
                     <span class="badge bg-success" *ngIf="product.isAvailable">Available</span>
                     <span class="badge bg-danger" *ngIf="!product.isAvailable">Not Available</span>
                 </td>
-                <td></td>
+                <td>
+                    <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.id)">Delete</button>
+                </td>
             </tr>
         </tbody>
     </table>
