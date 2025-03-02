@@ -4,24 +4,25 @@
         <div class="mb-3">
             <label class="form-label">Product name</label>
             <input type="text" class="form-control" name="name" [(ngModel)]="product.name" required #name="ngModel">
-            <div *ngIf="name.invalid && name.touched" class="text-danger">Product name is required</div>
+            <div *ngIf="name.invalid && name.touched" class="text-danger">Product name is required.</div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Description</label>
             <textarea class="form-control" name="description" [(ngModel)]="product.description" required #description="ngModel"></textarea>
-            <div *ngIf="description.invalid && description.touched" class="text-danger">Description is required</div>
+            <div *ngIf="description.invalid && description.touched" class="text-danger">Description is required.</div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Price</label>
             <input type="number" class="form-control" name="price" [(ngModel)]="product.price" required min="0.01" #price="ngModel">
-            <div *ngIf="price.invalid && price.touched" class="text-danger">Price is required</div>
+            <div *ngIf="price.invalid && price.touched" class="text-danger">Price must be greater than 0.</div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Stock</label>
-            <input type="number" class="form-control" [(ngModel)]="product.stock" name="stock" required>
+            <input type="number" class="form-control" name="stock" [(ngModel)]="product.stock" required min="0" #stock="ngModel">
+            <div *ngIf="stock.invalid && stock.touched" class="text-danger">Stock must be greater than 0.</div>
         </div>
 
         <div class="mb-3">
