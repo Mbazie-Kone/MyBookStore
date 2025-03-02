@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,8 @@ export class ProductService {
   }
 
   // Method for adding a product
-  addProduct(product: any): Observable<any> {
+  addProduct(product: Product): Observable<Product> {
 
-    return this.http.post(`${this.addProductUrl}/products`, product);
+    return this.http.post<Product>(`${this.addProductUrl}/products`, product);
   }
 }
