@@ -57,7 +57,7 @@ public class CatalogController {
 	public ResponseEntity<?> getProductById(@PathVariable Long id) {
 		Optional<Product> product = productRepository.findById(id);
 		
-		return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(404).body("Product not found"));
+		return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
 	}
 	
 	
