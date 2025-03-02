@@ -65,39 +65,24 @@ export class ProductsComponent implements OnInit {
   }
 
   // Method for adding the produc
-  addProduct() {
+  addProduct(form: any) {
     this.productService.addProduct(this.product).subscribe({
       next: (response) => {
-        console.log('Product added:', response)
-
-        this.product = {
-          name: '',
-          description: '',
-          price: 0,
-          stock: 0,
-          isAvailable: true,
-          categoryName: '',
-          imageUrl: ''
-        };
+        this.successMessage = "Product added successfully!";
+        this.errorMessage = "";
+        
+        form.resetForm();
 
         this.selectedFile = null;
+
+        console.log(response);
 
       },
       error: (error) => {
-        console.error('Error', error);
+        this.successMessage = "";
+        this.errorMessage = error.error;
 
-        this.product = {
-          name: '',
-          description: '',
-          price: 0,
-          stock: 0,
-          isAvailable: true,
-          categoryName: '',
-          imageUrl: ''
-        };
-
-        this.selectedFile = null;
-
+        console.error(error);
       }
     });
   }
