@@ -30,4 +30,19 @@ export class ViewProductsComponent implements OnInit {
     });
   }
 
+  deleteProduct(id: number) {
+    if (confirm("Are you sure you want to delete this product?")) {
+      this.productService.deleteProduct(id).subscribe({
+        next: () => {
+          this.products = this.products.filter(product => product.id !== id);
+
+        },
+        error: (error) => {
+          this.errormessage = "Error deleting product.";
+          console.error(error);
+        }
+      });
+    }
+  }
+
 }
