@@ -21,6 +21,9 @@ export class ProductsComponent implements OnInit {
   selectedFile: File | null = null;
   categories: any[] = []; // Array to store available categories
 
+  successMessage: string = "";
+  errorMessage: string = "";
+
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
