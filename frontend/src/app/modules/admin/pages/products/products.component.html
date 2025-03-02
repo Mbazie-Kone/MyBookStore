@@ -22,7 +22,7 @@
         <div class="mb-3">
             <label class="form-label">Stock</label>
             <input type="number" class="form-control" name="stock" [(ngModel)]="product.stock" required min="0" #stock="ngModel">
-            <div *ngIf="stock.invalid && stock.touched" class="text-danger">Stock must be greater than 0.</div>
+            <div *ngIf="stock.invalid && stock.touched" class="text-danger">Stock must be at least 0.</div>
         </div>
 
         <div class="mb-3">
