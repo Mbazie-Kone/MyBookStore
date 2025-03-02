@@ -29,7 +29,9 @@
                     <span class="badge bg-danger" *ngIf="!product.isAvailable">Not Available</span>
                 </td>
                 <td>
-                    <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.id)">Delete</button>
+                    <button class="btn btn-danger btn-sm" *ngIf="product.id !== undefined" (click)="deleteProduct(product.id)">
+                        Delete
+                    </button>
                 </td>
             </tr>
         </tbody>
