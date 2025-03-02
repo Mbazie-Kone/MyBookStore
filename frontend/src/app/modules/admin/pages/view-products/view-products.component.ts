@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../../models/product';
+import { ProductService } from '../../../../services/product.service';
 
 @Component({
   selector: 'app-view-products',
@@ -10,9 +11,19 @@ import { Product } from '../../../../models/product';
 export class ViewProductsComponent implements OnInit {
   products: Product[] = [];
   errormessage: string = "";
+
+  constructor(private productService: ProductService) {}
   
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.loadProducts();
+  }
+
+  loadProducts() {
+    this.productService.getProducts().subscribe({
+      next: (data) => {
+        this.products  = data;
+      }
+    })
   }
 
 }
