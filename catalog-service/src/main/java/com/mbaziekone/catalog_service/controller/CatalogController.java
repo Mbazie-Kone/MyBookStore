@@ -14,6 +14,7 @@ import java.util.Optional;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -138,6 +139,24 @@ public class CatalogController {
 		} catch (DataIntegrityViolationException e) {
 			
 			return ResponseEntity.badRequest().body("Error: Product name must be unique");
+		}
+	}
+	
+	// DELETE PRODUCT
+	@DeleteMapping("/products/{id}")
+	public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
+		Optional<Product> product = productRepository.findById(id);
+		
+		if (product.isPresent()) {
+			
+			imageRepository.deleteAllByProductId(id);
+			
+			productRepository.deleteById(id);
+			
+			return ResponseEntity.ok("Product deleted successfully!");
+		} else {
+			
+			return ResponseEntity.status(404).body("Error: Product not found.");
 		}
 	}
 }
