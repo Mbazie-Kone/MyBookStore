@@ -7,11 +7,13 @@ import { RegisterComponent } from './modules/admin/auth/register/register.compon
 import { DashboardComponent } from './modules/admin/pages/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
 import { ProductsComponent } from './modules/admin/pages/products/products.component';
+import { ViewProductsComponent } from './modules/admin/pages/view-products/view-products.component';
 
 const routes: Routes = [
   { path: 'admin/login', component: LoginComponent },
   { path: 'admin/register', component: RegisterComponent },
   { path: 'admin/dashboard', component: DashboardComponent, canActivate: [authGuard] },
+  { path: 'admin/view-products', component: ViewProductsComponent },
   { path: 'admin/products', component: ProductsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
