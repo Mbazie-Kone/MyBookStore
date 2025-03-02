@@ -24,6 +24,8 @@ export class ProductsComponent implements OnInit {
   successMessage: string = "";
   errorMessage: string = "";
 
+  fileError: string = '';
+
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
@@ -39,12 +41,17 @@ export class ProductsComponent implements OnInit {
   }
 
   // Method for selecting the image
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+    }
+    
   }
 
   // Method to upload the image and then add the product
-  uploadImageAndSaveProduct() {
+  uploadImageAndSaveProduct(form: any) {
     if (!this.selectedFile) {
       this.errorMessage = "Please select an image.";
 
@@ -54,7 +61,7 @@ export class ProductsComponent implements OnInit {
       next: (imageUrl) => {
         this.product.imageUrl = imageUrl;
 
-        this.addProduct();
+        this.addProduct(form);
         
       },
       error: (error) => {
@@ -71,7 +78,9 @@ export class ProductsComponent implements OnInit {
         this.successMessage = "Product added successfully!";
         this.errorMessage = "";
         
-        form.resetForm();
+        if (form) {
+          form.resetForm();
+        }
 
         this.selectedFile = null;
 

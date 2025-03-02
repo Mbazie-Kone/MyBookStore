@@ -46,7 +46,7 @@
         <div class="mb-3">
             <label class="form-label">Select an image</label>
             <input type="file" class="form-control" (change)="onFileSelected($event)" required #fileInput>
-            <div *ngIf="fileInput.invalid && fileInput.touched" class="text-danger">Please select an image.</div>
+            <div *ngIf="fileError" class="text-danger">{{ fileError }}</div>
         </div>
 
         <button type="submit" class="btn btn-primary w-100" [disabled]="addProductForm.invalid">Add product</button>
