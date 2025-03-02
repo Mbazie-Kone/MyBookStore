@@ -62,7 +62,18 @@ export class ProductsComponent implements OnInit {
     this.productService.addProduct(this.product).subscribe({
       next: (response) => {
         console.log('Product added:', response)
-      
+
+        this.product = {
+          name: '',
+          description: '',
+          price: 0,
+          stock: 0,
+          isAvailable: true,
+          categoryName: '',
+          imageUrl: ''
+        };
+
+        this.selectedFile = null;
     },
     error: (error) => {
       console.error('Error', error);
