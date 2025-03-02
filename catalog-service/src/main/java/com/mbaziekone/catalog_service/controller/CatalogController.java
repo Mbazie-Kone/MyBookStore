@@ -100,14 +100,14 @@ public class CatalogController {
 			product.setIsAvailable(dto.getIsAvailable());
 			product.setCategory(category);
 			
+			productRepository.save(product);
+			
 			// Image
 			Image image = new Image();
 			image.setImageUrl(dto.getImageUrl());
 			image.setProduct(product);
 			
 			imageRepository.save(image);
-			
-			productRepository.save(product);
 			
 			return ResponseEntity.ok("Product created successfully!");
 			
