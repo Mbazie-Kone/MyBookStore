@@ -25,6 +25,7 @@ import com.mbaziekone.catalog_service.repository.CategoryRepository;
 import com.mbaziekone.catalog_service.repository.ImageRepository;
 import com.mbaziekone.catalog_service.repository.ProductRepository;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -75,7 +76,7 @@ public class CatalogController {
 	
 	// INSERT NEW PRODUCT
 	@PostMapping("/products")
-	public ResponseEntity<Product> addProduct(@RequestBody InsertCategoryProductImage dto) {
+	public ResponseEntity<Product> addProduct(@Valid @RequestBody InsertCategoryProductImage dto) {
 		// JSON log for debug isAvailable issue
 		System.out.println("DTO received: " + dto);
 		System.out.println("isAvalable received: " + dto.getIsAvailable());
