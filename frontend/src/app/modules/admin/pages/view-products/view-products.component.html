@@ -1,1 +1,7 @@
-<p>view-products works!</p>
+<div class="container mt-5">
+    <h2 class="text-center">Product List</h2>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+    </div>
+</div>
