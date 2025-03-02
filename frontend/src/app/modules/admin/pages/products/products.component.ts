@@ -50,12 +50,10 @@ export class ProductsComponent implements OnInit {
         this.product.imageUrl = imageUrl;
 
         this.addProduct();
-
-        this.selectedFile = null;
+        
       },
       error: (error) => {
         console.error('Error loading image\'image:', error);
-        this.selectedFile = null;
       }
     });
   }
@@ -75,6 +73,9 @@ export class ProductsComponent implements OnInit {
           categoryName: '',
           imageUrl: ''
         };
+
+        this.selectedFile = null;
+
       },
       error: (error) => {
         console.error('Error', error);
@@ -88,6 +89,8 @@ export class ProductsComponent implements OnInit {
           categoryName: '',
           imageUrl: ''
         };
+
+        this.selectedFile = null;
 
       }
     });
