@@ -10,6 +10,7 @@ import { ProductService } from '../../../../services/product.service';
 })
 export class CatalogComponent implements OnInit {
   products: Product[] = [];
+  errorMessage: string = '';
 
   constructor(private productService: ProductService) {}
 
@@ -18,6 +19,14 @@ export class CatalogComponent implements OnInit {
   }
 
   loadProducts() {
-    
+    this.productService.getProducts().subscribe({
+      next: (data) => {
+        this.products = data;
+      },
+      error: (error) => {
+        this.errorMessage = "Error loading products.";
+        console.error(error);
+      }
+    });
   }
 }
