@@ -21,7 +21,7 @@ export class ViewProductsComponent implements OnInit {
   loadProducts() {
     this.productService.getProducts().subscribe({
       next: (data) => {
-        this.products  = data;
+        this.products = data;
       },
       error: (error) => {
         this.errorMessage = "Error loading products.";
