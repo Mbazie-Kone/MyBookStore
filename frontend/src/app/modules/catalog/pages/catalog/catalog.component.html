@@ -7,7 +7,7 @@
     </div>
 
     <div *ngFor="let product of products">
-        <div class="card">
+        <div class="card mt-2">
             <img src="#" alt="Product Image">
             <div>
                 {{ product.name }}
@@ -21,7 +21,7 @@
                 {{ product.isAvailable}}
            </div>
            <div>
-
+            <button class="btn btn-primary">Add to cart</button>
            </div>
         </div>
     </div>
