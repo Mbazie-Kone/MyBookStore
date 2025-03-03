@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Product } from '../../../../models/product';
 
 @Component({
   selector: 'app-catalog',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './catalog.component.css'
 })
 export class CatalogComponent {
-
+  products: Product[] = [];
 }
