@@ -1,5 +1,4 @@
 <div class="container">
-    
     <h2 class="text-center">Products List</h2>
 
     <div *ngIf="errorMessage" class="alert alert-danger">
@@ -18,10 +17,13 @@
            </div>
            <div>
                 {{ product.price | currency:'EUR' }}
-                {{ product.isAvailable}}
+
+                <span class="badge bg-success" *ngIf="product.isAvailable">Available</span>
+                <span class="badge bg-danger" *ngIf="!product.isAvailable">Not Available</span>
            </div>
            <div>
-            <button class="btn btn-primary">Add to cart</button>
+                <button *ngIf="product.isAvailable" class="btn btn-primary">Add to cart</button>
+                <button *ngIf="!product.isAvailable" disabled class="btn btn-primary">Add to cart</button>
            </div>
         </div>
     </div>
