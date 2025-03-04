@@ -175,8 +175,10 @@ public class CatalogController {
 			
 			return ResponseEntity.ok(response);
 		} else {
+			Map<String, String> error = new HashMap<>();
+			error.put("error","Product not found.");
 			
-			return ResponseEntity.status(404).body("Error: Product not found.");
+			return ResponseEntity.status(404).body(error);
 		}
 	}
 }
