@@ -7,11 +7,15 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class InsertCategoryProductImage {
+	
+	private Long id;
 	
 	@NotBlank(message = "Product name is required")
 	private String name;
@@ -35,4 +39,14 @@ public class InsertCategoryProductImage {
 	
 	@NotBlank(message = "Image URL is required")
 	private String imageUrl;
+	
+	public InsertCategoryProductImage(Long id, String name, String description, BigDecimal price, Boolean isAvailable, String categoryName, String imageUrl) {
+	    this.id = id;
+	    this.name = name;
+	    this.description = description;
+	    this.price = price;
+	    this.isAvailable = isAvailable;
+	    this.categoryName = categoryName;
+	    this.imageUrl = imageUrl;
+	}
 }
