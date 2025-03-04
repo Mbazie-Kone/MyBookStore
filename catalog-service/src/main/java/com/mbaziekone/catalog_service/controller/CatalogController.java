@@ -168,6 +168,21 @@ public class CatalogController {
 			
 			List<Image> images = imageRepository.findByProductId(id);
 			
+			for (Image image : images) {
+				String imagePath = "../frontend/public" + image.getImageUrl();
+				
+				try {
+					Path path = Paths.get(imagePath);
+					if (Files.exists(path)) {
+						Files.delete(path);
+						System.out.println("Deleted image file: " + imagePath);
+					}
+				} catch (IOException e) {
+					System.err.println("Error deleting image file: " + imagePath);
+					e.printStackTrace();
+				}
+			}
+			
 			imageRepository.deleteAllByProductId(id);
 			
 			productRepository.deleteById(id);
