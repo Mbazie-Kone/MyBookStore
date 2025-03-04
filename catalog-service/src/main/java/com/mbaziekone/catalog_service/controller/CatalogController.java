@@ -60,6 +60,7 @@ public class CatalogController {
 						product.getName(),
 						product.getDescription(),
 						product.getPrice(),
+						product.getStock(),
 						product.getIsAvailable(),
 						product.getCategory().getName(),
 						imageUrl
