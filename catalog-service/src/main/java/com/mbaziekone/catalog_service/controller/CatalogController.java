@@ -170,7 +170,10 @@ public class CatalogController {
 			
 			productRepository.deleteById(id);
 			
-			return ResponseEntity.ok("Product deleted successfully!");
+			Map<String, String> response = new HashMap<>();
+			response.put("message","Product deleted successfully!");
+			
+			return ResponseEntity.ok(response);
 		} else {
 			
 			return ResponseEntity.status(404).body("Error: Product not found.");
