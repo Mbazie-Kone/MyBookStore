@@ -184,12 +184,14 @@ public class CatalogController {
 				}
 			}
 			
+			// Delete images from database
 			imageRepository.deleteAllByProductId(id);
 			
 			productRepository.deleteById(id);
 			
+			// We return a valid JSON response
 			Map<String, String> response = new HashMap<>();
-			response.put("message","Product deleted successfully!");
+			response.put("message","Product and associated images deleted successfully!");
 			
 			return ResponseEntity.ok(response);
 		} else {
