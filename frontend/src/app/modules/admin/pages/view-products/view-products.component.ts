@@ -35,11 +35,10 @@ export class ViewProductsComponent implements OnInit {
       this.productService.deleteProduct(id).subscribe({
         next: () => {
           this.products = this.products.filter(product => product.id !== id);
-
+          console.log(`Product with ID ${id} deleted successfully`);
         },
         error: (error) => {
-          this.errorMessage = "Error deleting product.";
-          console.error(error);
+          console.error("Error deleting product:", error);
         }
       });
     }
