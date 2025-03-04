@@ -40,6 +40,6 @@ export class ProductService {
   // Delete
   deleteProduct(id: number): Observable<void> {
 
-    return this.http.delete<void>(`${this.ProductUrl}/view-products/${id}`);
+    return this.http.delete<void>(`${this.ProductUrl}/products/${id}`);
   }
 }
