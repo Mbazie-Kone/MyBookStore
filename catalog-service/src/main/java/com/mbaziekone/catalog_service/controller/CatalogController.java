@@ -10,8 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.jpa.repository.query.EqlParser.New_valueContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,10 +50,24 @@ public class CatalogController {
 	
 	// VIEW ALL PRODUCTS
 	@GetMapping("/view-products")
-	public ResponseEntity<List<Product>> getAllProducts() {
+	public ResponseEntity<List<InsertCategoryProductImage>> getAllProducts() {
 		List<Product> products = productRepository.findAll();
 		
-		return ResponseEntity.ok(products);
+		List<InsertCategoryProductImage> insertCategoryProductImages = products.stream().map(product -> {
+			String imageUrl = imageRepository.findByProductId(product.getId()).stream().findFirst().map(Image::getImageUrl).orElse("");
+			
+			return new InsertCategoryProductImage(
+						product.getId(),
+						product.getName(),
+						product.getDescription(),
+						product.getPrice(),
+						product.getIsAvailable(),
+						product.getCategory().getName(),
+						imageUrl		
+					);
+			}).collect(Collectors.toList());
+		
+		return ResponseEntity.ok(insertCategoryProductImages);
 	}
 	
 	// VIEW SINGLE PRODUCT
