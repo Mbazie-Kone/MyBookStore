@@ -163,7 +163,18 @@ public class CatalogController {
 	// UPDATE PRODUCT
 	@PutMapping("/update-products/{id}")
 	public ResponseEntity<?> updateProduct(@PathVariable Long id, @Valid @RequestBody InsertCategoryProductImage dto) {
+		Optional<Product> optionalProduct = productRepository.findById(id);
 		
+		if (optionalProduct.isPresent()) {
+			Product product = optionalProduct.get();
+			
+			// Check if the name already exists for another product
+			Optional<Product> existingProduct = productRepository.findByName(dto.getName());
+			if (existingProduct.isPresent() && !existingProduct.get().getId().equals(id)) {
+				
+				return ResponseEntity.badRequest().body("Error: A product with this name already exists.");
+			}
+		}
 	}
 	
 	// DELETE PRODUCT
