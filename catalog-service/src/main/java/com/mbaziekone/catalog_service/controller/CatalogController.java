@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mbaziekone.catalog_service.dto.InsertCategoryProductImage;
+import com.mbaziekone.catalog_service.dto.ViewCategoryProductImage;
 import com.mbaziekone.catalog_service.model.Category;
 import com.mbaziekone.catalog_service.model.Image;
 import com.mbaziekone.catalog_service.model.Product;
@@ -49,13 +50,13 @@ public class CatalogController {
 	
 	// VIEW ALL PRODUCTS
 	@GetMapping("/view-products")
-	public ResponseEntity<List<InsertCategoryProductImage>> getAllProducts() {
+	public ResponseEntity<List<ViewCategoryProductImage>> getAllProducts() {
 		List<Product> products = productRepository.findAll();
 		
-		List<InsertCategoryProductImage> insertCategoryProductImages = products.stream().map(product -> {
+		List<ViewCategoryProductImage> viewCategoryProductImages = products.stream().map(product -> {
 			String imageUrl = imageRepository.findByProductId(product.getId()).stream().findFirst().map(Image::getImageUrl).orElse("");
 			
-			return new InsertCategoryProductImage(
+			return new ViewCategoryProductImage(
 						product.getId(),
 						product.getName(),
 						product.getDescription(),
@@ -67,7 +68,7 @@ public class CatalogController {
 					);
 			}).collect(Collectors.toList());
 		
-		return ResponseEntity.ok(insertCategoryProductImages);
+		return ResponseEntity.ok(viewCategoryProductImages);
 	}
 	
 	// VIEW SINGLE PRODUCT
