@@ -87,7 +87,7 @@ public class CatalogController {
 			
 			Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 			
-			String fileUrl = "/images/" + fileName;
+			String fileUrl = "./images/" + fileName;
 			
 			return ResponseEntity.ok(fileUrl);
 		
