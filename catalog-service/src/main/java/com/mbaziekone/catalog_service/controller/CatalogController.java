@@ -166,6 +166,8 @@ public class CatalogController {
 		
 		if (product.isPresent()) {
 			
+			List<Image> images = imageRepository.findByProductId(id);
+			
 			imageRepository.deleteAllByProductId(id);
 			
 			productRepository.deleteById(id);
