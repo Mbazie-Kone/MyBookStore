@@ -166,6 +166,7 @@ public class CatalogController {
 		
 		if (product.isPresent()) {
 			
+			// Retrieve all images associated with the product
 			List<Image> images = imageRepository.findByProductId(id);
 			
 			for (Image image : images) {
@@ -174,7 +175,7 @@ public class CatalogController {
 				try {
 					Path path = Paths.get(imagePath);
 					if (Files.exists(path)) {
-						Files.delete(path);
+						Files.delete(path); // Delete the physical file
 						System.out.println("Deleted image file: " + imagePath);
 					}
 				} catch (IOException e) {
