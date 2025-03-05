@@ -209,6 +209,11 @@ public class CatalogController {
 					imageRepository.save(newImage);
 				}
 			}
+			
+			return ResponseEntity.ok("Product updated successfully!");
+		} else {
+			
+			return ResponseEntity.status(404).body("Error: Product not found.");
 		}
 	}
 	
