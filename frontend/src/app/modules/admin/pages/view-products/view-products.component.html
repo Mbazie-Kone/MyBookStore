@@ -30,6 +30,9 @@
                     <span class="badge bg-danger" *ngIf="!product.isAvailable">Not Available</span>
                 </td>
                 <td>
+                    <button class="btn btn-warning btn-sm me-2" *ngIf="product.id !== undefined" [routerLink]="['/admin/update-product', product.id]">
+                        Update
+                    </button>
                     <button class="btn btn-danger btn-sm" *ngIf="product.id !== undefined" (click)="deleteProduct(product.id)">
                         Delete
                     </button>

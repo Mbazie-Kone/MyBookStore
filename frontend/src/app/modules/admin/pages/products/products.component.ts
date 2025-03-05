@@ -9,6 +9,7 @@ import { ProductService } from '../../../../services/product.service';
 })
 export class ProductsComponent implements OnInit {
   product = {
+    id: 0,
     name: '',
     description: '',
     price: 0,
