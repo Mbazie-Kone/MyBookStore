@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UpdateProductComponent implements OnInit {
 
   product = {
+    id: 0,
     name: '',
     description: '',
     price: 0,
@@ -27,6 +28,24 @@ export class UpdateProductComponent implements OnInit {
   constructor(private productService: ProductService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    
+    const productId = Number(this.route.snapshot.paramMap.get('id'));
+    if (productId) {
+      this.productService.getProductById(productId).subscribe({
+        next: (data) => { this.product = data; },
+        error: (error) => { console.error('Error fetching product:', error); }
+      });
+      this.loadCategories();
+    }
+  }
+
+  loadCategories() {
+    this.productService.getCategories().subscribe({
+      next: (data) => { this.categories = data; },
+      error: (error) => { console.error('Error fetching categories:', error); }
+    });
+  }
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
   }
 }
