@@ -192,6 +192,23 @@ public class CatalogController {
 			product.setCategory(category);
 			
 			productRepository.save(product);
+			
+			// If the image has been updated, we also update it in the database
+			if (dto.getImageUrl() != null && !dto.getImageUrl().isEmpty()) {
+				Optional<Image> optionalImage = imageRepository.findByProductId(product.getId());
+				if (optionalImage.isPresent()) {
+					Image image = optionalImage.get();
+					image.setImageUrl(dto.getImageUrl());
+					
+					imageRepository.save(image);
+				} else {
+					Image newImage = new Image();
+					newImage.setProduct(product);
+					newImage.setImageUrl(dto.getImageUrl());
+					
+					imageRepository.save(newImage);
+				}
+			}
 		}
 	}
 	
