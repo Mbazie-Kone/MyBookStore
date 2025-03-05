@@ -24,6 +24,7 @@ export class UpdateProductComponent implements OnInit {
   selectedFile: File | null = null;
   successMessage: string = "";
   errorMessage: string = "";
+  fileError: string ="";
 
   constructor(private productService: ProductService, private route: ActivatedRoute, private router: Router) {}
 
@@ -47,6 +48,12 @@ export class UpdateProductComponent implements OnInit {
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
+    if (this.selectedFile && !this.selectedFile.type.startsWith('image/')) {
+      this.fileError = "Invalid file type. Please selcet an image file.";
+      this,this.selectedFile = null;
+    } else {
+      this.fileError = "";
+    }
   }
 
   updateProduct() {

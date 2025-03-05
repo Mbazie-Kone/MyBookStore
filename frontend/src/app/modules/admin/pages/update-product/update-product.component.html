@@ -1,6 +1,6 @@
 <div class="container mt-5">
     <h2>Update product</h2>
-    <form (submit)="updateProduct(); $event.preventDefault()">
+    <form #addProductForm="ngForm" (ngSubmit)="updateProduct(addProductForm); $event.preventDefault()">
         <div class="mb-3">
             <label class="form-label">Product name</label>
             <input type="text" class="form-control" name="name" [(ngModel)]="product.name" required #name="ngModel">
