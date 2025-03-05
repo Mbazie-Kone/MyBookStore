@@ -202,7 +202,6 @@ public class CatalogController {
 						
 						imageRepository.save(image);
 					}
-					
 				} else {
 					Image newImage = new Image();
 					newImage.setProduct(product);
