@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../../../../services/product.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-product',
@@ -17,6 +19,12 @@ export class UpdateProductComponent implements OnInit {
     categoryName: '',
     imageUrl: ''
   };
+  categories: any[] = [];
+  selectedFile: File | null = null;
+  successMessage: string = "";
+  errorMessage: string = "";
+
+  constructor(private productService: ProductService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     
