@@ -74,12 +74,22 @@ export class UpdateProductComponent implements OnInit {
 
   sendUpdateRequest() {
     this.productService.updateProduct(this.product.id!, this.product).subscribe({
-      next: () => {
-        this.successMessage = "Product updated successfully!";
+      next: (response: any) => {
+        if (response && response.message) {
+          this.successMessage = response.message
+        } else {
+          this.successMessage = "Product update successfully!";
+        }
+        this.errorMessage = "";
+
         this.router.navigate(['/admin/view-products']);
       },
-      error: () => {
-        this.errorMessage = "Error updating product.";
+      error: (error) => {
+        if (error.error && error.error.error) {
+          this.errorMessage = error.error.error;
+        } else {
+          this.errorMessage = "Error updating product.";
+        } 
       }
     });
   }
