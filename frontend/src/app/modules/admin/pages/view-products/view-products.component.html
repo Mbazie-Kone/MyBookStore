@@ -6,6 +6,10 @@
         {{ errorMessage }}
     </div>
 
+    <div *ngIf="products.length === 0" class="alert alert-warning text-center mt-3">
+        No products available to display.
+    </div>
+
     <table class="table table-striped mt-3">
         <thead>
             <tr>
