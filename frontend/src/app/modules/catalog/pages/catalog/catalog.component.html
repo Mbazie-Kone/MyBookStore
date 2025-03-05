@@ -9,25 +9,27 @@
         No products available to display.
     </div>
 
-    <div *ngFor="let product of products">
-        <div class="card mt-2">
-            <img *ngIf="product.imageUrl" [src]="product.imageUrl" class="img-thumbnail" alt="{{ product.name }}" width="150" height="130">
+    <div *ngIf="products.length > 0">
+        <div *ngFor="let product of products">
+            <div class="card mt-2">
+                <img *ngIf="product.imageUrl" [src]="product.imageUrl" class="img-thumbnail" alt="{{ product.name }}" width="150" height="130">
+                <div>
+                    {{ product.name }}    
+                </div>
             <div>
-                {{ product.name }}    
+                    {{ product.description }}
             </div>
-           <div>
-                {{ product.description }}
-           </div>
-           <div>
-                {{ product.price | currency:'EUR' }}
+            <div>
+                    {{ product.price | currency:'EUR' }}
 
-                <span class="badge bg-success" *ngIf="product.isAvailable">Available</span>
-                <span class="badge bg-danger" *ngIf="!product.isAvailable">Not Available</span>
-           </div>
-           <div class="mt-2 mb-2">
-                <button *ngIf="product.isAvailable" class="btn btn-primary">Add to cart</button>
-                <button *ngIf="!product.isAvailable" disabled class="btn btn-primary">Add to cart</button>
-           </div>
+                    <span class="badge bg-success" *ngIf="product.isAvailable">Available</span>
+                    <span class="badge bg-danger" *ngIf="!product.isAvailable">Not Available</span>
+            </div>
+            <div class="mt-2 mb-2">
+                    <button *ngIf="product.isAvailable" class="btn btn-primary">Add to cart</button>
+                    <button *ngIf="!product.isAvailable" disabled class="btn btn-primary">Add to cart</button>
+            </div>
+            </div>
         </div>
     </div>
 
