@@ -219,7 +219,7 @@ public class CatalogController {
 	}
 	
 	// DELETE PRODUCT
-	@DeleteMapping("/product/{id}")
+	@DeleteMapping("/delete-product/{id}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
 		Optional<Product> product = productRepository.findById(id);
 		

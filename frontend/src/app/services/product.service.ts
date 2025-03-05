@@ -37,6 +37,12 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.ProductUrl}/view-products`);
   }
 
+  // Get product by id
+  getProductById(id: number): Observable<Product> {
+
+    return this.http.get<Product>(`${this.ProductUrl}/product/${id}`);
+  }
+
   // Update
   updateProduct(id: number, product: Product): Observable<Product> {
 
@@ -46,6 +52,6 @@ export class ProductService {
   // Delete
   deleteProduct(id: number): Observable<void> {
 
-    return this.http.delete<void>(`${this.ProductUrl}/product/${id}`);
+    return this.http.delete<void>(`${this.ProductUrl}/delete-product/${id}`);
   }
 }
