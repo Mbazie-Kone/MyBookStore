@@ -1,1 +1,62 @@
-<p>update-product works!</p>
+<div class="container mt-5">
+    <h2>Update product</h2>
+    <form (submit)="updateProduct(); $event.preventDefault()">
+        <div class="mb-3">
+            <label class="form-label">Product name</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="product.name" required #name="ngModel">
+            <div *ngIf="name.invalid && name.touched" class="text-danger">Product name is required.</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" name="description" [(ngModel)]="product.description" required #description="ngModel"></textarea>
+            <div *ngIf="description.invalid && description.touched" class="text-danger">Description is required.</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input type="number" class="form-control" name="price" [(ngModel)]="product.price" required min="0.01" #price="ngModel">
+            <div *ngIf="price.invalid && price.touched" class="text-danger">Price must be greater than 0.</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Stock</label>
+            <input type="number" class="form-control" name="stock" [(ngModel)]="product.stock" required min="0" #stock="ngModel">
+            <div *ngIf="stock.invalid && stock.touched" class="text-danger">Stock must be at least 0.</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Availability</label>
+            <select class="form-select" [(ngModel)]="product.isAvailable" name="isAvailable" required #isAvailable="ngModel">
+                <option [ngValue]="1">Available</option>
+                <option [ngValue]="0">Not Available</option>
+            </select>
+            <div *ngIf="isAvailable.invalid && isAvailable.touched" class="text-danger">Select availability.</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Select category</label>
+            <select class="form-select" [(ngModel)]="product.categoryName" name="categoryName" required #categoryName="ngModel">
+                <!-- <option value="" disabled>Select category</option> -->
+                <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+            </select>
+            <div *ngIf="categoryName.invalid && categoryName.touched" class="text-danger">Please select a category.</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Select an image</label>
+            <input type="file" class="form-control" (change)="onFileSelected($event)" required #fileInput>
+            <div *ngIf="fileError" class="text-danger">{{ fileError }}</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100" [disabled]="addProductForm.invalid">Update Product</button>
+
+        <div *ngIf="successMessage" class="alert alert-success mt-3">
+            {{ successMessage }}
+        </div>
+
+        <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+            {{ errorMessage }}
+        </div>
+    </form>
+</div>
