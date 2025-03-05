@@ -28,7 +28,7 @@ export class ProductService {
   // Method for adding a product
   addProduct(product: Product): Observable<Product> {
 
-    return this.http.post<Product>(`${this.ProductUrl}/products`, product);
+    return this.http.post<Product>(`${this.ProductUrl}/product`, product);
   }
 
   // View all products
@@ -40,12 +40,12 @@ export class ProductService {
   // Update
   updateProduct(id: number, product: Product): Observable<Product> {
 
-    return this.http.put<Product>(`${this.ProductUrl}/update-products`, product);
+    return this.http.put<Product>(`${this.ProductUrl}/update-product/${id}`, product);
   }
 
   // Delete
   deleteProduct(id: number): Observable<void> {
 
-    return this.http.delete<void>(`${this.ProductUrl}/products/${id}`);
+    return this.http.delete<void>(`${this.ProductUrl}/product/${id}`);
   }
 }

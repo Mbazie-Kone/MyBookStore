@@ -73,7 +73,7 @@ public class CatalogController {
 	}
 	
 	// VIEW SINGLE PRODUCT
-	@GetMapping("/products/{id}")
+	@GetMapping("/product/{id}")
 	public ResponseEntity<?> getProductById(@PathVariable Long id) {
 		Optional<Product> product = productRepository.findById(id);
 		
@@ -116,7 +116,7 @@ public class CatalogController {
 	}
 	
 	// INSERT NEW PRODUCT
-	@PostMapping("/products")
+	@PostMapping("/product")
 	public ResponseEntity<?> addProduct(@Valid @RequestBody InsertCategoryProductImage dto) {
 		try {
 			// JSON log for debug isAvailable issue
@@ -161,7 +161,7 @@ public class CatalogController {
 	}
 	
 	// UPDATE PRODUCT
-	@PutMapping("/update-products/{id}")
+	@PutMapping("/update-product/{id}")
 	public ResponseEntity<?> updateProduct(@PathVariable Long id, @Valid @RequestBody InsertCategoryProductImage dto) {
 		Optional<Product> optionalProduct = productRepository.findById(id);
 		
@@ -218,7 +218,7 @@ public class CatalogController {
 	}
 	
 	// DELETE PRODUCT
-	@DeleteMapping("/products/{id}")
+	@DeleteMapping("/product/{id}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
 		Optional<Product> product = productRepository.findById(id);
 		
