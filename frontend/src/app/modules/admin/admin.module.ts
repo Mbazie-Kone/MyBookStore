@@ -7,6 +7,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewProductsComponent } from './pages/view-products/view-products.component';
+import { UpdateProductComponent } from './pages/update-product/update-product.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ViewProductsComponent } from './pages/view-products/view-products.compo
     RegisterComponent,
     DashboardComponent,
     ProductsComponent,
-    ViewProductsComponent
+    ViewProductsComponent,
+    UpdateProductComponent
   ],
   imports: [
     CommonModule,
