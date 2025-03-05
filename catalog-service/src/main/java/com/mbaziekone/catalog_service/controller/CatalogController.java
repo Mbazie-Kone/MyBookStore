@@ -162,7 +162,7 @@ public class CatalogController {
 	
 	// UPDATE PRODUCT
 	@PutMapping("/update-product/{id}")
-	public ResponseEntity<?> updateProduct(@PathVariable Long id, @Valid @RequestBody InsertCategoryProductImage dto) {
+	public ResponseEntity<Map<String, String>> updateProduct(@PathVariable Long id, @Valid @RequestBody InsertCategoryProductImage dto) {
 		Optional<Product> optionalProduct = productRepository.findById(id);
 		
 		if (optionalProduct.isPresent()) {
@@ -172,7 +172,7 @@ public class CatalogController {
 			Optional<Product> existingProduct = productRepository.findByName(dto.getName());
 			if (existingProduct.isPresent() && !existingProduct.get().getId().equals(id)) {
 				
-				return ResponseEntity.badRequest().body("Error: A product with this name already exists.");
+				return ResponseEntity.badRequest().body(Map.of("Error", "A product with this name already exists."));
 			}
 			
 			// Category
@@ -211,10 +211,13 @@ public class CatalogController {
 				}
 			}
 			
-			return ResponseEntity.ok("Product updated successfully!");
+			Map<String, String> response = new HashMap<>();
+			response.put("message", "Product updated successfully!");
+			
+			return ResponseEntity.ok(response);
 		} else {
 			
-			return ResponseEntity.status(404).body("Error: Product not found.");
+			return ResponseEntity.status(404).body(Map.of("Error", "Product not found."));
 		}
 	}
 	
