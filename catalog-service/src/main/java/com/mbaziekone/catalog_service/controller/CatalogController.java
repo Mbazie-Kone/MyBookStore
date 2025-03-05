@@ -174,6 +174,24 @@ public class CatalogController {
 				
 				return ResponseEntity.badRequest().body("Error: A product with this name already exists.");
 			}
+			
+			// Category
+			Category category = categoryRepository.findByName(dto.getCategoryName()).orElseGet(() -> {
+				Category newCategory = new Category();
+				newCategory.setName(dto.getCategoryName());
+				
+				return categoryRepository.save(newCategory);
+			});
+			
+			// Update product data
+			product.setName(dto.getName());
+			product.setDescription(dto.getDescription());
+			product.setPrice(dto.getPrice());
+			product.setStock(dto.getStock());
+			product.setIsAvailable(dto.getIsAvailable());
+			product.setCategory(category);
+			
+			productRepository.save(product);
 		}
 	}
 	
