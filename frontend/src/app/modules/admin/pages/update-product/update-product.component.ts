@@ -48,4 +48,24 @@ export class UpdateProductComponent implements OnInit {
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
+
+  updateProduct() {
+    if (this.selectedFile) {
+      this.productService.uploadImage(this.selectedFile).subscribe({
+        next: (imageUrl) => {
+          this.product.imageUrl = imageUrl;
+          this.sendUpdateRequest();
+        },
+        error: () => {
+          this.errorMessage = "Error uploading image.";
+        }
+      });
+    } else {
+      this.sendUpdateRequest();
+    }
+  }
+
+  sendUpdateRequest() {
+    
+  }
 }
