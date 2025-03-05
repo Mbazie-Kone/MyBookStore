@@ -211,6 +211,7 @@ public class CatalogController {
 				}
 			}
 			
+			// We return a valid JSON response
 			Map<String, String> response = new HashMap<>();
 			response.put("message", "Product updated successfully!");
 			
