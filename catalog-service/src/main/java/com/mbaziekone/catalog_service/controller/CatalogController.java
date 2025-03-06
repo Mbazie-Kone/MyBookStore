@@ -55,7 +55,10 @@ public class CatalogController {
 		List<Product> products = productRepository.findAll();
 		
 		List<ViewCategoryProductImage> viewCategoryProductImages = products.stream().map(product -> {
-			String imageUrl = imageRepository.findByProductId(product.getId()).stream().findFirst().map(Image::getImageUrl).orElse("");
+			List<String> imageUrls = imageRepository.findByProductId(product.getId())
+					.stream()
+					.map(Image::getImageUrl)
+					.collect(Collectors.toList());
 			
 			return new ViewCategoryProductImage(
 						product.getId(),
@@ -65,7 +68,7 @@ public class CatalogController {
 						product.getStock(),
 						product.getIsAvailable(),
 						product.getCategory().getName(),
-						imageUrl
+						imageUrls
 					);
 			}).collect(Collectors.toList());
 		

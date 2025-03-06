@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-4">
     
     <div *ngIf="errorMessage" class="alert alert-danger">
         {{ errorMessage }}
@@ -8,14 +8,14 @@
         No products available to display.
     </div>
 
-    <h2 class="text-center">Products List</h2>
-    <div class="row">
+    <h2 class="text-center mb-4">Products List</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
         <div class="col-md-4 mb-4">
             <div *ngIf="products.length > 0">
                 <div *ngFor="let product of products">
                     <div class="card mt-2">
                         <a [routerLink]="['/product-details', product.id]">
-                            <img *ngIf="product.imageUrls.length > 0" [src]="product.imageUrls[0]" class="card-img-top" alt="{{ product.name }}">
+                            <img *ngIf="product.imageUrls.length > 0" [src]="product.imageUrls[0]" class="card-img-top" alt="{{ product.name }}" height="80">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">
