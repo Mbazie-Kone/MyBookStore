@@ -1,35 +1,43 @@
 <div class="container mt-5" *ngIf="product; else loading">
-    <h2>{{ product.name }}</h2>
-    <p class="text-muted">{{ product.categoryName }}</p>
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <div class="main-image-container">
+                <img [src]="selectedImage" alt="Selected Product Image" class="main-product-image img-fluid">
+            </div>
+            <p class="text-muted">{{ product.categoryName }}</p>
 
-    <div class="mb-3">
-        <div class="d-flex flex-wrap">
-            <img *ngFor="let imageUrl of product.imageUrls" [src]="imageUrl" class="img-thumbnail me-2" width="200" height="200">
+            <div class="mb-3">
+                <div class="d-flex flex-wrap">
+                    <img *ngFor="let imageUrl of product.imageUrls" [src]="imageUrl" class="img-thumbnail me-2" width="200" height="200">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <h5>Description</h5>
+                <p>{{ product.description }}</p>
+            </div>
+
+            <p><strong>Price:</strong> {{ product.price | currency:'EUR' }} </p>
+            <p>
+                <strong>Availability:</strong>
+                <span class="badge bg-success" *ngIf="product.isAvailable">Available</span>
+                <span class="badge bg-danger" *ngIf="!product.isAvailable">Not Available</span>
+            </p>
+            <div class="mt-2 mb-2">
+                <button *ngIf="product.isAvailable" class="btn btn-primary">Add to cart</button>
+                <button *ngIf="!product.isAvailable" disabled class="btn btn-primary">Add to cart</button>
+            </div>
+
+            <button class="btn btn-secondary mt-3" routerLink="/home/catalog">Back to Catalog</button>
         </div>
-    </div>
 
-    <div class="mb-3">
-        <h5>Description</h5>
-        <p>{{ product.description }}</p>
-    </div>
+        <!-- Show a loading message if product is still null. -->
+        <ng-template #loading>
+            <div class="text-center mt-5">
+                <p>Loading product details...</p>
+            </div>
+        </ng-template>
 
-    <p><strong>Price:</strong> {{ product.price | currency:'EUR' }} </p>
-    <p>
-        <strong>Availability:</strong>
-        <span class="badge bg-success" *ngIf="product.isAvailable">Available</span>
-        <span class="badge bg-danger" *ngIf="!product.isAvailable">Not Available</span>
-    </p>
-    <div class="mt-2 mb-2">
-        <button *ngIf="product.isAvailable" class="btn btn-primary">Add to cart</button>
-        <button *ngIf="!product.isAvailable" disabled class="btn btn-primary">Add to cart</button>
     </div>
-
-    <button class="btn btn-secondary mt-3" routerLink="/home/catalog">Back to Catalog</button>
 </div>
-
-<!-- Show a loading message if product is still null. -->
-<ng-template #loading>
-    <div class="text-center mt-5">
-        <p>Loading product details...</p>
-    </div>
-</ng-template>
+    
