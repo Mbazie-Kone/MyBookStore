@@ -18,7 +18,9 @@
                             <img *ngIf="product.imageUrls.length > 0" [src]="product.imageUrls[0]" class="card-img-top" alt="{{ product.name }}" width="150" height="130">
                         </a>
                         <div>
-                            {{ product.name }}    
+                            <a [routerLink]="['/products-details', product.id]" class="text-decoration-none">
+                                {{ product.name }}
+                            </a>  
                         </div>
                     <div>
                             {{ product.description }}
