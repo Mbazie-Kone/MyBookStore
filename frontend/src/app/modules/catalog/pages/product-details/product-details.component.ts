@@ -25,11 +25,21 @@ export class ProductDetailsComponent implements OnInit {
 
   loadProductDetails(id: number) {
     this.productService.getProductById(id).subscribe({
-      next: (data) => { this.product = data; },
+      next: (data) => { 
+        this.product = data; 
+      
+        // Set the first image as selected if available
+        this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0] : '';
+      },
       error: (error) => {
         this.errorMessage = "Error loading product details.";
         console.error(error);
       }
     });
+  }
+
+  // Method to change the displayed image
+  changeImage(imagUrl: string) {
+    this.selectedImage = imagUrl;
   }
 }
