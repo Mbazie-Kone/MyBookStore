@@ -4,3 +4,11 @@
     object-fit: cover; /* Crop and fit the image without distorting it. */
     border-radius: 8px; /* Round the image corners. */
 }
+
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
