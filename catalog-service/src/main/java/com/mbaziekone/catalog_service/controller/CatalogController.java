@@ -116,7 +116,7 @@ public class CatalogController {
 	}
 	
 	// INSERT NEW PRODUCT
-	@PostMapping("/product")
+	@PostMapping("/insert/product")
 	public ResponseEntity<?> addProduct(@Valid @RequestBody InsertCategoryProductImage dto) {
 		try {
 			// JSON log for debug isAvailable issue
@@ -161,7 +161,7 @@ public class CatalogController {
 	}
 	
 	// UPDATE PRODUCT
-	@PutMapping("/update-product/{id}")
+	@PutMapping("/update/product/{id}")
 	public ResponseEntity<Map<String, String>> updateProduct(@PathVariable Long id, @Valid @RequestBody InsertCategoryProductImage dto) {
 		Optional<Product> optionalProduct = productRepository.findById(id);
 		
