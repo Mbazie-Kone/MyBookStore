@@ -6,7 +6,7 @@
             </div>
             
             <div class="thumbnail-container mt-3 d-flex justify-content-center">
-                <img *ngFor="let imageUrl of product.imageUrls" 
+                <img *ngFor="let imageUrl of product?.imageUrls" 
                     [src]="imageUrl" 
                     class="thumbnail-image" 
                     [class.selected]="imageUrl === selectedImage"

@@ -10,7 +10,16 @@ import { ProductService } from '../../../../services/product.service';
   styleUrl: './product-details.component.css'
 })
 export class ProductDetailsComponent implements OnInit {
-  product!: Product;
+  product: Product = {
+    id: 0,
+    name: '',
+    description: '',
+    price: 0,
+    stock: 0,
+    isAvailable: false,
+    categoryName: '',
+    imageUrls: []
+  }
   errorMessage: string = '';
   selectedImage: string = '';
   loading: boolean = true;
@@ -29,9 +38,8 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.getProductById(id).subscribe({
       next: (data) => { 
         this.product = data; 
-      
-        // Set the first image as selected if available
-        this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0] : '';
+        this.product.imageUrls = this.product.imageUrls || [];
+        this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0] : ''; // Set the first image as selected if available
         this.loading = false; // Disable loading when data is loaded
       },
       error: (error) => {
