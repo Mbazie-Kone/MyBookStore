@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="product; else loading">
     <h2>{{ product?.name }}</h2>
     <p class="text-muted">{{ product?.categoryName }}</p>
 
@@ -26,3 +26,10 @@
 
     <button class="btn btn-secondary mt-3" routerLink="/catalog">Back to Catalog</button>
 </div>
+
+<!-- Show a loading message if product is still null. -->
+<ng-template #loading>
+    <div class="text-center mt-5">
+        <p>Loading product details...</p>
+    </div>
+</ng-template>
