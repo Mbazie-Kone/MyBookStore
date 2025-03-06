@@ -19,9 +19,9 @@ const routes: Routes = [
   { path: 'admin/update-product/:id', component: UpdateProductComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
-    path:'home', component: LayoutComponent,
+    path: 'home', component: LayoutComponent,
     children: [
-      { path:'catalog', loadChildren: () => import('./modules/catalog/catalog.module').then(m => m.CatalogModule) }
+      { path: 'catalog', loadChildren: () => import('./modules/catalog/catalog.module').then(m => m.CatalogModule) }
     ]
   },
   { path: '**', component: ErrorComponent }
