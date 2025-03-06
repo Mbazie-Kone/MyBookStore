@@ -143,12 +143,12 @@ public class CatalogController {
 			productRepository.save(product);
 			
 			// We save up to 10 images, if available.
-			if (dto.getImageUrl() != null && !dto.getImageUrl().isEmpty()) {
-				int limit = Math.min(dto.getImageUrl().size(), 10); // Max 10 images
+			if (dto.getImageUrls() != null && !dto.getImageUrls().isEmpty()) {
+				int limit = Math.min(dto.getImageUrls().size(), 10); // Max 10 images
 				for (int i = 0; i < limit; i++) {
 					Image image = new Image();
 					image.setProduct(product);
-					image.setImageUrl(dto.getImageUrl().get(i));
+					image.setImageUrl(dto.getImageUrls().get(i));
 					
 					imageRepository.save(image);
 				}

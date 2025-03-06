@@ -34,6 +34,6 @@ public class InsertCategoryProductImage {
 	@NotBlank(message = "Category name is required")
 	private String categoryName;
 	
-	private List<String> imageUrl;
+	private List<String> imageUrls;
 	
 }
