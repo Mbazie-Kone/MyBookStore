@@ -15,7 +15,7 @@
                 <div *ngFor="let product of products">
                     <div class="card mt-2">
                         <a [routerLink]="['/product-details', product.id]">
-                            <img *ngIf="product.imageUrls" [src]="product.imageUrls" class="img-thumbnail" alt="{{ product.name }}" width="150" height="130">
+                            <img *ngIf="product.imageUrls.length > 0" [src]="product.imageUrls[0]" class="card-img-top" alt="{{ product.name }}" width="150" height="130">
                         </a>
                         <div>
                             {{ product.name }}    
