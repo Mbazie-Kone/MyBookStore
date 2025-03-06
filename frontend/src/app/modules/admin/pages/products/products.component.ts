@@ -16,10 +16,11 @@ export class ProductsComponent implements OnInit {
     stock: 0,
     isAvailable: true,
     categoryName: '',
-    imageUrl: ''
+    imageUrls: [] as string[]
   };
 
-  selectedFile: File | null = null;
+  selectedFiles: File[] = [];
+  previewImages: string[] = [];
   categories: any[] = []; // Array to store available categories
 
   successMessage: string = "";
