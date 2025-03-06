@@ -6,5 +6,5 @@ export interface Product {
     stock: number;
     isAvailable: boolean;
     categoryName: string;
-    imageUrl: string[];
+    imageUrls: string[];
 }
