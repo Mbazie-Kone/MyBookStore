@@ -1,6 +1,7 @@
 package com.mbaziekone.catalog_service.dto;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,5 +26,5 @@ public class ViewCategoryProductImage {
 	
 	private String categoryName;
 	
-	private String imageUrl;
+	private List<String> imageUrls;
 }

@@ -210,7 +210,7 @@ public class CatalogController {
 				} else {
 					Image newImage = new Image();
 					newImage.setProduct(product);
-					newImage.setImageUrl(dto.getImageUrls());
+					newImage.setImageUrls(dto.getImageUrls());
 					
 					imageRepository.save(newImage);
 				}
