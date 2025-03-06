@@ -1,14 +1,19 @@
 .product-image {
     width: 100%; /* Keep the image responsive. */
-    height: 180px; /* Set a fixed height for uniformity. */
-    object-fit: cover; /* Crop and fit the image without distorting it. */
+    max-height: 200px; 
+    object-fit: contain; 
     border-radius: 8px; /* Round the image corners. */
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-image:hover {
+    transform: scale(1.05);
 }
 
 .card {
-    transition: transform 0.2s ease-in-out;
+    border: none
 }
 
-.card:hover {
-    transform: scale(1.03);
+.card-header {
+    padding: 10px;
 }

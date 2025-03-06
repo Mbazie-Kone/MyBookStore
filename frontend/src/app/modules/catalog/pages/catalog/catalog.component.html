@@ -14,13 +14,13 @@
             <div *ngIf="products.length > 0">
                 <div class="card shadow-sm h-100">
                     <div class="card-header text-center">
-                        <a [routerLink]="['/product-details', product.id]">
+                        <a [routerLink]="['/home/catalog/product-details', product.id]">
                             <img *ngIf="product.imageUrls.length > 0" [src]="product.imageUrls[0]" class="product-image" alt="{{ product.name }}">
                         </a>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a [routerLink]="['/products-details', product.id]" class="text-decoration-none text-dark">
+                            <a [routerLink]="['/home/catalog/products-details', product.id]" class="text-decoration-none text-dark">
                                 {{ product.name }}
                             </a> 
                         </h5>
@@ -31,8 +31,8 @@
                             <span class="badge bg-danger" *ngIf="!product.isAvailable">Not Available</span>
                         </p>
                         <div class="mt-2 mb-2">
-                            <button *ngIf="product.isAvailable" class="btn btn-primary w-100">Add to cart</button>
-                            <button *ngIf="!product.isAvailable" disabled class="btn btn-secondary w-100">Add to cart</button>
+                            <button *ngIf="product.isAvailable" class="btn btn-primary">Add to cart</button>
+                            <button *ngIf="!product.isAvailable" disabled class="btn btn-secondary">Add to cart</button>
                         </div>
                     </div>
                 </div>
