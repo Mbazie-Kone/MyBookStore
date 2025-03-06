@@ -12,6 +12,7 @@ import { ProductService } from '../../../../services/product.service';
 export class ProductDetailsComponent implements OnInit {
   product!: Product;
   errorMessage: string = '';
+  selectedImage: string = '';
 
   constructor(private route: ActivatedRoute, private productService: ProductService) {}
 

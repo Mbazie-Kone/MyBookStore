@@ -1,0 +1,50 @@
+/* Style for the main image */
+.main-image-container {
+    width: 100%;
+    text-align: center;
+}
+
+.main-product-image {
+    width: 100%;
+    max-height: 400px; /* Maximum height of the main image */
+    object-fit: contain; /* Display the entire image without cropping */
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.main-product-image:hover {
+    transform: scale(1.05);
+}
+
+/* Thumbnails container */
+.thumbnail-container {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 5px;
+}
+
+/* Image thumbnails */
+.thumbnail-image {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease-in-out;
+}
+
+.thumbnail-image:hover {
+    transform: scale(1.1);
+}
+
+/* Highlight the selected image */
+.thumbnail-image.selected {
+    border: 2px solid #007bff
+}
+
+.btn-lg {
+    font-size: 18px;
+    padding: 12px;
+}
