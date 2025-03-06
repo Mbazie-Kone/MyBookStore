@@ -45,7 +45,7 @@
 
         <div class="mb-3">
             <label class="form-label">Select Images (Max 10)</label>
-            <input type="file" class="form-control" (change)="onFileSelected($event)" required #fileInput>
+            <input type="file" class="form-control" (change)="onFileSelected($event)" multiple accept="image/*" #fileInput>
             <div *ngIf="fileError" class="text-danger">{{ fileError }}</div>
         </div>
 
