@@ -7,4 +7,16 @@
             <img *ngFor="let imageUrl of product.imageUrls" [src]="imageUrl" class="img-thumbnail me-2" width="200" height="200">
         </div>
     </div>
+
+    <div class="mb-3">
+        <h5>Description</h5>
+        <p>{{ product?.description }}</p>
+    </div>
+
+    <p><strong>Price:</strong> {{ product?.price | currency:'EUR' }} </p>
+    <p>
+        <strong>Availability:</strong>
+        <span class="badge bg-success" *ngIf="product.isAvailable">Available</span>
+        <span class="badge bg-danger" *ngIf="!product.isAvailable">Not Available</span>
+    </p>
 </div>
