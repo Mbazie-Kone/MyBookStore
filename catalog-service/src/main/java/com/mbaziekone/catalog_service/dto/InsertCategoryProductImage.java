@@ -1,6 +1,7 @@
 package com.mbaziekone.catalog_service.dto;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -33,7 +34,6 @@ public class InsertCategoryProductImage {
 	@NotBlank(message = "Category name is required")
 	private String categoryName;
 	
-	@NotBlank(message = "Image URL is required")
-	private String imageUrl;
+	private List<String> imageUrl;
 	
 }
