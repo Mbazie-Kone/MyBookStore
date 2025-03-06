@@ -1,0 +1,6 @@
+.product-image {
+    width: 100%; /* Keep the image responsive. */
+    height: 180px; /* Set a fixed height for uniformity. */
+    object-fit: cover; /* Crop and fit the image without distorting it. */
+    border-radius: 8px; /* Round the image corners. */
+}
