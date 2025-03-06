@@ -9,33 +9,33 @@
     </div>
 
     <h2 class="text-center mb-4">Products List</h2>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-        <div class="col">
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let product of products">
             <div *ngIf="products.length > 0">
-                <div *ngFor="let product of products">
-                    <div class="card shadow-sm h-100">
-                        <a [routerLink]="['/product-details', product.id]">
-                            <img *ngIf="product.imageUrls.length > 0" [src]="product.imageUrls[0]" class="card-img-top product-image" alt="{{ product.name }}">
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <a [routerLink]="['/products-details', product.id]" class="text-decoration-none">
-                                    {{ product.name }}
-                                </a> 
-                            </h5>
-                            <p><strong>Price:</strong> {{ product.price | currency:'EUR' }}</p>    
-                            <p>
-                                <strong>Availability: </strong>
-                                <span class="badge bg-success" *ngIf="product.isAvailable">Available</span>
-                                <span class="badge bg-danger" *ngIf="!product.isAvailable">Not Available</span>
-                            </p>
-                            <div class="mt-2 mb-2">
-                                <button *ngIf="product.isAvailable" class="btn btn-primary w-100">Add to cart</button>
-                                <button *ngIf="!product.isAvailable" disabled class="btn btn-secondary w-100">Add to cart</button>
-                            </div>
+
+                <div class="card shadow-sm h-100">
+                    <a [routerLink]="['/product-details', product.id]">
+                        <img *ngIf="product.imageUrls.length > 0" [src]="product.imageUrls[0]" class="card-img-top product-image" alt="{{ product.name }}">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a [routerLink]="['/products-details', product.id]" class="text-decoration-none">
+                                {{ product.name }}
+                            </a> 
+                        </h5>
+                        <p><strong>Price:</strong> {{ product.price | currency:'EUR' }}</p>    
+                        <p>
+                            <strong>Availability: </strong>
+                            <span class="badge bg-success" *ngIf="product.isAvailable">Available</span>
+                            <span class="badge bg-danger" *ngIf="!product.isAvailable">Not Available</span>
+                        </p>
+                        <div class="mt-2 mb-2">
+                            <button *ngIf="product.isAvailable" class="btn btn-primary w-100">Add to cart</button>
+                            <button *ngIf="!product.isAvailable" disabled class="btn btn-secondary w-100">Add to cart</button>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
