@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
   animations: [
     trigger('cartBadge', [
       state('normal', style({ transform: 'scale(1)'})),
-      state('added', style({ trasform: 'scale(1.2)'})),
+      state('added', style({ transform: 'scale(1.2)'})),
       transition('normal <=> added', [
         animate('200ms ease-in-out')
       ])
