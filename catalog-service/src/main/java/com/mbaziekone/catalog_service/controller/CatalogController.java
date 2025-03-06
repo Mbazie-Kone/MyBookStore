@@ -147,8 +147,8 @@ public class CatalogController {
 				int limit = Math.min(dto.getImageUrl().size(), 10); // Max 10 images
 				for (int i = 0; i < limit; i++) {
 					Image image = new Image();
-					image.setImageUrl(dto.getImageUrl().get(i));
 					image.setProduct(product);
+					image.setImageUrl(dto.getImageUrl().get(i));
 					
 					imageRepository.save(image);
 				}
