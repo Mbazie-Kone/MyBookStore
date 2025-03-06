@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../../models/product';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../../services/product.service';
@@ -9,9 +9,16 @@ import { ProductService } from '../../../../services/product.service';
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css'
 })
-export class ProductDetailsComponent {
+export class ProductDetailsComponent implements OnInit {
   product: Product | null = null;
   errorMessage: string = '';
 
   constructor(private route: ActivatedRoute, private productService: ProductService) {}
+
+  ngOnInit(): void {
+    const productId = this.route.snapshot.paramMap.get('id');
+    if (productId) {
+      this.loadProductDetails(+productId);
+    }
+  }
 }
