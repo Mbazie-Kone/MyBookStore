@@ -42,12 +42,16 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  // Method for selecting the image
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
+  // Multiple image selection
+  onFileSelected(event: any) {
+    if (event.target.files,length > 10) {
+      alert('You can upload a maximum of 10 images.');
 
-    if (input.files && input.files.length > 0) {
-      this.selectedFile = input.files[0];
+      return;
+    }
+
+    this.selectedFiles = Array.from(event.target.files);
+    this.previewImages = [];
 
       if (!this.selectedFile.type.startsWith('image/')) {
         this.fileError = "Only image files are allowed.";
