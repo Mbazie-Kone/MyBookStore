@@ -1,4 +1,10 @@
 <div class="container mt-5">
     <h2>{{ product?.name }}</h2>
     <p class="text-muted">{{ product?.categoryName }}</p>
+
+    <div class="mb-3">
+        <div class="d-flex flex-wrap">
+            <img *ngFor="let imageUrl of product.imageUrls" [src]="imageUrl" class="img-thumbnail me-2" width="200" height="200">
+        </div>
+    </div>
 </div>
