@@ -62,25 +62,28 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  // Method to upload the image and then add the product
+  // Upload multiple images and save the product
   uploadImageAndSaveProduct(form: any) {
-    if (!this.selectedFile) {
-      this.errorMessage = "Please select an image.";
+    if (this.selectedFiles.length > 0) {
+      let uploadedUrls: string[] = [];
 
-      return;
+      this.selectedFiles.forEach((file, index) => {
+        this.productService.uploadImage(file).subscribe({
+          next: (imageUrl) => {
+            uploadedUrls.push(imageUrl);
+
+            // When all images are uploaded, save the product
+            if(uploadedUrls.length === this.selectedFiles.length) {
+              this.product.imageUrls = uploadedUrls;
+              this.addProduct(form);
+            }
+          },
+          error: (error) => { console.error('Error uploading image:', error); }
+        });
+      });
+    } else {
+      this.addProduct(form); // If no image is selected, save only the product.
     }
-    this.productService.uploadImage(this.selectedFile).subscribe({
-      next: (imageUrl) => {
-        this.product.imageUrl = imageUrl;
-
-        this.addProduct(form);
-        
-      },
-      error: (error) => {
-        this.errorMessage = "Error uploading the image.";
-        console.error(error);
-      }
-    });
   }
 
   // Method for adding the produc
