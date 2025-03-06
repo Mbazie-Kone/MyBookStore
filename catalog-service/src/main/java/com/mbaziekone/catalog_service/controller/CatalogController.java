@@ -199,18 +199,18 @@ public class CatalogController {
 			productRepository.save(product);
 			
 			// If the image has been updated, we also update it in the database
-			if (dto.getImageUrl() != null && !dto.getImageUrl().isEmpty()) {
+			if (dto.getImageUrls() != null && !dto.getImageUrls().isEmpty()) {
 				List<Image> images = imageRepository.findByProductId(product.getId());
 				if (!images.isEmpty()) {
 					for (Image image : images) {
-						image.setImageUrl(dto.getImageUrl());
+						image.setImageUrls(dto.getImageUrls());
 						
 						imageRepository.save(image);
 					}
 				} else {
 					Image newImage = new Image();
 					newImage.setProduct(product);
-					newImage.setImageUrl(dto.getImageUrl());
+					newImage.setImageUrl(dto.getImageUrls());
 					
 					imageRepository.save(newImage);
 				}

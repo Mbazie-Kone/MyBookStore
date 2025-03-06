@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<!-- <div class="container mt-5">
     <h2>Update product</h2>
     <form #updateProductForm="ngForm" (ngSubmit)="updateProduct(); $event.preventDefault()">
         <div class="mb-3">
@@ -36,9 +36,9 @@
 
         <div class="mb-3">
             <label class="form-label">Select category</label>
-            <select class="form-select" [(ngModel)]="product.categoryName" name="categoryName" required #categoryName="ngModel">
+            <select class="form-select" [(ngModel)]="product.categoryName" name="categoryName" required #categoryName="ngModel"> -->
                 <!-- <option value="" disabled>Select category</option> -->
-                <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+            <!--   <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
             </select>
             <div *ngIf="categoryName.invalid && categoryName.touched" class="text-danger">Please select a category.</div>
         </div>
@@ -59,4 +59,4 @@
             {{ errorMessage }}
         </div>
     </form>
-</div>
+</div> -->

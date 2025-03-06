@@ -8,9 +8,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './update-product.component.html',
   styleUrl: './update-product.component.css'
 })
-export class UpdateProductComponent implements OnInit {
+export class UpdateProductComponent {
 
-  product = {
+  /*product = {
     id: 0,
     name: '',
     description: '',
@@ -18,16 +18,17 @@ export class UpdateProductComponent implements OnInit {
     stock: 0,
     isAvailable: true,
     categoryName: '',
-    imageUrl: ''
+    imageUrls: [] as string[]
   };
   categories: any[] = [];
-  selectedFile: File | null = null;
+  selectedFiles: [] = [];
+  previewImages: string[] = [];
   successMessage: string = "";
   errorMessage: string = "";
   fileError: string ="";
 
   constructor(private productService: ProductService, private route: ActivatedRoute, private router: Router) {}
-
+  
   ngOnInit(): void {
     const productId = Number(this.route.snapshot.paramMap.get('id'));
     if (productId) {
@@ -47,20 +48,20 @@ export class UpdateProductComponent implements OnInit {
   }
 
   onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-    if (this.selectedFile && !this.selectedFile.type.startsWith('image/')) {
+    this.selectedFiles = event.target.files[0];
+    if (this.selectedFiles && !this.selectedFiles.type.startsWith('image/')) {
       this.fileError = "Invalid file type. Please selcet an image file.";
-      this,this.selectedFile = null;
+      this,this.selectedFiles = null;
     } else {
       this.fileError = "";
     }
   }
 
   updateProduct() {
-    if (this.selectedFile) {
-      this.productService.uploadImage(this.selectedFile).subscribe({
+    if (this.selectedFiles) {
+      this.productService.uploadImage(this.selectedFiles).subscribe({
         next: (imageUrl) => {
-          this.product.imageUrl = imageUrl;
+          this.product.imageUrls = imageUrl;
           this.sendUpdateRequest();
         },
         error: () => {
@@ -92,5 +93,5 @@ export class UpdateProductComponent implements OnInit {
         } 
       }
     });
-  }
+  }*/
 }
