@@ -92,20 +92,17 @@ export class ProductsComponent implements OnInit {
       next: (response) => {
         this.successMessage = "Product added successfully!";
         this.errorMessage = "";
-        
+        this.selectedFiles = [];
+        this.previewImages = [];
+
         if (form) {
           form.resetForm();
-        }
-
-        this.selectedFile = null;
-
+        } 
         console.log(response);
-
       },
       error: (error) => {
         this.successMessage = "";
         this.errorMessage = error.error;
-
         console.error(error);
       }
     });
