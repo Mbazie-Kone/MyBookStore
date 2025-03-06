@@ -53,15 +53,13 @@ export class ProductsComponent implements OnInit {
     this.selectedFiles = Array.from(event.target.files);
     this.previewImages = [];
 
-      if (!this.selectedFile.type.startsWith('image/')) {
-        this.fileError = "Only image files are allowed.";
-        this.selectedFile = null;
-      }
-      else {
-        this.fileError = '';
-      }
+    for (let file of this.selectedFiles) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.previewImages.push(e.target.result);
+      };
+      reader.readAsDataURL(file);
     }
-    
   }
 
   // Method to upload the image and then add the product
