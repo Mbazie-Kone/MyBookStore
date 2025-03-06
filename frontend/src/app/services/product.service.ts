@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Product } from '../models/product';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,12 @@ export class ProductService {
   // View all products
   getProducts(): Observable<Product[]> {
 
-    return this.http.get<Product[]>(`${this.ProductUrl}/view/products`);
+    return this.http.get<Product[]>(`${this.ProductUrl}/view/products`).pipe(
+      map((products: Product[]) => products.map((product: Product) => ({
+        ...product,
+        imageUrls: product.imageUrls ?? []
+      })))
+    );
   }
 
   // Get product by id

@@ -10,7 +10,7 @@ import { ProductService } from '../../../../services/product.service';
   styleUrl: './product-details.component.css'
 })
 export class ProductDetailsComponent implements OnInit {
-  product: Product | null = null;
+  product!: Product;
   errorMessage: string = '';
 
   constructor(private route: ActivatedRoute, private productService: ProductService) {}
