@@ -50,7 +50,7 @@ public class CatalogController {
 	private final ImageRepository imageRepository;
 	
 	// VIEW ALL PRODUCTS
-	@GetMapping("/view-products")
+	@GetMapping("/view/products")
 	public ResponseEntity<List<ViewCategoryProductImage>> getAllProducts() {
 		List<Product> products = productRepository.findAll();
 		
@@ -81,14 +81,14 @@ public class CatalogController {
 	}
 	
 	// GET ALL CATEGORIES
-	@GetMapping("/categories")
+	@GetMapping("view/categories")
 	public ResponseEntity<List<Category>> getAllCategories() {
 		
 		return ResponseEntity.ok(categoryRepository.findAll());
 	}
 	
 	// IMAGE
-	@PostMapping("/upload-image")
+	@PostMapping("/upload/image")
 	public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
 		if (file.isEmpty()) {
 			
@@ -228,7 +228,7 @@ public class CatalogController {
 	}
 	
 	// DELETE PRODUCT
-	@DeleteMapping("/delete-product/{id}")
+	@DeleteMapping("/delete/product/{id}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
 		Optional<Product> product = productRepository.findById(id);
 		

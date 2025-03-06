@@ -14,7 +14,7 @@ export class ProductService {
   // Method to get all categories
   getCategories(): Observable<any[]> {
 
-    return this.http.get<any[]>(`${this.ProductUrl}/categories`);
+    return this.http.get<any[]>(`${this.ProductUrl}/view/categories`);
   }
 
   // Method for uploading the image
@@ -22,19 +22,19 @@ export class ProductService {
     const formData = new FormData();
     formData.append('file', file);
 
-    return this.http.post(`${this.ProductUrl}/upload-image`, formData, { responseType: 'text'});
+    return this.http.post(`${this.ProductUrl}/upload/image`, formData, { responseType: 'text'});
   }
 
   // Method for adding a product
   addProduct(product: Product): Observable<Product> {
 
-    return this.http.post<Product>(`${this.ProductUrl}/product`, product);
+    return this.http.post<Product>(`${this.ProductUrl}/insert/product`, product);
   }
 
   // View all products
   getProducts(): Observable<Product[]> {
 
-    return this.http.get<Product[]>(`${this.ProductUrl}/view-products`);
+    return this.http.get<Product[]>(`${this.ProductUrl}/view/products`);
   }
 
   // Get product by id
@@ -46,12 +46,12 @@ export class ProductService {
   // Update
   updateProduct(id: number, product: Product): Observable<any> {
 
-    return this.http.put(`${this.ProductUrl}/update-product/${id}`, product);
+    return this.http.put(`${this.ProductUrl}/update/product/${id}`, product);
   }
 
   // Delete
   deleteProduct(id: number): Observable<void> {
 
-    return this.http.delete<void>(`${this.ProductUrl}/delete-product/${id}`);
+    return this.http.delete<void>(`${this.ProductUrl}/delete/product/${id}`);
   }
 }
