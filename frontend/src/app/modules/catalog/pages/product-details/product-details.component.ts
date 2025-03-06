@@ -13,6 +13,7 @@ export class ProductDetailsComponent implements OnInit {
   product!: Product;
   errorMessage: string = '';
   selectedImage: string = '';
+  loading: boolean = true;
 
   constructor(private route: ActivatedRoute, private productService: ProductService) {}
 
@@ -24,16 +25,19 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   loadProductDetails(id: number) {
+    this.loading = true; // Enable loading
     this.productService.getProductById(id).subscribe({
       next: (data) => { 
         this.product = data; 
       
         // Set the first image as selected if available
         this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0] : '';
+        this.loading = false; // Disable loading when data is loaded
       },
       error: (error) => {
         this.errorMessage = "Error loading product details.";
         console.error(error);
+        this.loading = false; // Disable loading even in case of an error
       }
     });
   }
