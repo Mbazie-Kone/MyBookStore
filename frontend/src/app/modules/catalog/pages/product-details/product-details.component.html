@@ -19,4 +19,8 @@
         <span class="badge bg-success" *ngIf="product.isAvailable">Available</span>
         <span class="badge bg-danger" *ngIf="!product.isAvailable">Not Available</span>
     </p>
+    <div class="mt-2 mb-2">
+        <button *ngIf="product.isAvailable" class="btn btn-primary">Add to cart</button>
+        <button *ngIf="!product.isAvailable" disabled class="btn btn-primary">Add to cart</button>
+    </div>
 </div>
