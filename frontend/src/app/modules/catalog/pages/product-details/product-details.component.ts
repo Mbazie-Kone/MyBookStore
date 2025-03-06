@@ -21,4 +21,15 @@ export class ProductDetailsComponent implements OnInit {
       this.loadProductDetails(+productId);
     }
   }
+
+  loadProductDetails(id: number) {
+    this.productService.getProductById(id).subscribe({
+      next: (data) => { this.product = data; },
+      error: (error) => {
+        this.errorMessage = "Error loading product details.";
+        console.error(error);
+      }
+    });
+  }
+
 }
