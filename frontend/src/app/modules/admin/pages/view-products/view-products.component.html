@@ -24,7 +24,7 @@
         <tbody>
             <tr *ngFor="let product of products">
                 <td>
-                    <img *ngIf="product.imageUrls" [src]="product.imageUrls" alt="{{ product.name }}" width="150" height="130" class="img-thumbnail">
+                    <img *ngIf="product.imageUrls.length > 0" [src]="product.imageUrls[0]" alt="{{ product.name }}" width="150" height="130" class="img-thumbnail">
                 </td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.price | currency:'EUR' }}</td>
