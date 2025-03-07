@@ -78,9 +78,32 @@ public class CatalogController {
 	// VIEW SINGLE PRODUCT
 	@GetMapping("/product/{id}")
 	public ResponseEntity<?> getProductById(@PathVariable Long id) {
-		Optional<Product> product = productRepository.findById(id);
+		Optional<Product> productOpt = productRepository.findById(id);
 		
-		return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+		if (productOpt.isPresent()) {
+			Product product = productOpt.get();
+		
+		
+		List<String> imageUrls = imageRepository.findByProductId(product.getId())
+				.stream()
+				.map(Image::getImageUrl)
+				.collect(Collectors.toList());
+		
+		ViewCategoryProductImage productDto = new ViewCategoryProductImage(
+				product.getId(),
+				product.getName(),
+				product.getDescription(),
+				product.getPrice(),
+				product.getStock(),
+				product.getIsAvailable(),
+				product.getCategory().getName(),
+				imageUrls
+			);
+		
+			return ResponseEntity.ok(productDto);
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+		}
 	}
 	
 	// GET ALL CATEGORIES

@@ -39,7 +39,8 @@ export class ProductDetailsComponent implements OnInit {
       next: (data) => { 
         this.product = data; 
         this.product.imageUrls = this.product.imageUrls || [];
-        this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0] : ''; // Set the first image as selected if available
+        this.selectedImage = this.product.imageUrls.length > 0 ? 'http://localhost:4200' + this.product.imageUrls[0] : ''; // Set the first image as selected if available
+        console.log("Image URL:", this.selectedImage);
         this.loading = false; // Disable loading when data is loaded
       },
       error: (error) => {
