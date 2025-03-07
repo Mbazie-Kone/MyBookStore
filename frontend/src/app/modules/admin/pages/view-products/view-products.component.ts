@@ -21,7 +21,10 @@ export class ViewProductsComponent implements OnInit {
   loadProducts() {
     this.productService.getProducts().subscribe({
       next: (data) => {
-        this.products = data;
+        this.products = data.map(product => ({
+          ...product,
+          imageUrls: product.imageUrls || []
+        }));
       },
       error: (error) => {
         this.errorMessage = "Error loading products.";
