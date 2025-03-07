@@ -7,7 +7,7 @@
             
             <div class="thumbnail-container mt-3 d-flex justify-content-center">
                 <img *ngFor="let imageUrl of product?.imageUrls" 
-                    [src]="imageUrl" 
+                    [src]="'http://localhost:4200 + imageUrl"
                     class="thumbnail-image" 
                     [class.selected]="imageUrl === selectedImage"
                     (click)="changeImage(imageUrl)"
