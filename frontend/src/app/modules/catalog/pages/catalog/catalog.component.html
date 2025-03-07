@@ -13,7 +13,7 @@
             <div *ngIf="products.length > 0">
                 <div class="card shadow-sm h-100">
                     <div class="card-header text-center">
-                        <a [routerLink]="['/home/catalog/product-details', product.id]">
+                        <a [routerLink]="['/catalog/product-details', product.id]">
                             <img *ngIf="product.imageUrls.length > 0" [src]="product.imageUrls[0]" class="product-image" alt="{{ product.name }}">
                         </a>
                     </div>
