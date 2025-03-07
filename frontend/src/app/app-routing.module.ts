@@ -17,10 +17,11 @@ const routes: Routes = [
   { path: 'admin/view-products', component: ViewProductsComponent },
   { path: 'admin/products', component: ProductsComponent },
   { path: 'admin/update-product/:id', component: UpdateProductComponent},
-  { path: '', redirectTo: 'home/catalog', pathMatch: 'full' },
   {
-    path: 'home', component: LayoutComponent,
+    path: '', 
+    component: LayoutComponent,
     children: [
+      { path: '', redirectTo: 'catalog', pathMatch: 'full' },
       { path: 'catalog', loadChildren: () => import('./modules/catalog/catalog.module').then(m => m.CatalogModule) }
     ]
   },
