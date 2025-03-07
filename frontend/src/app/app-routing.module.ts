@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'admin/view-products', component: ViewProductsComponent },
   { path: 'admin/products', component: ProductsComponent },
   { path: 'admin/update-product/:id', component: UpdateProductComponent},
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'home/catalog', pathMatch: 'full' },
   {
     path: 'home', component: LayoutComponent,
     children: [
