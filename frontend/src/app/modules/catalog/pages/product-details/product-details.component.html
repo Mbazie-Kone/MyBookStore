@@ -19,7 +19,7 @@
                 <p class="text-muted">{{ product.description }}</p>
                 <p><strong>Price:</strong> {{ product.price | currency:'EUR' }} </p>
                 <p>
-                    <strong>Availability:</strong>
+                    <strong>Availability: </strong>
                     <span class="badge bg-success" *ngIf="product.isAvailable">Available</span>
                     <span class="badge bg-danger" *ngIf="!product.isAvailable">Not Available</span>
                 </p>
