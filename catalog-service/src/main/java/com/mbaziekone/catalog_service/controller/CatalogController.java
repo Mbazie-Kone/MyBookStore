@@ -305,6 +305,38 @@ public class CatalogController {
 	// DELETE IMAGE BY ID
 	@DeleteMapping("/delete/image/{imageId}")
 	public ResponseEntity<Map<String, String>> deleteImage(@PathVariable Long imageId) {
+		Optional<Image> optionalImage = imageRepository.findById(imageId);
 		
+		if (optionalImage.isPresent()) {
+			Image image = optionalImage.get();
+			deleteImageFile(image.getImageUrl()); // Remove from filesystem
+			
+			imageRepository.delete(image); // Remove from database
+			
+			
+			// JSON response
+			Map<String, String> response = new HashMap<>();
+			response.put("message", "Product updated successfully!");
+			
+			return ResponseEntity.ok(response);
+		} else {
+			
+			return ResponseEntity.status(404).body(Map.of("Error", "Product not found."));
+		}
+	}
+	
+	// HELPER METHOD TO DELETE IMAGE FROM FILESYSTEM
+	private void deleteImageFile(String imageUrl) {
+		String filePath = "../frontend/public" + imageUrl; // Adjust path to match storage
+		try {
+			Path path = Paths.get(filePath);
+			if (Files.exists(path)) {
+				Files.delete(path);
+				System.out.println("Deleted image file: " + filePath);
+			}
+		} catch (IOException e) {
+			System.err.println("Error deleting image file: " + filePath);
+			e.printStackTrace();
+		}
 	}
 }
