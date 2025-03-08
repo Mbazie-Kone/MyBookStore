@@ -42,7 +42,7 @@ export class ProductDetailsComponent implements OnInit {
 
         // Check if there are images and set the first one as selected
         if (this.product.imageUrls.length > 0) {
-          this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0] : '';
+          this.selectedImage = this.product.imageUrls[0];
         } else {
           console.warn("No images found for this product.");
         }
@@ -59,6 +59,7 @@ export class ProductDetailsComponent implements OnInit {
 
   // Method to change the displayed image
   changeImage(imagUrl: string) {
+    console.log("Selected Image URL:", imagUrl);
     this.selectedImage = imagUrl;
   }
 }
