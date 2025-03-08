@@ -64,8 +64,6 @@
         <div class="mb-3">
             <label class="form-label">Upload new image</label>
             <input type="file" class="form-control" (change)="onFileSelected($event)" #fileInput>
-            <button type="button" class="btn btn-success mt-2" (click)="uploadImage(fileInput.files[0])" 
-            [disabled]="product.imageUrls.length >= maxImages">Add Image</button>
         </div>
 
         <button type="submit" class="btn btn-primary w-100" [disabled]="updateProductForm.invalid">Update Product</button>

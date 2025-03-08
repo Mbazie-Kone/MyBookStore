@@ -70,15 +70,15 @@ export class UpdateProductComponent implements OnInit {
   }
 
   // Uploading a new image
-  uploadImage(file : File) {
-    if (this.product.imageUrls.length >= this.maxImages) {
-        alert("You can't upload more than 10 images.");
+  uploadImage(file? : File) {
+    if (!file) {
+        console.warn("No file selected");
         
         return;
     }
     
     if (this.product.imageUrls.length >= this.maxImages) {
-      this.errorMessage = "Maximum number of images reached.";
+      alert("You can't upload more than 10 images");
 
       return;
     }
@@ -128,6 +128,10 @@ export class UpdateProductComponent implements OnInit {
 
   // Select a main image
   selectMainImage(imageUrl: string) {
+    this.selectedImage = imageUrl;
+  }
+
+  changeImage(imageUrl: string) {
     this.selectedImage = imageUrl;
   }
 }
