@@ -52,14 +52,6 @@
             </div>
         </div>
 
-        <!-- Select the main image -->
-        <div class="mb-3">
-            <label class="form-label">Select Main Image</label>
-            <select class="form-select" [(ngModel)]="selectedImage" name="selectedImage">
-                <option *ngFor="let imageUrl of product.imageUrls" [value]="imageUrl">{{ imageUrl }}</option>
-            </select>
-        </div>
-
         <!-- Input for uploading images -->
         <div class="mb-3">
             <label class="form-label">Upload new image</label>

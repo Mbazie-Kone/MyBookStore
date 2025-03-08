@@ -32,12 +32,10 @@
     position: absolute;
     top: -5px;
     right: -5px;
-    background: red;
-    color: white;
+    background: none;
     border: none;
     width: 18px;
     height: 18px;
     font-size: 12px;
-    border-radius: 50%;
     cursor: pointer;
 }
