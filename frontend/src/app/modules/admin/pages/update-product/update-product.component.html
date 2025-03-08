@@ -58,7 +58,7 @@
         <!-- Select the main image -->
         <div class="mb-3">
             <label class="form-label">Select Main Image</label>
-            <select class="from-select" [(ngModel)]="selectedImage" name="selectedImage">
+            <select class="form-select" [(ngModel)]="selectedImage" name="selectedImage">
                 <option *ngFor="let imageUrl of product.imageUrls" [value]="imageUrl">{{ imageUrl }}</option>
             </select>
         </div>
