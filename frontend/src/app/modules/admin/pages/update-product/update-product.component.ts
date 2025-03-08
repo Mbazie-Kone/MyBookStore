@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from '../../../../models/product';
 
 @Component({
   selector: 'app-update-product',
@@ -8,17 +9,16 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './update-product.component.html',
   styleUrl: './update-product.component.css'
 })
-export class UpdateProductComponent {
-
-  /*product = {
+export class UpdateProductComponent implements OnInit {
+  product: Product = {
     id: 0,
     name: '',
     description: '',
     price: 0,
     stock: 0,
-    isAvailable: true,
+    isAvailable: false,
     categoryName: '',
-    imageUrls: [] as string[]
+    imageUrls: []
   };
   categories: any[] = [];
   selectedFiles: [] = [];
@@ -93,5 +93,5 @@ export class UpdateProductComponent {
         } 
       }
     });
-  }*/
+  }
 }
