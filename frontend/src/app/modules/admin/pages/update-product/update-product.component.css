@@ -1,0 +1,43 @@
+/* Thumbnails container*/
+.thumbnail-container {
+    display: flex;
+    justify-content: start;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 5px;
+}
+
+/* Image thumbnails */
+.thumbnail-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease-in-out;
+}
+
+.thumbnail-image:hover {
+    transform: scale(1.1);
+}
+
+/* Highlight the selected image */
+.thumbnail-image.selected {
+    border: 2px solid #007bff;
+}
+
+/* Close button for deleting an image */ 
+.thumbnail-container .delete-thumbnail {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    border: none;
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
