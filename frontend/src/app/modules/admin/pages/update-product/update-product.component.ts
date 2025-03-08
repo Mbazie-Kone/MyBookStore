@@ -23,7 +23,7 @@ export class UpdateProductComponent implements OnInit {
   selectedFile: File | null = null;
   successMessage: string = "";
   errorMessage: string = "";
-  maxImgaes: number = 10;
+  maxImages: number = 10;
   selectedImage: string = '';
   fileError: string ="";
 
@@ -62,7 +62,7 @@ export class UpdateProductComponent implements OnInit {
         return;
     }
     
-    if (this.product.imageUrls.length >= this.maxImgaes) {
+    if (this.product.imageUrls.length >= this.maxImages) {
       this.errorMessage = "Maximum number of images reached.";
 
       return;
