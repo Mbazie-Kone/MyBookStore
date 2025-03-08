@@ -20,29 +20,28 @@ export class UpdateProductComponent implements OnInit {
     categoryName: '',
     imageUrls: []
   };
-  categories: any[] = [];
-  selectedFiles: [] = [];
-  previewImages: string[] = [];
+  selectedFile: File | null = null;
   successMessage: string = "";
   errorMessage: string = "";
+  maxImgaes: number = 10;
+  selectedImage: string = '';
   fileError: string ="";
 
-  constructor(private productService: ProductService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private productService: ProductService, private route: ActivatedRoute) {}
   
   ngOnInit(): void {
-    const productId = Number(this.route.snapshot.paramMap.get('id'));
+    const productId = this.route.snapshot.paramMap.get('id');
     if (productId) {
-      this.productService.getProductById(productId).subscribe({
-        next: (data) => { this.product = data; },
-        error: (error) => { console.error('Error fetching product:', error); }
-      });
-      this.loadCategories();
+      this.loadProductDetails(+productId);
     }
   }
 
-  loadCategories() {
-    this.productService.getCategories().subscribe({
-      next: (data) => { this.categories = data; },
+  loadProductDetails(id: number) {
+    this.productService.getProductById(id).subscribe({
+      next: (data) => { 
+        this.product = data; 
+        this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0] : '';
+      },
       error: (error) => { console.error('Error fetching categories:', error); }
     });
   }
