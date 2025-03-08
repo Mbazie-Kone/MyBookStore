@@ -68,6 +68,18 @@ export class UpdateProductComponent implements OnInit {
       return;
     }
 
+    this.productService.uploadImage(this.selectedFile).subscribe({
+      next: (imageUrl) => {
+        this.product.imageUrls.push(imageUrl);
+        this.selectedFile = null;
+        this.errorMessage = "";
+      },
+      error: (error) => {
+        this.errorMessage = "Error uploading the image.";
+        console.error(error);
+      }
+    });
+  }
 
 
 
