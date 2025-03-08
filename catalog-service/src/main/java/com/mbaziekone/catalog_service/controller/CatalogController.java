@@ -301,4 +301,10 @@ public class CatalogController {
 			return ResponseEntity.status(404).body(error);
 		}
 	}
+	
+	// DELETE IMAGE BY ID
+	@DeleteMapping("/delete/image/{imageId}")
+	public ResponseEntity<Map<String, String>> deleteImage(@PathVariable Long imageId) {
+		
+	}
 }
