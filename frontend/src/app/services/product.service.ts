@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Product } from '../models/product';
 import { Observable } from 'rxjs';
+import { Category } from '../models/category';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,9 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   // Method to get all categories
-  getCategories(): Observable<any[]> {
+  getCategories(): Observable<Category[]> {
 
-    return this.http.get<any[]>(`${this.ProductUrl}/view/categories`);
+    return this.http.get<Category[]>(`${this.ProductUrl}/view/categories`);
   }
 
   // Method for uploading the image
