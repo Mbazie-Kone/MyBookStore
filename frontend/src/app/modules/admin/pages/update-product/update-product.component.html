@@ -61,8 +61,9 @@
             </select>
         </div>
 
+        <!-- Input for uploading images -->
         <div class="mb-3">
-            <label class="form-label">Select an image</label>
+            <label class="form-label">Upload new image</label>
             <input type="file" class="form-control" (change)="onFileSelected($event)" required #fileInput>
             <div *ngIf="fileError" class="text-danger">{{ fileError }}</div>
         </div>
