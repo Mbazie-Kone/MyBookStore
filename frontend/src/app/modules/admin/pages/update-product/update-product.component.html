@@ -64,8 +64,8 @@
         <!-- Input for uploading images -->
         <div class="mb-3">
             <label class="form-label">Upload new image</label>
-            <input type="file" class="form-control" (change)="onFileSelected($event)" required #fileInput>
-            <div *ngIf="fileError" class="text-danger">{{ fileError }}</div>
+            <input type="file" class="form-control" (change)="onFileSelected($event)" [disabled]="product.imageUrls.length >= maxImages">
+            <button type="button" class="btn btn-success mt-2" (click)="uploadImage()" [disabled]="product.imageUrls.length >= maxImages">Add Image</button>
         </div>
 
         <button type="submit" class="btn btn-primary w-100" [disabled]="updateProductForm.invalid">Update Product</button>
