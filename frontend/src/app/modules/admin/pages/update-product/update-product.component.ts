@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../../../models/product';
+import { Category } from '../../../../models/category';
 
 @Component({
   selector: 'app-update-product',
@@ -20,7 +21,7 @@ export class UpdateProductComponent implements OnInit {
     categoryName: '',
     imageUrls: []
   };
-  categories: string[] = [];
+  categories: Category[] = [];
   selectedFile: File | null = null;
   successMessage: string = "";
   errorMessage: string = "";
@@ -53,8 +54,12 @@ export class UpdateProductComponent implements OnInit {
 
   loadCategories() {
     this.productService.getCategories().subscribe({
-      next: (categories) => {
-        this.categories = categories.map(cat => cat.name);
+      next: (data) => {
+        if (Array.isArray(data)) {
+          this.categories = data.map(category =>
+            typeof category === 'string' ? { name: category } : category
+          );
+        }
       },
       error: (error) => {
         console.error("Error loading categories:", error);
