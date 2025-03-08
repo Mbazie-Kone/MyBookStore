@@ -47,7 +47,7 @@
             <div class="d-flex flex-wrap">
                 <div *ngFor="let imageUrl of product.imageUrls" class="position-relative me-2 mb-2">
                     <img [src]="imageUrl" class="thumbnail-image" (click)="selectMainImage(imageUrl)" alt="Product Image">
-                    <button class="btn-close position-absolute top-0 end-0" (click)="deleteImage(imageUrl)"></button>
+                    <button type="button" class="btn-close position-absolute top-0 end-0" (click)="deleteImage(imageUrl)"></button>
                 </div>
             </div>
         </div>
