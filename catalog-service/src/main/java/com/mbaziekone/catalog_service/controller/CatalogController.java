@@ -214,7 +214,7 @@ public class CatalogController {
 				return categoryRepository.save(newCategory);
 			});
 			
-			// Update product data
+			// Update product details
 			product.setName(dto.getName());
 			product.setDescription(dto.getDescription());
 			product.setPrice(dto.getPrice());
@@ -224,25 +224,31 @@ public class CatalogController {
 			
 			productRepository.save(product);
 			
-			// If the image has been updated, we also update it in the database
-			if (dto.getImageUrls() != null && !dto.getImageUrls().isEmpty()) {
-				List<Image> images = imageRepository.findByProductId(product.getId());
-				if (!images.isEmpty()) {
-					for (Image image : images) {
-						image.setImageUrls(dto.getImageUrls());
-						
-						imageRepository.save(image);
-					}
-				} else {
+			// Manage images
+			List<Image> existingImages = imageRepository.findByProductId(product.getId());
+			
+			// Delete removed images
+			List<String> newImageUrls = dto.getImageUrls();
+			for (Image image : existingImages) {
+				if(!newImageUrls.contains(image.getImageUrl())) {
+					deleteImageFile(image.getImageUrl()); // Remove from filesystem
+					
+					imageRepository.delete(image); // Remove from database
+				}
+			}
+			
+			// Add new images
+			for (String imageUrl : newImageUrls) {
+				if (existingImages.stream().noneMatch(img -> img.getImageUrl().equals(imageUrl))) {
 					Image newImage = new Image();
 					newImage.setProduct(product);
-					newImage.setImageUrls(dto.getImageUrls());
+					newImage.setImageUrl(imageUrl);
 					
 					imageRepository.save(newImage);
 				}
 			}
 			
-			// We return a valid JSON response
+			// JSON response
 			Map<String, String> response = new HashMap<>();
 			response.put("message", "Product updated successfully!");
 			
