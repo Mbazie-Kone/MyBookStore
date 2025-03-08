@@ -81,15 +81,20 @@ export class UpdateProductComponent implements OnInit {
     });
   }
 
+  // Delete an image
+  deleteImage(imageUrl: string) {
+    this.productService.deleteImage(imageUrl).subscribe({
+      next: () => {
+        this.product.imageUrls = this.product.imageUrls.filter(img => img !== imageUrl);
 
-
-          this.errorMessage = "Error uploading image.";
+        // If the main image has been deleted, select the first available one
+        if (this.selectedImage === imageUrl) {
+          this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0] : '';
         }
-      });
-    } else {
-      this.sendUpdateRequest();
-    }
+      }
+    })
   }
+
 
   sendUpdateRequest() {
     this.productService.updateProduct(this.product.id!, this.product).subscribe({
