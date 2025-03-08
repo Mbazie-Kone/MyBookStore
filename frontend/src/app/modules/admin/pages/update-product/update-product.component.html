@@ -1,21 +1,21 @@
 <div class="container mt-5">
     <h2>Update product</h2>
-    <form #updateProductForm="ngForm" (ngSubmit)="updateProduct(); $event.preventDefault()">
+    <form #updateProductForm="ngForm" (submit)="updateProduct(); $event.preventDefault()">
         <div class="mb-3">
             <label class="form-label">Product name</label>
-            <input type="text" class="form-control" name="name" [(ngModel)]="product.name" required #name="ngModel">
+            <input type="text" class="form-control" [(ngModel)]="product.name" name="name" required>
             <div *ngIf="name.invalid && name.touched" class="text-danger">Product name is required.</div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Description</label>
-            <textarea class="form-control" name="description" [(ngModel)]="product.description" required #description="ngModel"></textarea>
+            <textarea class="form-control" [(ngModel)]="product.description" name="description" required></textarea>
             <div *ngIf="description.invalid && description.touched" class="text-danger">Description is required.</div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Price</label>
-            <input type="number" class="form-control" name="price" [(ngModel)]="product.price" required min="0.01" #price="ngModel">
+            <input type="number" class="form-control" [(ngModel)]="product.price" required min="0.01" name="price">
             <div *ngIf="price.invalid && price.touched" class="text-danger">Price must be greater than 0.</div>
         </div>
 
