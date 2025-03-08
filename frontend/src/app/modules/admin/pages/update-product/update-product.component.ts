@@ -20,6 +20,7 @@ export class UpdateProductComponent implements OnInit {
     categoryName: '',
     imageUrls: []
   };
+  categories: string[] = [];
   selectedFile: File | null = null;
   successMessage: string = "";
   errorMessage: string = "";
@@ -34,6 +35,7 @@ export class UpdateProductComponent implements OnInit {
     if (productId) {
       this.loadProductDetails(+productId);
     }
+    this.loadCategories();
   }
 
   loadProductDetails(id: number) {
@@ -45,6 +47,17 @@ export class UpdateProductComponent implements OnInit {
       error: (error) => { 
         this.errorMessage = "Error loading product details.";
         console.error(error); 
+      }
+    });
+  }
+
+  loadCategories() {
+    this.productService.getCategories().subscribe({
+      next: (categories) => {
+        this.categories = categories.map(cat => cat.name);
+      },
+      error: (error) => {
+        console.error("Error loading categories:", error);
       }
     });
   }
