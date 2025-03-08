@@ -91,30 +91,19 @@ export class UpdateProductComponent implements OnInit {
         if (this.selectedImage === imageUrl) {
           this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0] : '';
         }
-      }
-    })
-  }
-
-
-  sendUpdateRequest() {
-    this.productService.updateProduct(this.product.id!, this.product).subscribe({
-      next: (response: any) => {
-        if (response && response.message) {
-          this.successMessage = response.message
-        } else {
-          this.successMessage = "Product update successfully!";
-        }
-        this.errorMessage = "";
-
-        this.router.navigate(['/admin/view-products']);
       },
       error: (error) => {
-        if (error.error && error.error.error) {
-          this.errorMessage = error.error.error;
-        } else {
-          this.errorMessage = "Error updating product.";
-        } 
+        console.error("Error deleting image:", error);
       }
     });
+  }
+
+  updateProduct() {
+    this.productService.updateProduct(this.product.id, this.product).subscribe({
+      next: () => {
+        this.successMessage = "Product updated successfully!";
+        this.errorMessage = "";
+      }
+    })
   }
 }
