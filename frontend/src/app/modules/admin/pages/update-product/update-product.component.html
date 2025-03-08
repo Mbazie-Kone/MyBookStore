@@ -14,14 +14,14 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Price</label>
-            <input type="number" class="form-control" [(ngModel)]="product.price" name="price" min="0.01" required #price="ngModel">
+            <label class="form-label">Price (€)</label>
+            <input type="number" class="form-control" [(ngModel)]="product.price" name="price" required min="0.01" #price="ngModel">
             <div *ngIf="price.invalid && price.touched" class="text-danger">Price must be greater than 0.</div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Stock</label>
-            <input type="number" class="form-control" [(ngModel)]="product.stock" name="stock" min="0" required #stock="ngModel">
+            <input type="number" class="form-control" [(ngModel)]="product.stock" name="stock" required min="0" #stock="ngModel">
             <div *ngIf="stock.invalid && stock.touched" class="text-danger">Stock must be at least 0.</div>
         </div>
 
@@ -45,13 +45,10 @@
         </div>
 
         <!-- Image thumbnails -->
-        <div class="mb-3">
-            <label class="form-label">Product Images</label>
-            <div class="d-flex flex-wrap">
-                <div *ngFor="let imageUrl of product.imageUrls" class="position-relative me-2 mb-2">
-                    <img [src]="imageUrl" class="thumbnail-image" (click)="selectMainImage(imageUrl)" alt="Product Image">
-                    <button type="button" class="btn-close position-absolute top-0 end-0" (click)="deleteImage(imageUrl)"></button>
-                </div>
+        <div class="thumbnail-container mb-3">
+            <div *ngFor="let imageUrl of product.imageUrls" class="position-relative">
+                <img [src]="imageUrl" class="thumbnail-image" [class.selected]="imageUrl === selectedImage" (click)="changeImage(imageUrl)" alt="Product Thumbnail">
+                <button class="delete-thumbnail" (click)="deleteImage(imageUrl)">✖</button>
             </div>
         </div>
 
