@@ -54,12 +54,8 @@ export class UpdateProductComponent implements OnInit {
 
   loadCategories() {
     this.productService.getCategories().subscribe({
-      next: (data) => {
-        if (Array.isArray(data)) {
-          this.categories = data.map(category =>
-            typeof category === 'string' ? { name: category } : category
-          );
-        }
+      next: (data: Category[]) => {
+       this.categories = data;
       },
       error: (error) => {
         console.error("Error loading categories:", error);
