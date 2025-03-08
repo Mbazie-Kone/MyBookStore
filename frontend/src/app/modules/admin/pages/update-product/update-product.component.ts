@@ -112,4 +112,9 @@ export class UpdateProductComponent implements OnInit {
       }
     });
   }
+
+  // Select a main image
+  selectMainImage(imageUrl: string) {
+    this.selectedImage = imageUrl;
+  }
 }
