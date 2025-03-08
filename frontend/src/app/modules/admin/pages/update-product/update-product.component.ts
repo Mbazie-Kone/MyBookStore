@@ -49,24 +49,28 @@ export class UpdateProductComponent implements OnInit {
     });
   }
 
+  // Select the image to upload
   onFileSelected(event: any) {
-    this.selectedFiles = event.target.files[0];
-    if (this.selectedFiles && !this.selectedFiles.type.startsWith('image/')) {
-      this.fileError = "Invalid file type. Please selcet an image file.";
-      this,this.selectedFiles = null;
-    } else {
-      this.fileError = "";
-    }
+    this.selectedFile = event.target.files[0];
   }
 
-  updateProduct() {
-    if (this.selectedFiles) {
-      this.productService.uploadImage(this.selectedFiles).subscribe({
-        next: (imageUrl) => {
-          this.product.imageUrls = imageUrl;
-          this.sendUpdateRequest();
-        },
-        error: () => {
+  // Uploading a new image
+  uploadImage() {
+    if (!this.selectedFile) {
+        this.errorMessage = "Please select an image.";
+        
+        return;
+    }
+    
+    if (this.product.imageUrls.length >= this.maxImgaes) {
+      this.errorMessage = "Maximum number of images reached.";
+
+      return;
+    }
+
+
+
+
           this.errorMessage = "Error uploading image.";
         }
       });
