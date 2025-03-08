@@ -98,12 +98,18 @@ export class UpdateProductComponent implements OnInit {
     });
   }
 
+  // Update the product
   updateProduct() {
     this.productService.updateProduct(this.product.id, this.product).subscribe({
       next: () => {
         this.successMessage = "Product updated successfully!";
         this.errorMessage = "";
+      },
+      error: (error) => {
+        this.successMessage = "";
+        this.errorMessage = "Error updating product.";
+        console.error(error);
       }
-    })
+    });
   }
 }
