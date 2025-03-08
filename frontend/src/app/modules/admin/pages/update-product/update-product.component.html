@@ -46,7 +46,7 @@
 
         <!-- Image thumbnails -->
         <div class="thumbnail-container mb-3">
-            <div *ngFor="let imageUrl of product.imageUrls" class="position-relative">
+            <div *ngFor="let imageUrl of product.imageUrls; let i = index" class="position-relative">
                 <img [src]="imageUrl" class="thumbnail-image" [class.selected]="imageUrl === selectedImage" (click)="changeImage(imageUrl)" alt="Product Thumbnail">
                 <button class="delete-thumbnail" (click)="deleteImage(imageUrl)">✖</button>
             </div>
@@ -63,8 +63,9 @@
         <!-- Input for uploading images -->
         <div class="mb-3">
             <label class="form-label">Upload new image</label>
-            <input type="file" class="form-control" (change)="onFileSelected($event)" [disabled]="product.imageUrls.length >= maxImages">
-            <button type="button" class="btn btn-success mt-2" (click)="uploadImage()" [disabled]="product.imageUrls.length >= maxImages">Add Image</button>
+            <input type="file" class="form-control" (change)="onFileSelected($event)" #fileInput>
+            <button type="button" class="btn btn-success mt-2" (click)="uploadImage(fileInput.files[0])" 
+            [disabled]="product.imageUrls.length >= maxImages">Add Image</button>
         </div>
 
         <button type="submit" class="btn btn-primary w-100" [disabled]="updateProductForm.invalid">Update Product</button>

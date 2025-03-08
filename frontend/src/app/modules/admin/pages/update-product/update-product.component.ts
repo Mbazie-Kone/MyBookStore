@@ -22,12 +22,10 @@ export class UpdateProductComponent implements OnInit {
     imageUrls: []
   };
   categories: Category[] = [];
-  selectedFile: File | null = null;
   successMessage: string = "";
   errorMessage: string = "";
   maxImages: number = 10;
   selectedImage: string = '';
-  fileError: string ="";
 
   constructor(private productService: ProductService, private route: ActivatedRoute) {}
   
@@ -65,13 +63,16 @@ export class UpdateProductComponent implements OnInit {
 
   // Select the image to upload
   onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
+    const file = event.target.files[0];
+    if (file) {
+      this.uploadImage(file);
+    }
   }
 
   // Uploading a new image
-  uploadImage() {
-    if (!this.selectedFile) {
-        this.errorMessage = "Please select an image.";
+  uploadImage(file : File) {
+    if (this.product.imageUrls.length >= this.maxImages) {
+        alert("You can't upload more than 10 images.");
         
         return;
     }
@@ -82,34 +83,34 @@ export class UpdateProductComponent implements OnInit {
       return;
     }
 
-    this.productService.uploadImage(this.selectedFile).subscribe({
+    this.productService.uploadImage(file).subscribe({
       next: (imageUrl) => {
         this.product.imageUrls.push(imageUrl);
-        this.selectedFile = null;
-        this.errorMessage = "";
       },
       error: (error) => {
-        this.errorMessage = "Error uploading the image.";
-        console.error(error);
+        console.error("Error uploading image:", error);
       }
     });
   }
 
   // Delete an image
   deleteImage(imageUrl: string) {
-    this.productService.deleteImage(imageUrl).subscribe({
-      next: () => {
-        this.product.imageUrls = this.product.imageUrls.filter(img => img !== imageUrl);
-
-        // If the main image has been deleted, select the first available one
-        if (this.selectedImage === imageUrl) {
-          this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0] : '';
+    if (confirm("Are you sure you want to delete this image?")) {
+      this.productService.deleteImage(imageUrl).subscribe({
+        next: () => {
+          this.product.imageUrls = this.product.imageUrls.filter(img => img !== imageUrl);
+  
+          // If the main image has been deleted, select the first available one
+          if (this.selectedImage === imageUrl) {
+            this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0] : '';
+          }
+        },
+        error: (error) => {
+          console.error("Error deleting image:", error);
         }
-      },
-      error: (error) => {
-        console.error("Error deleting image:", error);
-      }
-    });
+      });
+    }
+   
   }
 
   // Update the product
@@ -117,10 +118,8 @@ export class UpdateProductComponent implements OnInit {
     this.productService.updateProduct(this.product.id, this.product).subscribe({
       next: () => {
         this.successMessage = "Product updated successfully!";
-        this.errorMessage = "";
       },
       error: (error) => {
-        this.successMessage = "";
         this.errorMessage = "Error updating product.";
         console.error(error);
       }
