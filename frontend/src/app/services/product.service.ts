@@ -60,4 +60,10 @@ export class ProductService {
 
     return this.http.delete<void>(`${this.ProductUrl}/delete/product/${id}`);
   }
+
+  // Delete Image
+  deleteImage(imageUrl: string): Observable<void> {
+    
+    return this.http.delete<void>(`${this.ProductUrl}/delete/image?imageUrl=${encodeURIComponent(imageUrl)}`);
+  }
 }
