@@ -42,7 +42,10 @@ export class UpdateProductComponent implements OnInit {
         this.product = data; 
         this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0] : '';
       },
-      error: (error) => { console.error('Error fetching categories:', error); }
+      error: (error) => { 
+        this.errorMessage = "Error loading product details.";
+        console.error(error); 
+      }
     });
   }
 
