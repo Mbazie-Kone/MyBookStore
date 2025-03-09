@@ -9,8 +9,8 @@
                 <img *ngFor="let image of product.imageUrls" 
                     [src]="image.imageUrl"
                     class="thumbnail-image" 
-                    [class.selected]="imageUrl === selectedImage"
-                    (click)="changeImage(image.imageUrl)"
+                    [class.selected]="image.imageUrl === selectedImage"
+                    (click)="changeImage(image)"
                     alt="Product Thumbnail">
             </div>
         </div>
