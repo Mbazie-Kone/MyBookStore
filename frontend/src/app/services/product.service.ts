@@ -65,6 +65,6 @@ export class ProductService {
   // Delete Image
   deleteImage(imageUrl: string): Observable<any> {
     
-    return this.http.delete(`${this.ProductUrl}/delete/image?imageUrl=${encodeURIComponent(imageUrl)}`);
+    return this.http.delete(`${this.ProductUrl}/delete/image/${imageId}`);
   }
 }
