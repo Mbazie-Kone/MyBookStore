@@ -96,9 +96,10 @@ export class UpdateProductComponent implements OnInit {
   // Delete an image
   deleteImage(imageUrl: string) {
     if (confirm("Are you sure you want to delete this image?")) {
-      this.productService.deleteImage(imageUrl).subscribe({
-        next: () => {
-          this.product.imageUrls = this.product.imageUrls.filter(img => img !== imageUrl);
+      this.productService.deleteImage(imageId).subscribe({
+        next: (response) => {
+          console.log(response.messagge);
+          this.product.imageUrls = this.product.imageUrls.filter(img => img.id !== imageId);
   
           // If the main image has been deleted, select the first available one
           if (this.selectedImage === imageUrl) {
