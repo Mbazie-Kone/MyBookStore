@@ -16,7 +16,7 @@ export class ProductsComponent implements OnInit {
     stock: 0,
     isAvailable: true,
     categoryName: '',
-    imageUrls: [] as string[]
+    imageUrls: []
   };
 
   selectedFiles: File[] = [];
@@ -65,12 +65,12 @@ export class ProductsComponent implements OnInit {
   // Upload multiple images and save the product
   uploadImageAndSaveProduct(form: any) {
     if (this.selectedFiles.length > 0) {
-      let uploadedUrls: string[] = [];
+      let uploadedUrls: { id: number; imageUrl: string }[] = [];
 
       this.selectedFiles.forEach((file, index) => {
         this.productService.uploadImage(file).subscribe({
-          next: (imageUrl) => {
-            uploadedUrls.push(imageUrl);
+          next: (imageUrl: string) => {
+            uploadedUrls.push({ id: Date.now() + index, imageUrl });
 
             // When all images are uploaded, save the product
             if(uploadedUrls.length === this.selectedFiles.length) {
