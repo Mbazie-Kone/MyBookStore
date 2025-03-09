@@ -41,7 +41,7 @@ export class UpdateProductComponent implements OnInit {
     this.productService.getProductById(id).subscribe({
       next: (data) => { 
         this.product = data; 
-        this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0] : '';
+        this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0].imageUrl : '';
       },
       error: (error) => { 
         this.errorMessage = "Error loading product details.";
@@ -94,7 +94,7 @@ export class UpdateProductComponent implements OnInit {
   }
 
   // Delete an image
-  deleteImage(imageId: string) {
+  deleteImage(imageId: number) {
     if (confirm("Are you sure you want to delete this image?")) {
       this.productService.deleteImage(imageId).subscribe({
         next: (response) => {
@@ -102,8 +102,8 @@ export class UpdateProductComponent implements OnInit {
           this.product.imageUrls = this.product.imageUrls.filter(img => img.id !== imageId);
   
           // If the main image has been deleted, select the first available one
-          if (this.selectedImage === imageUrl) {
-            this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0] : '';
+          if (this.selectedImage === this.product.imageUrls.find(img => img.id === imageId)?.imageUrl) {
+            this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0].imageUrl : '';
           }
         },
         error: (error) => {

@@ -63,7 +63,7 @@ export class ProductService {
   }
 
   // Delete Image
-  deleteImage(imageUrl: string): Observable<any> {
+  deleteImage(imageId: number): Observable<any> {
     
     return this.http.delete(`${this.ProductUrl}/delete/image/${imageId}`);
   }
