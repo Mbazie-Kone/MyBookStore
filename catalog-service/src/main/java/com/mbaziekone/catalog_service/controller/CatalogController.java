@@ -84,9 +84,9 @@ public class CatalogController {
 			Product product = productOpt.get();
 		
 		
-		List<String> imageUrls = imageRepository.findByProductId(product.getId())
+		List<ViewCategoryProductImage.ImageDto> imageDtos = imageRepository.findByProductId(product.getId())
 				.stream()
-				.map(Image::getImageUrl)
+				.map(image -> new ViewCategoryProductImage.ImageDto(image.getId(), image.getImageUrl()))
 				.collect(Collectors.toList());
 		
 		ViewCategoryProductImage productDto = new ViewCategoryProductImage(
@@ -97,7 +97,7 @@ public class CatalogController {
 				product.getStock(),
 				product.getIsAvailable(),
 				product.getCategory().getName(),
-				imageUrls
+				imageDtos
 			);
 		
 			return ResponseEntity.ok(productDto);
