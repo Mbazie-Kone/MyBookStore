@@ -13,18 +13,19 @@ import lombok.NoArgsConstructor;
 public class ViewCategoryProductImage {
 	
 	private Long id;
-	
 	private String name;
-
 	private String description;
-	
 	private BigDecimal price;
-	
 	private int stock;
-	
 	private Boolean isAvailable;
-	
 	private String categoryName;
+	private List<ImageDto> imageUrls;
 	
-	private List<String> imageUrls;
+	@Data
+	@AllArgsConstructor
+	@NoArgsConstructor
+	public static class ImageDto {
+		private Long id;
+		private String imageUrl;
+	}
 }

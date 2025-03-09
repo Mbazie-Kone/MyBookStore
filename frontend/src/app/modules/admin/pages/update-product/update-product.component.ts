@@ -94,7 +94,7 @@ export class UpdateProductComponent implements OnInit {
   }
 
   // Delete an image
-  deleteImage(imageUrl: string) {
+  deleteImage(imageId: string) {
     if (confirm("Are you sure you want to delete this image?")) {
       this.productService.deleteImage(imageId).subscribe({
         next: (response) => {

@@ -44,11 +44,11 @@
             <div *ngIf="categoryName.invalid && categoryName.touched" class="text-danger">Please select a category.</div>
         </div>
 
-        <!-- Image thumbnails -->
+        <!-- thumbnails Images -->
         <div class="thumbnail-container mb-3">
-            <div *ngFor="let imageUrl of product.imageUrls; let i = index" class="position-relative">
-                <img [src]="imageUrl" class="thumbnail-image" [class.selected]="imageUrl === selectedImage" (click)="changeImage(imageUrl)" alt="Product Thumbnail">
-                <button class="delete-thumbnail" (click)="deleteImage(imageUrl)">✖</button>
+            <div *ngFor="let image of product.imageUrls" class="position-relative">
+                <img [src]="image.imageUrl" class="thumbnail-image" [class.selected]="image.id === selectedImage" (click)="changeImage(image.imageUrl)" alt="Product Thumbnail">
+                <button class="delete-thumbnail" (click)="deleteImage(image.id)">✖</button>
             </div>
         </div>
 
