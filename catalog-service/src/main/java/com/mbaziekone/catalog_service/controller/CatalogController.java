@@ -13,6 +13,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.jpa.repository.query.EqlParser.New_valueContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -55,9 +56,9 @@ public class CatalogController {
 		List<Product> products = productRepository.findAll();
 		
 		List<ViewCategoryProductImage> viewCategoryProductImages = products.stream().map(product -> {
-			List<String> imageUrls = imageRepository.findByProductId(product.getId())
+			List<ViewCategoryProductImage.ImageDto> imageDtos = imageRepository.findByProductId(product.getId())
 					.stream()
-					.map(Image::getImageUrl)
+					.map(image -> new ViewCategoryProductImage.ImageDto(image.getId(), image.getImageUrl()))
 					.collect(Collectors.toList());
 			
 			return new ViewCategoryProductImage(
@@ -68,7 +69,7 @@ public class CatalogController {
 						product.getStock(),
 						product.getIsAvailable(),
 						product.getCategory().getName(),
-						imageUrls
+						imageDtos
 					);
 			}).collect(Collectors.toList());
 		
