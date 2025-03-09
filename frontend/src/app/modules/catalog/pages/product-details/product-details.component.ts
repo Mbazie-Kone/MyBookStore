@@ -58,8 +58,8 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   // Method to change the displayed image
-  changeImage(imagUrl: string) {
-    console.log("Selected Image URL:", imagUrl);
-    this.selectedImage = imagUrl;
+  changeImage(image: { id: number, imagUrl: string }) {
+    console.log("Selected Image URL:", image.imagUrl);
+    this.selectedImage = image.imagUrl;
   }
 }
