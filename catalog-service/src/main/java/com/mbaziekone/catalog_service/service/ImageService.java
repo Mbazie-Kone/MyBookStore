@@ -22,7 +22,7 @@ public class ImageService {
 	}
 	
 	public List<Image> getImagesByProduct(Long productId) {
-		List<Image> images = imageRepository.findByProductId(productId);>
+		List<Image> images = imageRepository.findByProductId(productId);
 		
 		return images != null ? images : List.of();
 	}
