@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mbaziekone.catalog_service.dto.InsertCategoryProductImage;
+import com.mbaziekone.catalog_service.dto.InsertCategoryProductImage.ImageDto;
 import com.mbaziekone.catalog_service.dto.ViewCategoryProductImage;
 import com.mbaziekone.catalog_service.model.Category;
 import com.mbaziekone.catalog_service.model.Image;
@@ -174,7 +175,7 @@ public class CatalogController {
 				for (int i = 0; i < limit; i++) {
 					Image image = new Image();
 					image.setProduct(product);
-					image.setImageUrl(dto.getImageUrls().get(i));
+					image.setImageUrl(dto.getImageUrls().get(i).getImageUrl());
 					
 					imageRepository.save(image);
 				}
@@ -228,7 +229,10 @@ public class CatalogController {
 			List<Image> existingImages = imageRepository.findByProductId(product.getId());
 			
 			// Delete removed images
-			List<String> newImageUrls = dto.getImageUrls();
+			List<String> newImageUrls = dto.getImageUrls().stream()
+					.map(ImageDto::getImageUrl)
+					.collect(Collectors.toList());
+			
 			for (Image image : existingImages) {
 				if(!newImageUrls.contains(image.getImageUrl())) {
 					deleteImageFile(image.getImageUrl()); // Remove from filesystem
@@ -238,7 +242,8 @@ public class CatalogController {
 			}
 			
 			// Add new images
-			for (String imageUrl : newImageUrls) {
+			for (ImageDto imageDto : dto.getImageUrls()) {
+				String imageUrl = imageDto.getImageUrl();
 				if (existingImages.stream().noneMatch(img -> img.getImageUrl().equals(imageUrl))) {
 					Image newImage = new Image();
 					newImage.setProduct(product);
