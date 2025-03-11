@@ -22,8 +22,9 @@ public class ImageService {
 	}
 	
 	public List<Image> getImagesByProduct(Long productId) {
+		List<Image> images = imageRepository.findByProductId(productId);>
 		
-		return imageRepository.findByProductId(productId);
+		return images != null ? images : List.of();
 	}
 	
 	public Optional<Image> getImageById(Long id) {
