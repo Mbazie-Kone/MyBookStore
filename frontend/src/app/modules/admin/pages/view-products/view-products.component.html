@@ -2,9 +2,9 @@
     <h2 class="text-center">Product List</h2>
     <a routerLink="/admin/products" class="btn btn-primary">Add new product</a>
 
-    <div *ngIf="errorMessage" class="alert alert-danger">
+    <!-- <div *ngIf="errorMessage" class="alert alert-danger">
         {{ errorMessage }}
-    </div>
+    </div> -->
 
     <div *ngIf="products.length === 0" class="alert alert-warning text-center mt-3">
         No products available to display.
@@ -45,4 +45,3 @@
         </tbody>
     </table>
 </div>
-

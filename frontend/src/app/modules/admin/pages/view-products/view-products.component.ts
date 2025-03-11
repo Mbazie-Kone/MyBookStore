@@ -10,7 +10,7 @@ import { ProductService } from '../../../../services/product.service';
 })
 export class ViewProductsComponent implements OnInit {
   products: Product[] = [];
-  errorMessage: string = "";
+  // errorMessage: string = "";
 
   constructor(private productService: ProductService) {}
   
@@ -27,7 +27,7 @@ export class ViewProductsComponent implements OnInit {
         }));
       },
       error: (error) => {
-        this.errorMessage = "Error loading products.";
+        // this.errorMessage = "Error loading products.";
         console.error(error);
       }
     });
