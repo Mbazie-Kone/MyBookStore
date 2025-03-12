@@ -326,7 +326,7 @@ public class CatalogController {
 			return ResponseEntity.ok(response);
 		} else {
 			
-			return ResponseEntity.status(404).body(Map.of("Error", "Product not found."));
+			return ResponseEntity.status(404).body(Map.of("Error", "Image not found."));
 		}
 	}
 	
