@@ -102,7 +102,7 @@ export class UpdateProductComponent implements OnInit {
           this.product.imageUrls = this.product.imageUrls.filter(img => img.id !== imageId);
   
           // If the main image has been deleted, select the first available one
-          if (this.tempMainImage === this.product.imageUrls.find(img => img.id === imageId)?.imageUrl) {
+          if (this.tempMainImage && !this.product.imageUrls.some(img => img.imageUrl === this.tempMainImage)) {
             this.tempMainImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0].imageUrl : '';
           }
         },

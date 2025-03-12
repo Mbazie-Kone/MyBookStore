@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -320,6 +321,7 @@ public class CatalogController {
 		
 		if (optionalImage.isPresent()) {
 			Image image = optionalImage.get();
+			
 			deleteImageFile(image.getImageUrl()); // Remove from filesystem
 			
 			imageRepository.delete(image); // Remove from database
@@ -332,7 +334,7 @@ public class CatalogController {
 			return ResponseEntity.ok(response);
 		} else {
 			
-			return ResponseEntity.status(404).body(Map.of("Error", "Image not found."));
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("Error", "Image not found."));
 		}
 	}
 	
