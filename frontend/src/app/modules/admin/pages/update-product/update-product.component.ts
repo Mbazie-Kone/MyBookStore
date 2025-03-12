@@ -98,8 +98,7 @@ export class UpdateProductComponent implements OnInit {
   deleteImage(imageId: number) {
     if (confirm("Are you sure you want to delete this image?")) {
       this.productService.deleteImage(imageId).subscribe({
-        next: (response) => {
-          console.log(response.messagge);
+        next: () => {
           this.product.imageUrls = this.product.imageUrls.filter(img => img.id !== imageId);
   
           // If the main image has been deleted, select the first available one
@@ -116,6 +115,9 @@ export class UpdateProductComponent implements OnInit {
 
   // Update the product
   updateProduct() {
+    this.successMessage = "";
+    this.errorMessage = "";
+    
     this.productService.updateProduct(this.product.id, this.product).subscribe({
       next: () => {
         this.successMessage = "Product updated successfully!";
