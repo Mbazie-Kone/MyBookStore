@@ -61,6 +61,8 @@ public class CatalogController {
 					.map(image -> new ViewCategoryProductImage.ImageDto(image.getId(), image.getImageUrl()))
 					.collect(Collectors.toList());
 			
+			String mainImageUrl = !imageDtos.isEmpty() ? imageDtos.get(0).getImageUrl() : "";
+ 			
 			return new ViewCategoryProductImage(
 						product.getId(),
 						product.getName(),
@@ -69,7 +71,8 @@ public class CatalogController {
 						product.getStock(),
 						product.getIsAvailable(),
 						product.getCategory().getName(),
-						imageDtos
+						imageDtos,
+						mainImageUrl
 					);
 			}).collect(Collectors.toList());
 		
@@ -90,6 +93,8 @@ public class CatalogController {
 				.map(image -> new ViewCategoryProductImage.ImageDto(image.getId(), image.getImageUrl()))
 				.collect(Collectors.toList());
 		
+		String mainImageUrl = !imageDtos.isEmpty() ? imageDtos.get(0).getImageUrl() : "";
+		
 		ViewCategoryProductImage productDto = new ViewCategoryProductImage(
 				product.getId(),
 				product.getName(),
@@ -98,7 +103,8 @@ public class CatalogController {
 				product.getStock(),
 				product.getIsAvailable(),
 				product.getCategory().getName(),
-				imageDtos
+				imageDtos,
+				mainImageUrl
 			);
 		
 			return ResponseEntity.ok(productDto);

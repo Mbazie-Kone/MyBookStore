@@ -20,6 +20,7 @@ public class ViewCategoryProductImage {
 	private Boolean isAvailable;
 	private String categoryName;
 	private List<ImageDto> imageUrls;
+	private String mainImageUrl;
 	
 	@Data
 	@AllArgsConstructor

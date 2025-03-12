@@ -48,12 +48,11 @@
             <label class="form-label">Select a new product preview or delete one or more images</label>
         </div>
         <!-- thumbnails Images -->
-        <div class="thumbnail-container mb-3">
-            
+        <div class="thumbnail-container mb-3">    
             <div *ngFor="let image of product.imageUrls" class="position-relative">
                 <img [src]="image.imageUrl" 
                 class="thumbnail-image" 
-                [class.selected]="image.imageUrl === tempSelectedImage" 
+                [class.selected]="image.imageUrl === tempMainImage" 
                 (click)="changeImage(image.imageUrl)" 
                 alt="Product Thumbnail">
                 <button class="delete-thumbnail" (click)="deleteImage(image.id)">✖</button>

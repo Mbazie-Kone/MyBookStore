@@ -24,8 +24,8 @@
         <tbody>
             <tr *ngFor="let product of products">
                 <td>
-                    <img *ngIf="product.imageUrls.length > 0" 
-                    [src]="product.imageUrls[0].imageUrl" 
+                    <img *ngIf="product.mainImageUrl" 
+                    [src]="product.mainImageUrl" 
                     alt="{{ product.name }}" 
                     width="90" height="80" 
                     class="img-thumbnail">

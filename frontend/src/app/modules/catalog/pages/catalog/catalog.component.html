@@ -14,8 +14,8 @@
                 <div class="card shadow-sm h-100">
                     <div class="card-header text-center">
                         <a [routerLink]="['/catalog/product-details', product.id]">
-                            <img *ngIf="product.imageUrls.length > 0" 
-                            [src]="product.imageUrls[0].imageUrl" 
+                            <img *ngIf="product.mainImageUrl" 
+                            [src]="product.mainImageUrl" 
                             class="product-image" 
                             alt="{{ product.name }}">
                         </a>

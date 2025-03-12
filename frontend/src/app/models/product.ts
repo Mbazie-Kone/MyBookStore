@@ -7,4 +7,5 @@ export interface Product {
     isAvailable: boolean;
     categoryName: string;
     imageUrls: { id: number; imageUrl: string }[];
+    mainImageUrl?: string;
 }

@@ -25,8 +25,7 @@ export class UpdateProductComponent implements OnInit {
   successMessage: string = "";
   errorMessage: string = "";
   maxImages: number = 10;
-  selectedImage: string = '';
-  tempSelectedImage: string = '';
+  tempMainImage: string = '';
 
   constructor(private productService: ProductService, private route: ActivatedRoute) {}
   
@@ -42,7 +41,7 @@ export class UpdateProductComponent implements OnInit {
     this.productService.getProductById(id).subscribe({
       next: (data) => { 
         this.product = data; 
-        this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0].imageUrl : '';
+        this.tempMainImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0].imageUrl : '';
       },
       error: (error) => { 
         this.errorMessage = "Error loading product details.";
@@ -103,8 +102,8 @@ export class UpdateProductComponent implements OnInit {
           this.product.imageUrls = this.product.imageUrls.filter(img => img.id !== imageId);
   
           // If the main image has been deleted, select the first available one
-          if (this.selectedImage === this.product.imageUrls.find(img => img.id === imageId)?.imageUrl) {
-            this.selectedImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0].imageUrl : '';
+          if (this.tempMainImage === this.product.imageUrls.find(img => img.id === imageId)?.imageUrl) {
+            this.tempMainImage = this.product.imageUrls.length > 0 ? this.product.imageUrls[0].imageUrl : '';
           }
         },
         error: (error) => {
@@ -116,14 +115,14 @@ export class UpdateProductComponent implements OnInit {
 
   // Update the product
   updateProduct() {
-    if (this.tempSelectedImage) {
-      this.selectedImage = this.tempSelectedImage;
+    if (this.tempMainImage) {
+      this.product.mainImageUrl = this.tempMainImage;
     }
 
     this.productService.updateProduct(this.product.id, this.product).subscribe({
       next: () => {
         this.successMessage = "Product updated successfully!";
-        this.tempSelectedImage = ''; // Reset selection after saving
+        this.tempMainImage = ''; // Reset selection after saving
       },
       error: (error) => {
         this.errorMessage = "Error updating product.";
@@ -132,12 +131,7 @@ export class UpdateProductComponent implements OnInit {
     });
   }
 
-  // Select a main image
-  selectMainImage(imageUrl: string) {
-    this.selectedImage = imageUrl;
-  }
-
   changeImage(imageUrl: string) {
-    this.tempSelectedImage = imageUrl;
+    this.tempMainImage = imageUrl;
   }
 }

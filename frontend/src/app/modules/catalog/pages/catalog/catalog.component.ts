@@ -21,7 +21,10 @@ export class CatalogComponent implements OnInit {
   loadProducts() {
     this.productService.getProducts().subscribe({
       next: (data) => {
-        this.products = data;
+        this.products = data.map(product => ({
+          ...product,
+          mainImageUrl: product.imageUrls.length > 0 ? product.imageUrls[0].imageUrl : ''
+        }));
       },
       error: (error) => {
         this.errorMessage = "Error loading products.";

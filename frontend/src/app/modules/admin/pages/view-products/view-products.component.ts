@@ -23,7 +23,8 @@ export class ViewProductsComponent implements OnInit {
       next: (data) => {
         this.products = data.map(product => ({
           ...product,
-          imageUrls: product.imageUrls || []
+          imageUrls: product.imageUrls || [],
+          mainImageUrl: product.imageUrls.length > 0 ? product.imageUrls[0].imageUrl : ''
         }));
       },
       error: (error) => {

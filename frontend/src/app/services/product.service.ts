@@ -39,7 +39,8 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.ProductUrl}/view/products`).pipe(
       map((products: Product[]) => products.map((product: Product) => ({
         ...product,
-        imageUrls: product.imageUrls ?? []
+        imageUrls: product.imageUrls ?? [],
+        mainImageUrl: product.imageUrls.length > 0 ? product.imageUrls[0].imageUrl : ''
       })))
     );
   }
