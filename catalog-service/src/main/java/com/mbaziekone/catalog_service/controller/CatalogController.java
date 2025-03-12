@@ -321,7 +321,7 @@ public class CatalogController {
 			
 			// JSON response
 			Map<String, String> response = new HashMap<>();
-			response.put("message", "Product updated successfully!");
+			response.put("message", "image deleted successfully!");
 			
 			return ResponseEntity.ok(response);
 		} else {
