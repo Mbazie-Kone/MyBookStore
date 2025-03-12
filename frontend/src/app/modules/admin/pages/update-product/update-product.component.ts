@@ -26,6 +26,7 @@ export class UpdateProductComponent implements OnInit {
   errorMessage: string = "";
   maxImages: number = 10;
   selectedImage: string = '';
+  tempSelectedImage: string = '';
 
   constructor(private productService: ProductService, private route: ActivatedRoute) {}
   
@@ -115,12 +116,14 @@ export class UpdateProductComponent implements OnInit {
 
   // Update the product
   updateProduct() {
-    this.successMessage = "";
-    this.errorMessage = "";
-    
+    if (this.tempSelectedImage) {
+      this.selectedImage = this.tempSelectedImage;
+    }
+
     this.productService.updateProduct(this.product.id, this.product).subscribe({
       next: () => {
         this.successMessage = "Product updated successfully!";
+        this.tempSelectedImage = ''; // Reset selection after saving
       },
       error: (error) => {
         this.errorMessage = "Error updating product.";
@@ -135,6 +138,6 @@ export class UpdateProductComponent implements OnInit {
   }
 
   changeImage(imageUrl: string) {
-    this.selectedImage = imageUrl;
+    this.tempSelectedImage = imageUrl;
   }
 }
