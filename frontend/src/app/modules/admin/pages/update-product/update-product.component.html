@@ -44,8 +44,12 @@
             <div *ngIf="categoryName.invalid && categoryName.touched" class="text-danger">Please select a category.</div>
         </div>
 
+        <div class="mb-3">
+            <label class="form-label">Select a new product preview or delete one or more images</label>
+        </div>
         <!-- thumbnails Images -->
         <div class="thumbnail-container mb-3">
+            
             <div *ngFor="let image of product.imageUrls" class="position-relative">
                 <img [src]="image.imageUrl" 
                 class="thumbnail-image" 
