@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AdminModule } from './modules/admin/admin.module';
 import { ErrorComponent } from './errors/error/error.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
