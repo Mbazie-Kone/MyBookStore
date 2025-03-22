@@ -11,11 +11,11 @@ const routes: Routes = [
   { path: 'admin/login', component: LoginComponent},
   { path: 'admin/register', component: RegisterComponent},
   {
-    path: 'admin/dashboard',
+    path: 'admin',
     component: AdminLayoutComponent,
     children: [
-      { path: 'admin/dashboard', redirectTo: 'dashboard', pathMatch: 'full'},
-      { path: 'dashboard', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) }
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+      { path: '', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) }
     ]
   },
   {
