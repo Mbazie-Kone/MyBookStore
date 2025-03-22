@@ -67,4 +67,6 @@
     height: 100vh;
     width: 250px;
     position: fixed;
+    background: #1f3a93;
+    color: white;
 }
