@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'admin/view-products', component: ViewProductsComponent },
   { path: 'admin/products', component: ProductsComponent },
   { path: 'admin/update-product/:id', component: UpdateProductComponent},
+  {path: 'admin/'},
   {
     path: '', 
     component: LayoutComponent,
