@@ -90,3 +90,16 @@
     margin-right: 10px;
     font-size: 1.2rem;
 }
+
+.content {
+    margin-left: 270px;
+}
+
+.content .navbar {
+    background-color: #1f3a93;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
