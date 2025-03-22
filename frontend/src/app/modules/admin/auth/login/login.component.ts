@@ -32,7 +32,7 @@ export class LoginComponent {
 
         console.log("LocalStorage token:", localStorage.getItem('token'));
 
-        this.router.navigate(['/admin/dashboard']).then(success => {
+        this.router.navigate(['/administration/dashboard']).then(success => {
           console.log(success);
         }).catch(err => {
           console.error(err);
