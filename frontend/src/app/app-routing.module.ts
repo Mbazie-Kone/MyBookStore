@@ -9,15 +9,17 @@ import { authGuard } from './guards/auth.guard';
 import { ProductsComponent } from './modules/admin/pages/products/products.component';
 import { ViewProductsComponent } from './modules/admin/pages/view-products/view-products.component';
 import { UpdateProductComponent } from './modules/admin/pages/update-product/update-product.component';
+import { AdminLayoutComponent } from './core/components/admin/admin-layout/admin-layout.component';
 
 const routes: Routes = [
-  { path: 'admin/login', component: LoginComponent },
-  { path: 'admin/register', component: RegisterComponent },
-  { path: 'admin/dashboard', component: DashboardComponent, canActivate: [authGuard] },
-  { path: 'admin/view-products', component: ViewProductsComponent },
-  { path: 'admin/products', component: ProductsComponent },
-  { path: 'admin/update-product/:id', component: UpdateProductComponent},
-  {path: 'admin/'},
+  {
+    path: 'admin/',
+    component: AdminLayoutComponent,
+    children: [
+      { path: '', redirectTo: 'admin', pathMatch: 'full'},
+      { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) }
+    ]
+  },
   {
     path: '', 
     component: LayoutComponent,
