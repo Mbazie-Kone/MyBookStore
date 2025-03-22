@@ -1,0 +1,7 @@
+
+.icon-dashboard:before { content: '\61'; } /* 'a' */
+.icon-chart:before { content: '\62'; } /* 'b' */
+.icon-settings:before { content: '\63'; } /* 'c' */
+.icon-bell:before { content: '\64'; } /* 'd' */
+.icon-search:before { content: '\65'; } /* 'e' */
+.icon-hamburger:before { content: '\66'; } /* 'f' */
