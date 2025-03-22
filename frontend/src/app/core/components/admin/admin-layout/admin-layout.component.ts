@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './admin-layout.component.css'
 })
 export class AdminLayoutComponent {
+  sidebarCollapsed: boolean = false;
 
+  toggleSidebar() {
+    this.sidebarCollapsed = !this.sidebarCollapsed;
+  }
 }
