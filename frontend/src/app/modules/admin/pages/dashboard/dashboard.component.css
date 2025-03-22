@@ -79,3 +79,13 @@
     padding: 10px;
     font-size: 1rem;
 }
+
+.sidebar a:hover {
+    background: #495057;
+    border-radius: 5px;
+}
+
+.sidebar a i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
