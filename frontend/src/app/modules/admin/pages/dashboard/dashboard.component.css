@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'dashboard-icon';
-    src: url('../font/dashboard-icon.eot?77907714');
-    src: url('../font/dashboard-icon.eot?77907714#iefix') format('embedded-opentype'),
-         url('../font/dashboard-icon.woff2?77907714') format('woff2'),
-         url('../font/dashboard-icon.woff?77907714') format('woff'),
-         url('../font/dashboard-icon.ttf?77907714') format('truetype'),
-         url('../font/dashboard-icon.svg?77907714#dashboard-icon') format('svg');
+    src: url('../../../../../../public/assets/fonts/dashboard-icon.eot?77907714');
+    src: url('../../../../../../public/assets/fonts/dashboard-icon.eot?77907714#iefix') format('embedded-opentype'),
+         url('../../../../../../public/assets/fonts/dashboard-icon.woff2?77907714') format('woff2'),
+         url('../../../../../../public/assets/fonts/dashboard-icon.woff?77907714') format('woff'),
+         url('../../../../../../public/assets/fonts/dashboard-icon.ttf?77907714') format('truetype'),
+         url('../../../../../../public/assets/fonts/dashboard-icon.svg?77907714#dashboard-icon') format('svg');
     font-weight: normal;
     font-style: normal;
   }
