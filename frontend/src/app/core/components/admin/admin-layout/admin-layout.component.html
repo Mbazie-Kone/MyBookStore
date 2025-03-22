@@ -1,33 +1,43 @@
 <div class="wrapper" [class.sidebar-collapsed]="sidebarCollapsed">
-    <div class="sidebar" *ngIf="!sidebarCollapsed">
-        <div class="logo text-center">
-            <img src="/logo.png" alt="Logo" class="logo-dim">
-        </div>
-        <hr>
-        <div class="sidebar__user">
-            <img src="" class="sidebar__user__img">
-        </div>
-        <p class="sidebar__user__name">
-            Admin
-        </p>
-        <a routerLink="/administration/dashboard"><i class="icon-dashboard"></i><span class="icon__name">Dashboard</span></a>
-        <a href="#"><i class="icon-chart"></i><span class="icon__name">Analytics</span></a>
-        <a routerLink="/administration/view-products"><i class="icon-products"></i><span class="icon__name">Products</span></a>
-        <a href="#"><i class="icon-settings"></i><span class="icon__name">Settings</span></a>
+  <div class="sidebar">
+    <div class="logo text-center">
+      <img src="/logo.png" alt="Logo" class="logo-dim" />
     </div>
+    <hr />
+    <div class="sidebar__user">
+      <img src="" class="sidebar__user__img" />
+    </div>
+    <p class="sidebar__user__name" *ngIf="!sidebarCollapsed">Admin</p>
+    <a routerLink="/administration/dashboard">
+        <i class="icon-dashboard"></i>
+        <span class="icon__name" *ngIf="!sidebarCollapsed">Dashboard</span>
+    </a>
+    <a href="#">
+        <i class="icon-chart"></i>
+        <span class="icon__name" *ngIf="!sidebarCollapsed">Analytics</span>
+    </a>
+    <a routerLink="/administration/view-products">
+        <i class="icon-products"></i>
+        <span class="icon__name" *ngIf="!sidebarCollapsed">Products</span>
+    </a>
+    <a href="#">
+        <i class="icon-settings"></i>
+        <span class="icon__name" *ngIf="!sidebarCollapsed">Settings</span>
+    </a>
+  </div>
 </div>
 
 <div class="content">
-    <div class="navbar">
-        <i class="icon-hamburger" (click)="toggleSidebar()"></i>
-        <h5>MyBookStore Overview</h5>
-        <div class="icons">
-            <a href=""><i class="icon-search"></i></a>
-            <a href=""><i class="icon-bell"></i></a>
-        </div> 
+  <div class="navbar">
+    <i class="icon-hamburger" (click)="toggleSidebar()"></i>
+    <h5>MyBookStore Overview</h5>
+    <div class="icons">
+      <a href=""><i class="icon-search"></i></a>
+      <a href=""><i class="icon-bell"></i></a>
     </div>
-    
-    <router-outlet></router-outlet>
-    
-    <app-footer></app-footer>
+  </div>
+
+  <router-outlet></router-outlet>
+
+  <app-footer></app-footer>
 </div>
