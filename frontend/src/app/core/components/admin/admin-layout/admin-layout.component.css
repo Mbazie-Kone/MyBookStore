@@ -63,6 +63,7 @@
     content: "\67";
   } /* 'g' */
   
+  /* === BASE DESKTOP STYLE === */
   .sidebar {
       top: 0;
       left: 0;
@@ -122,5 +123,30 @@
   
   .content .navbar .icons i {
       color: white;
+  }
+
+  /* === MOBILE STYLE === */
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translate(-100%);
+    }
+
+    .sidebar.active {
+      transform: translate(0);
+    }
+
+    .content {
+      margin: 0;
+      padding-top: 60px;
+    }
+
+    .navbar {
+      left: 0;
+      width: 100%;
+    }
+
+    #menuToggle {
+      cursor: pointer;
+    }
   }
   
