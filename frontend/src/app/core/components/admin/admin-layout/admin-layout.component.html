@@ -31,19 +31,18 @@
             </a>
         </nav>
     </div>
-</div>
 
-<div class="content">
-  <div class="navbar">
-    <i class="icon-hamburger" (click)="toggleSidebar()"></i>
-    <h5>MyBookStore Overview</h5>
-    <div class="icons">
-      <a href=""><i class="icon-search"></i></a>
-      <a href=""><i class="icon-bell"></i></a>
+    <div class="content">
+        <div class="navbar">
+            <i class="icon-hamburger" (click)="toggleSidebar()"></i>
+            <h5>MyBookStore Overview</h5>
+            <div class="icons">
+                <a href=""><i class="icon-search"></i></a>
+                <a href=""><i class="icon-bell"></i></a>
+            </div>
+        </div>
+
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
     </div>
-  </div>
-
-  <router-outlet></router-outlet>
-
-  <app-footer></app-footer>
 </div>
