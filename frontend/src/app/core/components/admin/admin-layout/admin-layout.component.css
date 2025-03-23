@@ -172,6 +172,10 @@
     transition: all 0.6s ease;
   }
 
+  .content-pages {
+    margin-right: 18px;
+  }
+
   .navbar {
     background-color: #b5d6d6;
     padding: 15px;
