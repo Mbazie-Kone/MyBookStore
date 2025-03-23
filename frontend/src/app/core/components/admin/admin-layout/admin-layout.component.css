@@ -106,7 +106,7 @@
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
-    /* background: white; */
+    background: gray;
     object-fit: cover;
     border: 6px solid white;
     border-block-color: hsl(240, 98%, 36%);
