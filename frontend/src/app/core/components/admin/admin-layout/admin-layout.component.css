@@ -82,8 +82,8 @@
   }
   
   .sidebar nav a {
-      /* color: black;*/
-      /* text-decoration: none; */
+      color: black;
+      text-decoration: none;
       display: flex;
       align-items: center;
       padding: 10px;
@@ -96,6 +96,7 @@
   .sidebar nav a:hover {
       background: #495057;
       border-radius: 5px;
+      color: white;
   }
 
   .sidebar__user {
@@ -124,6 +125,11 @@
   .sidebar a i {
       margin-right: 10px;
       font-size: 1.2rem;
+  }
+
+  .logo-dim {
+    width: 7rem;
+    height: 1.8rem;
   }
 
   .logo-wrapper {
