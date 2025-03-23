@@ -5,27 +5,28 @@
             <img src="/logo.png" alt="Logo" class="logo-dim" />
             </div>
             <hr />
-            <div class="sidebar__user">
-            <img src="" class="sidebar__user__img" />
-            </div>
-            <p class="sidebar__user__name">Admin</p>
-            <a routerLink="/administration/dashboard">
-                <i class="icon-dashboard"></i>
-                <span class="icon__name">Dashboard</span>
-            </a>
-            <a href="#">
-                <i class="icon-chart"></i>
-                <span class="icon__name" *ngIf="!sidebarCollapsed">Analytics</span>
-            </a>
-            <a routerLink="/administration/view-products">
-                <i class="icon-products"></i>
-                <span class="icon__name" *ngIf="!sidebarCollapsed">Products</span>
-            </a>
-            <a href="#">
-                <i class="icon-settings"></i>
-                <span class="icon__name" *ngIf="!sidebarCollapsed">Settings</span>
-            </a>
         </div>
+        
+        <div class="sidebar__user">
+        <img src="" class="sidebar__user__img" />
+        </div>
+        <p class="sidebar__user__name">Admin</p>
+        <a routerLink="/administration/dashboard">
+            <i class="icon-dashboard"></i>
+            <span class="icon__name">Dashboard</span>
+        </a>
+        <a href="#">
+            <i class="icon-chart"></i>
+            <span class="icon__name" *ngIf="!sidebarCollapsed">Analytics</span>
+        </a>
+        <a routerLink="/administration/view-products">
+            <i class="icon-products"></i>
+            <span class="icon__name" *ngIf="!sidebarCollapsed">Products</span>
+        </a>
+        <a href="#">
+            <i class="icon-settings"></i>
+            <span class="icon__name" *ngIf="!sidebarCollapsed">Settings</span>
+        </a>
     </div>
 </div>
 
