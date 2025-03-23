@@ -121,6 +121,17 @@
     border: 6px solid white;
     border-block-color: hsl(240, 98%, 36%);
   }
+
+  .sidebar__user,
+  .sidebar__user__name,
+  .sidebar a {
+    transition: transform 0.6s ease;
+  }
+
+  .logo-wrapper {
+    transition: opacity 0.6s ease, height 0.6s ease, margin-bottom 0.6s ease;
+    margin-bottom: 20px;
+  }
   
   .content {
       margin-left: 270px;
@@ -152,16 +163,36 @@
     padding: 20px 10px;
   }
 
-  .wrapper.sidebar-collapsed .sidebar .icon__name {
+  .wrapper.sidebar-collapsed .logo-wrapper {
+    opacity: 0;
+    height: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+  }
+
+  .wrapper.sidebar-collapsed .icon__name {
     opacity: 0;
     width: 0;
     overflow: hidden;
-    transition: opacity 0.8s ease, width 0.8s ease;
   }
 
   .wrapper.sidebar-collapsed .content {
     margin-left: 90px;
     width: calc(100% - 90px);
+  }
+
+  .wrapper.sidebar-collapsed .sidebar .logo,
+  .wrapper.sidebar-collapsed .sidebar hr {
+    opacity: 0;
+    height: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+  }
+
+  .wrapper.sidebar-collapsed .sidebar__user,
+  .wrapper.sidebar-collapsed .sidebar__user__name,
+  .wrapper.sidebar-collapsed .sidebar a {
+    transform: translateY(-30px);
   }
 
   .icon-hamburger {
@@ -181,5 +212,7 @@
   .icon__name {
     display: inline-block;
     opacity: 1;
-    transition: opacity 0.8s ease;
+    width: auto;
+    transition: opacity 0.8s ease, width 0.8s ease;
+    white-space: nowrap;
   }
