@@ -171,6 +171,12 @@
     width: calc(100% - 90px);
   }
 
+  .wrapper.sidebar-collapsed a {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+  }
+  
   .content {
     margin-left: 270px;
     width: calc(100% - 270px);
